@@ -11,7 +11,7 @@ const Header = () => {
                 </div>
                 <div className="header-menu">
                     <ul className="header-menu-list">
-                        <li className="header-menu-item">Trang chủ</li>
+                        <li className="header-menu-item active">Trang chủ</li>
                         <li className="header-menu-item">Sản phẩm</li>
                         <li className="header-menu-item">Giới thiệu</li>
                         <li className="header-menu-item">Liên hệ</li>

@@ -27,6 +27,7 @@
   @media (max-width: 1024px) {
     font-size: 16px;
   }
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Dark theme support removed to keep white background by default */
