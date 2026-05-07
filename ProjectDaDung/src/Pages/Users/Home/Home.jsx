@@ -6,7 +6,7 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { Autoplay, Pagination, Navigation } from 'swiper/modules'
 import FeaturedCategories from '../Category/featuredCategories'
-
+import Product from '../Product/Product'
 import banner1 from '@/img/Content/banner-he-2024.jpg'
 import banner2 from '@/img/Content/Gemini_Generated_Image_60vbe860vbe860vb.png'
 import banner3 from '@/img/Content/Gemini_Generated_Image_o1sg16o1sg16o1sg.png'
@@ -35,6 +35,7 @@ const Home = () => {
         </Swiper>
       </div>
       <FeaturedCategories />
+      <Product />
     </div>
   )
 }
