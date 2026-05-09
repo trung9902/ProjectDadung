@@ -7,16 +7,19 @@ const Home = () => {
       {/* Hero Banner */}
       <section className="hero-section">
         <img
-          alt=""
+          alt="High-end modern home interior"
           className="hero-bg-img"
-          data-alt="minimalist fashion boutique interior with soft warm lighting, sleek racks of neutral toned clothing, modern minimalist aesthetic"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbcH_qYDKlLC-i8IuiXgeCwuGFirO6mWWrQgwbPJX5dYwQJTlbwTahLyY5oQqFSkbQp3HH_6iwjo6loQbla6Ptcvg9xPQeMkNqAbhS4aXlsI3kDty9hRnKI0lp7hI9EZDe_RL5bK6AX1PlMEEp-kzSH_SL5MzPwr9bxQIHz9EnDbnJ5zMVslyUKP7uHH_WN2_yWen0ejo5oEpehYvtpNLBQrjal_dxJt0nI1a_NSL972BTYnv6KCrOcUKjqSCpl0k6F7Cwd_sRqxa7"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHq8-KXGAl7AyVxIh1KvyNEdcffuT8WdZy78xtaNc4nv6YhbHTA6I6VO_nvSVg43R5H33nEKvfy9UM8H13-x5nLBowQJg93eu8LN2aZeaBwNAnhT7YHlCGbtGoGeA3wMGOdpyBdF55Kwvk_lx-_dgeuKVtQNGpTjaV_bqVmp81p1ZDmbiPtpxEYmQ__5nuyNqNLYssa-CnbFtJ97GgW7W5O98stNEFCQqgIakMKkKp0MVNbbF5BdKoBPtVBbdxxOpvJdoNIhb9LjyT"
         />
-        <div className="hero-content">
-          <span className="hero-badge">Mở Bán Sớm</span>
-          <h1 className="hero-title">Không Gian Sống Hoàn Mỹ.</h1>
-          <p className="hero-desc">Nâng tầm ngôi nhà của bạn với các thiết bị gia dụng cao cấp. Giảm giá lên đến 40% cho các sản phẩm được chọn lọc để mang lại sự tiện nghi và đẳng cấp.</p>
-          <button className="btn-primary">Mua Sắm Ngay</button>
+        <div className="hero-overlay-wrapper">
+          <div className="hero-glass-card">
+            <div className="hero-badge-premium">
+              <span>Premium Collection</span>
+            </div>
+            <h1 className="hero-title">Không Gian Sống Hoàn Mỹ.</h1>
+            <p className="hero-desc">Nâng tầm ngôi nhà của bạn với các thiết bị gia dụng cao cấp. Giảm giá lên đến 40% cho các sản phẩm được chọn lọc để mang lại sự tiện nghi và đẳng cấp.</p>
+            <button className="btn-primary-hero">Mua Sắm Ngay</button>
+          </div>
         </div>
       </section>
 

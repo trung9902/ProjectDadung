@@ -1,6 +1,6 @@
 import React from 'react'
 import './Header.css'
-
+import { Link } from "react-router-dom";
 const Header = () => {
     return (
         <nav className="header-nav">
@@ -15,15 +15,21 @@ const Header = () => {
                     <a className="header-menu-item" href="/sale">Giảm giá</a>
                 </div>
                 <div className="header-actions">
-                    <button className="header-action-btn">
-                        <span className="material-symbols-outlined">shopping_cart</span>
-                    </button>
-                    <button className="header-action-btn">
-                        <span className="material-symbols-outlined">person</span>
-                    </button>
-                    <button className="header-action-btn">
-                        <span className="material-symbols-outlined">favorite</span>
-                    </button>
+                    <Link to="/cart">
+                        <button className="header-action-btn">
+                            <i className="fa-solid fa-cart-shopping"></i>
+                        </button>
+                    </Link>
+                    <Link to="/login">
+                        <button className="header-action-btn">
+                            <i className="fa-solid fa-user"></i>
+                        </button>
+                    </Link>
+                    <Link to="/wishlist">
+                        <button className="header-action-btn">
+                            <i className="fa-regular fa-heart"></i>
+                        </button>
+                    </Link>
                 </div>
             </div>
         </nav>
