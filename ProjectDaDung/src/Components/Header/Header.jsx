@@ -1,36 +1,32 @@
 import React from 'react'
 import './Header.css'
+
 const Header = () => {
     return (
-        <div className='header-container'>
-            <div className="header">
-                <div className="header-logo">
-                  <a href="#" className="header-logo-link">
-                    <img src="/src/img/Header/logo.png" alt="Logo" />
-                  </a>
+        <nav className="header-nav">
+            <div className="header-container">
+                <div className="header-left">
+                    <a className="header-logo" href="/">MODERN_RETAIL</a>
                 </div>
                 <div className="header-menu">
-                    <ul className="header-menu-list">
-                        <li className="header-menu-item">Trang chủ</li>
-                        <li className="header-menu-item">Sản phẩm</li>
-                        <li className="header-menu-item">Giới thiệu</li>
-                        <li className="header-menu-item">Liên hệ</li>
-                    </ul>
+                    <a className="header-menu-item active" href="/">Cửa hàng</a>
+                    <a className="header-menu-item" href="/collections">Bộ sưu tập</a>
+                    <a className="header-menu-item" href="/new-arrivals">Hàng mới về</a>
+                    <a className="header-menu-item" href="/sale">Giảm giá</a>
                 </div>
-                <div className="header-Action">
-                    <a href="/cart" className="icon-link" aria-label="Cart">
-                        <i className="fa-solid fa-cart-shopping"></i>
-                        {/* <span className="icon-badge">0</span> */}
-                    </a>
-                    <a href="/account" className="icon-link" aria-label="Account">
-                        <i className="fa-solid fa-user"></i>
-                    </a>
-                    <a href="/wishlist" className="icon-link" aria-label="Wishlist">
-                        <i className="fa-regular fa-heart"></i>
-                    </a>
+                <div className="header-actions">
+                    <button className="header-action-btn">
+                        <span className="material-symbols-outlined">shopping_cart</span>
+                    </button>
+                    <button className="header-action-btn">
+                        <span className="material-symbols-outlined">person</span>
+                    </button>
+                    <button className="header-action-btn">
+                        <span className="material-symbols-outlined">favorite</span>
+                    </button>
                 </div>
             </div>
-        </div>
+        </nav>
     )
 }
 

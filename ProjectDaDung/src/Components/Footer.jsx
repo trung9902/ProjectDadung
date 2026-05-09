@@ -1,26 +1,22 @@
 import React from 'react'
+import './Footer.css'
 
 const Footer = () => {
     return (
-        <div>
-            <div className="header">
-                <div className="header-logo">
-                  <a href="#" className="header-logo-link">
-                    <img src="" alt="" />
-                  </a>
+        <footer className="footer-container">
+            <div className="footer-content">
+                <div className="footer-brand">
+                    <span className="footer-logo">MODERN_RETAIL</span>
+                    <p className="footer-copyright">© 2024 MODERN_RETAIL. KHÔNG GIAN SỐNG HOÀN MỸ.</p>
                 </div>
-                <div className="header-menu">
-                    <ul className="header-menu-list">
-                        <li className="header-menu-item">Trang chủ</li>
-                        <li className="header-menu-item">Sản phẩm</li>
-                        <li className="header-menu-item">Giới thiệu</li>
-                        <li className="header-menu-item">Liên hệ</li>
-                    </ul>
-                </div>
-                <div className="header-Action">
+                <div className="footer-links">
+                    <a className="footer-link" href="/privacy">Chính Sách Bảo Mật</a>
+                    <a className="footer-link" href="/terms">Điều Khoản Dịch Vụ</a>
+                    <a className="footer-link" href="/shipping">Vận Chuyển & Đổi Trả</a>
+                    <a className="footer-link" href="/contact">Liên Hệ</a>
                 </div>
             </div>
-        </div>
+        </footer>
     )
 }
 

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Chi tiết sản phẩm - Modern Retail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#a33e00",
+                        "surface-dim": "#eed5cb",
+                        "secondary-fixed": "#e5e2e1",
+                        "surface": "#fff8f6",
+                        "primary-container": "#c74e00",
+                        "on-primary-container": "#fffbff",
+                        "on-primary-fixed": "#360f00",
+                        "on-secondary": "#ffffff",
+                        "on-surface-variant": "#594137",
+                        "on-tertiary-container": "#fefcff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#e5e2e1",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#001c3b",
+                        "on-surface": "#261813",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#e1bfb2",
+                        "inverse-on-surface": "#ffede7",
+                        "tertiary-fixed": "#d5e3ff",
+                        "surface-container-highest": "#f7ddd3",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "inverse-surface": "#3c2d27",
+                        "on-secondary-container": "#656464",
+                        "surface-container-low": "#fff1ec",
+                        "primary-fixed": "#ffdbcd",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "inverse-primary": "#ffb596",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#ffe9e2",
+                        "secondary": "#5f5e5e",
+                        "background": "#fff8f6",
+                        "tertiary": "#005cad",
+                        "on-tertiary-fixed-variant": "#004787",
+                        "outline": "#8d7165",
+                        "surface-bright": "#fff8f6",
+                        "on-secondary-fixed-variant": "#474646",
+                        "tertiary-container": "#0075d8",
+                        "surface-container-high": "#fde3d9",
+                        "on-primary-fixed-variant": "#7c2e00",
+                        "primary-fixed-dim": "#ffb596",
+                        "surface-variant": "#f7ddd3",
+                        "primary": "#9f3d00",
+                        "tertiary-fixed-dim": "#a6c8ff",
+                        "on-background": "#261813"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "md": "24px",
+                        "xs": "4px",
+                        "xl": "80px",
+                        "unit": "8px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "sm": "12px",
+                        "lg": "48px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "h3": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "h1": ["Inter"],
+                        "h2": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "h3": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "h1": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "h2": ["32px", { "lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 h-20 bg-white/90 dark:bg-zinc-950/90 backdrop-blur-md border-b border-zinc-100 dark:border-zinc-800 shadow-[0px_10px_30px_rgba(0,0,0,0.08)]">
+<div class="max-w-[1280px] mx-auto px-12 flex justify-between items-center h-full">
+<a class="text-2xl font-black tracking-tighter text-zinc-900 dark:text-white active:scale-95 transition-transform duration-150" href="#">
+                MODERN_RETAIL
+            </a>
+<div class="hidden md:flex gap-8 items-center font-['Inter'] text-sm font-medium tracking-wide">
+<!-- Active Item -->
+<a class="text-orange-600 dark:text-orange-500 border-b-2 border-orange-600 pb-1 hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200 active:scale-95 transition-transform duration-150" href="#">Mua sắm tất cả</a>
+<!-- Inactive Items -->
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200 active:scale-95 transition-transform duration-150" href="#">Bộ sưu tập</a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200 active:scale-95 transition-transform duration-150" href="#">Hàng mới về</a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200 active:scale-95 transition-transform duration-150" href="#">Khuyến mãi</a>
+</div>
+<div class="flex gap-4 items-center text-orange-600 dark:text-orange-500 font-['Inter'] text-sm font-medium tracking-wide">
+<button class="hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200 active:scale-95 transition-transform duration-150 flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</button>
+<button class="hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200 active:scale-95 transition-transform duration-150 flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+<button class="hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200 active:scale-95 transition-transform duration-150 flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="max-w-container-max mx-auto px-4 md:px-lg pt-[120px] pb-xl">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-2 mb-lg font-label-md text-label-md text-secondary">
+<a class="hover:text-primary transition-colors" href="#">Trang chủ</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Đồ gia dụng</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-on-surface">Máy Lọc Không Khí PureBreeze</span>
+</nav>
+<!-- Product Hero Section -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter lg:gap-[48px] mb-xl">
+<!-- Left: Image Gallery (7 cols) -->
+<div class="lg:col-span-7 flex flex-col gap-sm">
+<!-- Main Image -->
+<div class="relative w-full aspect-square bg-surface-container-lowest rounded-lg overflow-hidden shadow-[0px_4px_20px_rgba(0,0,0,0.04)] group">
+<!-- Product Badge: Discount -->
+<div class="absolute top-md left-md z-10 bg-primary text-on-primary font-label-sm text-label-sm px-4 py-2 rounded-full uppercase">
+                        Tiết kiệm 15%
+                    </div>
+<img alt="Máy Lọc Không Khí PureBreeze" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Minimalist modern desk organizer in matte white ceramic holding sleek black pens on a light oak wood surface with soft, diffused natural daylight entering from the right, creating a serene workspace atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPmD5Oa_YAuUa_7V4jG7wGnlUGKlIZ4afH6tvwGK2OjQT5lWZblx7QULc5yTkrkoDhD2mPgK0sfOUHoKMW_UH8DaGrsBRNkjtGLQ0iCQEq8C02JwAH5iqBV8EhTnUusymHkDBymcvQWlDJ0COplFRbajiRsAyn33kPaQOv957nL1vljf2EVlMjKbVbYYTIq4oA5hBny35xeTzQnDqWGjXt3AQAq0YlA2jse-xjdEfdpkOz888rmHOjv80-eXrzOmexByGlONPRAp0A"/>
+</div>
+<!-- Thumbnails -->
+<div class="grid grid-cols-4 gap-sm">
+<button class="aspect-square bg-surface-container-lowest rounded-DEFAULT overflow-hidden border-2 border-primary">
+<img alt="Hình thu nhỏ 1" class="w-full h-full object-cover" data-alt="Close up view of minimalist modern desk organizer focusing on the smooth matte white ceramic texture and the precise geometric compartments" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgiElupBHTa-0FPc-QccWEEEXb3ijC1Vqe_9aRp3ibdcYh5YErY9N1LorwUJITxqJ58jbRRyvEcBdJxtx_xgh1ikjtmZO6oNZoLhgCkxTj6HLRC2LrVd7uqZABq0UjeahRQw_bGTm65GFEZYRc51K_QbZo0XZ-LwxZtnOCf5xkM9Bw29WdRa7lKGnL6tS0tVNKmEB1b1w3vCtot-U7RHtbErvydZahzo2tTQMeu72rva4-4PODQeYRjELBXRxdofOEws_PZ4JeR-Fi"/>
+</button>
+<button class="aspect-square bg-surface-container-lowest rounded-DEFAULT overflow-hidden border-2 border-transparent hover:border-outline-variant transition-colors opacity-70 hover:opacity-100">
+<img alt="Hình thu nhỏ 2" class="w-full h-full object-cover" data-alt="Overhead angle of minimalist desk organizer showing various compartments filled with paperclips, small notes, and elegant writing instruments" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWal_eaE8vEsHb5OwK7BOpqnWP0FKjUJM_Obk0A0R9J4CXaLrqwy3E5FR4bGXD105Ug3AgUZGpRR5zXxOODLM-NQ1F7smDIT7KWc16H_qmpiZQ7tQMZolrZhPyKeZICQBCK9FP-h0Mdu0GD2fSsBYeMSZtkPN1hFi7BfJSVowDEkdYSEQ3FVU9jZaXEdm1jgIMqJPdiQYKDO_q-6ieZfRph_0qL3xmg8lsI77JiDcn_6Z-Pbb3o9m95MsZq5MHYyhjz2M9q4n1hisP"/>
+</button>
+<button class="aspect-square bg-surface-container-lowest rounded-DEFAULT overflow-hidden border-2 border-transparent hover:border-outline-variant transition-colors opacity-70 hover:opacity-100">
+<img alt="Hình thu nhỏ 3" class="w-full h-full object-cover" data-alt="Lifestyle shot of minimalist desk organizer on a clean white desk beside a modern laptop and a small green potted succulent plant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmV1n3go6OCWlHqYWp9AlabsXrzraKw7VvvChi6rWGRRMz7Juzu2BwT6MHMAqWn7qvFgCj7zbP2E-DWem56EUGAyLjERmpwZn_EBXmStmgQZSWNpo81qPysd0x9ubLBlVIexR2vbFVNLzM0KDLgYw8qi23FPDpp6mCH18KYV7B2Xx-GG8iTtNHqrT9LgsPZ2i3zjfGV8YoShO8wGozSZEQWz00j9-TSekB8iw6HUb32zWd9QDwhxWm_mI5kYF3gyUNfPHsh3codABj"/>
+</button>
+<button class="aspect-square bg-surface-container-lowest rounded-DEFAULT overflow-hidden border-2 border-transparent hover:border-outline-variant transition-colors opacity-70 hover:opacity-100">
+<img alt="Hình thu nhỏ 4" class="w-full h-full object-cover" data-alt="Detail shot highlighting the non-slip cork base of the white ceramic desk organizer resting on a glass surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCK9rkZaWHABkmnXMwO__30MLP8tdwzReC3FvJBMeBOwG3MmGjzTmRPQoIPHvZiZwgmCRwesoH4SgJ5oVTcyf02zAI3fhrYhQAeRMUIpZ2L1ywAgDrLsDYeQbMlNKQKmipTIc5cXZ8JRHgXaUZUua46GpfywcC7KhFs5JX7cw0WOVELOPTh_Ew2HSJ7-o5HZyzGd-dJI_3zVXAMblDIEjwda_GBIHiCgjVmbV530jz-9_JOESSKocGMkwnnAXCFRiv7hYQFs8Fgry6j"/>
+</button>
+</div>
+</div>
+<!-- Right: Product Info (5 cols) -->
+<div class="lg:col-span-5 flex flex-col justify-start pt-md">
+<span class="font-label-sm text-label-sm text-secondary uppercase mb-2">Đồ gia dụng thông minh</span>
+<h1 class="font-h1 text-h1 text-on-surface mb-xs">Máy Lọc Không Khí PureBreeze</h1>
+<div class="flex items-center gap-4 mb-md">
+<span class="font-h3 text-h3 text-primary">4.800.000 ₫</span>
+<span class="font-body-md text-body-md text-secondary line-through">5.600.000 ₫</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg border-b border-surface-variant pb-lg">
+                    Tận hưởng bầu không khí trong lành với Máy lọc không khí PureBreeze. Được trang bị hệ thống lọc HEPA đa lớp tiên tiến, thiết kế hiện đại và hoạt động cực êm, sản phẩm giúp loại bỏ 99.97% bụi mịn, vi khuẩn và mùi hôi, bảo vệ sức khỏe cho cả gia đình bạn.
+                </p>
+<!-- Stock & Shipping -->
+<div class="flex flex-col gap-2 mb-lg">
+<div class="flex items-center gap-2 font-label-md text-label-md text-on-surface">
+<span class="material-symbols-outlined text-primary text-[20px]" data-weight="fill">check_circle</span>
+                        Còn hàng &amp; Sẵn sàng giao
+                    </div>
+<div class="flex items-center gap-2 font-body-md text-body-md text-secondary text-sm">
+<span class="material-symbols-outlined text-[18px]">local_shipping</span>
+                        Miễn phí giao hàng tiêu chuẩn cho đơn từ 1.000.000 ₫
+                    </div>
+</div>
+<!-- Add to Cart Block -->
+<div class="flex flex-col sm:flex-row gap-4 mb-lg">
+<!-- Quantity Selector -->
+<div class="flex items-center border border-outline-variant rounded-DEFAULT overflow-hidden bg-surface-container-lowest h-[56px] w-[140px]">
+<button class="w-12 h-full flex items-center justify-center text-on-surface hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<input class="w-full text-center font-label-md text-label-md border-none focus:ring-0 bg-transparent text-on-surface" min="1" type="number" value="1"/>
+<button class="w-12 h-full flex items-center justify-center text-on-surface hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+<!-- Primary CTA -->
+<button class="flex-1 bg-primary text-on-primary font-label-md text-label-md py-[16px] px-[32px] rounded-DEFAULT hover:bg-primary-container transition-all duration-200 flex items-center justify-center gap-2 shadow-[0px_4px_20px_rgba(232,93,4,0.15)] hover:shadow-[0px_8px_25px_rgba(232,93,4,0.25)] hover:-translate-y-0.5">
+<span class="material-symbols-outlined" data-weight="fill">shopping_cart_checkout</span>
+                        Thêm vào giỏ hàng
+                    </button>
+</div>
+<!-- Secondary Actions -->
+<div class="flex items-center gap-6 border-t border-surface-variant pt-md">
+<button class="flex items-center gap-2 font-label-md text-label-md text-secondary hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[20px]">favorite_border</span>
+                        Thêm vào yêu thích
+                    </button>
+<button class="flex items-center gap-2 font-label-md text-label-md text-secondary hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[20px]">share</span>
+                        Chia sẻ
+                    </button>
+</div>
+</div>
+</div>
+<!-- Details Sections (Specs & Reviews) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter lg:gap-[48px] border-t border-surface-variant pt-xl">
+<!-- Specifications (4 cols) -->
+<div class="lg:col-span-4">
+<h2 class="font-h3 text-h3 text-on-surface mb-md">Thông số kỹ thuật</h2>
+<div class="flex flex-col gap-0 border-t border-outline-variant">
+<div class="py-sm border-b border-surface-variant flex justify-between">
+<span class="font-body-md text-body-md text-secondary">Công suất</span>
+<span class="font-label-md text-label-md text-on-surface">45W</span>
+</div>
+<div class="py-sm border-b border-surface-variant flex justify-between">
+<span class="font-body-md text-body-md text-secondary">Kích thước</span>
+<span class="font-label-md text-label-md text-on-surface">25cm x 25cm x 50cm</span>
+</div>
+<div class="py-sm border-b border-surface-variant flex justify-between">
+<span class="font-body-md text-body-md text-secondary">Trọng lượng</span>
+<span class="font-label-md text-label-md text-on-surface">3.5 kg</span>
+</div>
+<div class="py-sm border-b border-surface-variant flex justify-between">
+<span class="font-body-md text-body-md text-secondary">Diện tích phòng</span>
+<span class="font-label-md text-label-md text-on-surface">Tới 40m²</span>
+</div>
+<div class="py-sm border-b border-surface-variant flex justify-between">
+<span class="font-body-md text-body-md text-secondary">Bảo hành</span>
+<span class="font-label-md text-label-md text-on-surface">2 năm chính hãng</span>
+</div>
+</div>
+</div>
+<!-- Customer Reviews (8 cols) -->
+<div class="lg:col-span-8">
+<div class="flex items-center justify-between mb-md">
+<h2 class="font-h3 text-h3 text-on-surface">Đánh giá của khách hàng</h2>
+<div class="flex items-center gap-2">
+<div class="flex text-primary">
+<span class="material-symbols-outlined text-[20px]" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[20px]" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[20px]" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[20px]" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[20px]" data-weight="fill">star_half</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">4.8 (124 Đánh giá)</span>
+</div>
+</div>
+<!-- Review Cards Bento Style -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-sm">
+<!-- Review 1 -->
+<div class="bg-surface-container-lowest p-md rounded-lg shadow-[0px_4px_20px_rgba(0,0,0,0.04)] border border-surface-variant">
+<div class="flex items-center gap-2 mb-2 text-primary">
+<span class="material-symbols-outlined text-[16px]" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[16px]" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[16px]" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[16px]" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[16px]" data-weight="fill">star</span>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface mb-2">Tuyệt vời cho phòng ngủ</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mb-4">
+                            "Đúng như mong đợi. Máy chạy rất êm vào ban đêm, không khí trong phòng khác hẳn sau khi dùng vài ngày. Thiết kế nhỏ gọn và đẹp mắt."
+                        </p>
+<span class="font-label-sm text-label-sm text-secondary uppercase">Minh A. — 12 Th10, 2023</span>
+</div>
+<!-- Review 2 -->
+<div class="bg-surface-container-lowest p-md rounded-lg shadow-[0px_4px_20px_rgba(0,0,0,0.04)] border border-surface-variant">
+<div class="flex items-center gap-2 mb-2 text-primary">
+<span class="material-symbols-outlined text-[16px]" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[16px]" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[16px]" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[16px]" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[16px]">star</span>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface mb-2">Thiết kế đẹp</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mb-4">
+                            "Màu trắng nhám rất sang trọng và dễ vệ sinh. Trừ một sao vì ứng dụng điện thoại thỉnh thoảng hơi chậm khi kết nối lần đầu."
+                        </p>
+<span class="font-label-sm text-label-sm text-secondary uppercase">Lan S. — 28 Th9, 2023</span>
+</div>
+</div>
+<div class="mt-md text-center md:text-left">
+<button class="font-label-md text-label-md text-primary hover:text-primary-container transition-colors border-b border-primary pb-0.5">Đọc tất cả 124 đánh giá</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-16 bg-zinc-50 dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800">
+<div class="max-w-[1280px] mx-auto px-12 grid grid-cols-1 md:grid-cols-4 gap-12">
+<!-- Brand / Copyright -->
+<div class="flex flex-col gap-4">
+<span class="text-lg font-bold text-zinc-900 dark:text-zinc-100">MODERN_RETAIL</span>
+<span class="font-['Inter'] text-sm text-zinc-500 dark:text-zinc-400">
+                    © 2024 MODERN_RETAIL. CUỘC SỐNG HIỆN ĐẠI.
+                </span>
+</div>
+<!-- Links Container -->
+<div class="col-span-1 md:col-span-3 flex flex-col sm:flex-row gap-6 md:justify-end md:gap-12">
+<a class="font-['Inter'] text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors opacity-80 hover:opacity-100" href="#">Chính sách bảo mật</a>
+<a class="font-['Inter'] text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors opacity-80 hover:opacity-100" href="#">Điều khoản dịch vụ</a>
+<a class="font-['Inter'] text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors opacity-80 hover:opacity-100" href="#">Giao hàng &amp; Hoàn trả</a>
+<a class="font-['Inter'] text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors opacity-80 hover:opacity-100" href="#">Liên hệ</a>
+</div>
+</div>
+</footer>
+</body></html>

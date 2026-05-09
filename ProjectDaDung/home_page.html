@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MODERN_RETAIL - Thiết bị gia dụng cao cấp</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#a33e00",
+                        "surface-dim": "#eed5cb",
+                        "secondary-fixed": "#e5e2e1",
+                        "surface": "#fff8f6",
+                        "primary-container": "#c74e00",
+                        "on-primary-container": "#fffbff",
+                        "on-primary-fixed": "#360f00",
+                        "on-secondary": "#ffffff",
+                        "on-surface-variant": "#594137",
+                        "on-tertiary-container": "#fefcff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#e5e2e1",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#001c3b",
+                        "on-surface": "#261813",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#e1bfb2",
+                        "inverse-on-surface": "#ffede7",
+                        "tertiary-fixed": "#d5e3ff",
+                        "surface-container-highest": "#f7ddd3",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "inverse-surface": "#3c2d27",
+                        "on-secondary-container": "#656464",
+                        "surface-container-low": "#fff1ec",
+                        "primary-fixed": "#ffdbcd",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "inverse-primary": "#ffb596",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#ffe9e2",
+                        "secondary": "#5f5e5e",
+                        "background": "#fff8f6",
+                        "tertiary": "#005cad",
+                        "on-tertiary-fixed-variant": "#004787",
+                        "outline": "#8d7165",
+                        "surface-bright": "#fff8f6",
+                        "on-secondary-fixed-variant": "#474646",
+                        "tertiary-container": "#0075d8",
+                        "surface-container-high": "#fde3d9",
+                        "on-primary-fixed-variant": "#7c2e00",
+                        "primary-fixed-dim": "#ffb596",
+                        "surface-variant": "#f7ddd3",
+                        "primary": "#9f3d00",
+                        "tertiary-fixed-dim": "#a6c8ff",
+                        "on-background": "#261813"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "md": "24px",
+                        "xs": "4px",
+                        "xl": "80px",
+                        "unit": "8px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "sm": "12px",
+                        "lg": "48px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "h3": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "h1": ["Inter"],
+                        "h2": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "h3": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "h1": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "h2": ["32px", { "lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #fff8f6; color: #261813; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .level-1-shadow { box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.04); }
+        .level-2-shadow { box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.08); }
+        .btn-primary { background-color: #E85D04; color: white; transition: background-color 200ms ease-in-out; padding: 16px 32px; font-weight: bold; border-radius: 0.125rem; }
+        .btn-primary:hover { background-color: #c74e00; }
+        .product-card:hover { transform: translateY(-4px); box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.08); }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased pt-20">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 h-20 bg-white/90 dark:bg-zinc-950/90 backdrop-blur-md border-b border-zinc-100 dark:border-zinc-800 shadow-[0px_10px_30px_rgba(0,0,0,0.08)]">
+<div class="max-w-[1280px] mx-auto px-12 flex justify-between items-center h-full">
+<div class="flex items-center space-x-8">
+<a class="text-2xl font-black tracking-tighter text-zinc-900 dark:text-white" href="#">MODERN_RETAIL</a>
+</div>
+<div class="hidden md:flex items-center space-x-6 font-['Inter'] text-sm font-medium tracking-wide">
+<a class="text-orange-600 dark:text-orange-500 border-b-2 border-orange-600 pb-1" href="#">Cửa hàng</a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200" href="#">Bộ sưu tập</a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200" href="#">Hàng mới về</a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200" href="#">Giảm giá</a>
+</div>
+<div class="flex items-center space-x-4 text-orange-600 dark:text-orange-500">
+<button class="active:scale-95 transition-transform duration-150 hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</button>
+<button class="active:scale-95 transition-transform duration-150 hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+<button class="active:scale-95 transition-transform duration-150 hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="max-w-container-max mx-auto px-4 md:px-lg mb-xl">
+<!-- Hero Banner -->
+<section class="mt-xl mb-xl rounded-xl overflow-hidden relative min-h-[600px] flex items-center bg-surface-container-highest">
+<img alt="" class="absolute inset-0 w-full h-full object-cover opacity-80 mix-blend-overlay" data-alt="minimalist fashion boutique interior with soft warm lighting, sleek racks of neutral toned clothing, modern minimalist aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbcH_qYDKlLC-i8IuiXgeCwuGFirO6mWWrQgwbPJX5dYwQJTlbwTahLyY5oQqFSkbQp3HH_6iwjo6loQbla6Ptcvg9xPQeMkNqAbhS4aXlsI3kDty9hRnKI0lp7hI9EZDe_RL5bK6AX1PlMEEp-kzSH_SL5MzPwr9bxQIHz9EnDbnJ5zMVslyUKP7uHH_WN2_yWen0ejo5oEpehYvtpNLBQrjal_dxJt0nI1a_NSL972BTYnv6KCrOcUKjqSCpl0k6F7Cwd_sRqxa7"/>
+<div class="relative z-10 px-8 md:px-16 max-w-2xl">
+<span class="inline-block px-4 py-1 bg-white border border-[#121212] font-label-sm text-label-sm rounded-full mb-6 text-black uppercase tracking-wider">Mở Bán Sớm</span>
+<h1 class="font-h1 text-h1 text-on-surface mb-6">Không Gian Sống Hoàn Mỹ.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8">Nâng tầm ngôi nhà của bạn với các thiết bị gia dụng cao cấp. Giảm giá lên đến 40% cho các sản phẩm được chọn lọc để mang lại sự tiện nghi và đẳng cấp.</p>
+<button class="btn-primary">Mua Sắm Ngay</button>
+</div>
+</section>
+<!-- Curated Categories -->
+<section class="mb-xl">
+<div class="flex justify-between items-end mb-8">
+<h2 class="font-h2 text-h2 text-on-surface">Danh Mục Nổi Bật</h2>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<a class="group flex flex-col items-center text-center" href="#">
+<div class="w-full aspect-square rounded-full overflow-hidden mb-4 bg-surface-container-low level-1-shadow relative">
+<img alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="sleek modern electronics setup on minimal white desk, natural light casting soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXgYYDg1GnQT2ogCmAglHTKLbyNFsin8Y_j26WSsWwRbM4upm_r0hrtI2aUMx3AaRFBKAul1o_C95I1gLwFzdw_j9mfjV_ID8SkwAA967OIFfocX4H74xe9SXEKbuJia6ChDwe2c74qJ7jd9OGATxbfGhvUVK3HMIQyG3mQ4fDiK9crJm8kM3piHrqon_swaH25Vp-RzBLEvvbcBxI1rA8MpsxQtdjOaiYl3PFVM5mb_r2sGpJZEZnt9gz7YnDsgstq4LCKDLSmx1J"/>
+</div>
+<span class="font-h3 text-h3 text-on-surface">Thiết Bị Bếp</span>
+</a>
+<a class="group flex flex-col items-center text-center" href="#">
+<div class="w-full aspect-square rounded-full overflow-hidden mb-4 bg-surface-container-low level-1-shadow relative">
+<img alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="minimalist flat lay of neatly folded essential clothing items in neutral earth tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAk00tN3E_iBEVUTUtZ1iJ3gIsBa9SjraCDg8dCtZXUpRJ9ODKsAzLfN9O7AeBcLssUCNVi1gj6AUPM2K34QN4-mkH5e3X1AxuBnLaUMgJ8gNCkWtQUnsY7Kmc-dBxwFUNfbBkjBP1JOyySGvgRRywTSx30y2qBk3elSYvJ_zEoBEdobreVvkou7oRN811rzRbUUQunC_iL7lXbUxnpI5zJziFZYiD6Vyia4Ul5SpHCSDXI5WTbd7_TPj2_xOFVdOH6C9Opn5ZvdRrT"/>
+</div>
+<span class="font-h3 text-h3 text-on-surface">Vệ Sinh Nhà Cửa</span>
+</a>
+<a class="group flex flex-col items-center text-center" href="#">
+<div class="w-full aspect-square rounded-full overflow-hidden mb-4 bg-surface-container-low level-1-shadow relative">
+<img alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="modern minimalist living room corner with neutral furniture and a single elegant houseplant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7Kd-NpIO4JCI3k2BBltbMPaIFGFQwyqRjeWQuFBrhwYZEAVDXifuVGfyZ3Gd9FHoiyS7fu8hg3QVgnwUjdxfwdFRCCBfCDyv0Tn59tPpnZmeBx2S_xC-wtZ99l5kXQM2mN3cep0MdzFY0IwWq2bs4nf9GvamJJdCpTNPukrEx6_x5guc9OET2r78Lo6gYPUO7VPapIJuV9Yk5MXLBiDiGWq2239VmClRg42IvHDUxAk5vHaGGNt95xjE_mxnCtCRemrBx_X0Sc8UE"/>
+</div>
+<span class="font-h3 text-h3 text-on-surface">Không Gian Sống</span>
+</a>
+<a class="group flex flex-col items-center text-center" href="#">
+<div class="w-full aspect-square rounded-full overflow-hidden mb-4 bg-surface-container-low level-1-shadow relative">
+<img alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="premium minimalist skincare bottles neatly arranged on a clean white surface with soft diffused lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKqQUDPeSAzXwGnPyac4v8l8TbpK4SOqGfvg0pqJZeaVrtjL88ZNF5xjhIQfCyP_2adT-yn619p1xWgL9I7FegmRXx6S1A7btH5AqEArfDUL4pFZARphGpJtALgRRIfzTvlwJV5U31GRBAmvWgnPi2Ln6a2GY3MAX4zidlAO7fPztDB-Hqzo5xSXeW7zh32zgb21EL5ikZSoSFTUUgUYU1ZUUfWwJedsX7tjcGTN50dW4-4ru4G9-Z8mbLxpTXIhoSH1LFQMXCLyP-"/>
+</div>
+<span class="font-h3 text-h3 text-on-surface">Chăm Sóc Cá Nhân</span>
+</a>
+</div>
+</section>
+<!-- Trending Now -->
+<section class="mb-xl">
+<div class="flex justify-between items-end mb-8">
+<h2 class="font-h2 text-h2 text-on-surface">Xu Hướng Hiện Tại</h2>
+<a class="font-label-md text-label-md text-primary hover:underline underline-offset-4" href="#">Xem Tất Cả</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Product 1 -->
+<div class="product-card bg-white rounded-lg p-4 transition-all duration-300">
+<div class="relative aspect-[4/5] bg-surface-container-lowest rounded-md overflow-hidden mb-4">
+<span class="absolute top-4 left-4 z-10 inline-block px-3 py-1 bg-[#E85D04] text-white font-label-sm text-label-sm rounded-full tracking-wider">GIẢM 15%</span>
+<img alt="" class="w-full h-full object-cover" data-alt="sleek premium wireless headphones resting on a minimalist concrete surface, soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfbAxCtCZtACtLjRXKRxFeS6MkLonwDOzEtb-Ke5guUiAAuk_7p4XMdBceZI5UyURdjaq8-qKXg-SXrhI9FIZlp_LsV0-w96LGXL2bY47rUi6qHfLvwYtc2Qo0U9F3G_i4-aFZ77p2IyMplCZwoVpMKmUCIzf9hCqEcFjY5fCV2_VHsUK7g5oGuMN22-73RrnqbcYw5NZWsBqMhR6AJ-wzCv7l4RQ9JgwVeLImdr4g8Ml9oP7KXTL59KkOaMAOkfkPe2JDJP5FSgda"/>
+</div>
+<p class="font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-1">Thiết Bị Thông Minh</p>
+<h3 class="font-h3 text-h3 text-on-surface mb-2">Loa Không Dây Studio</h3>
+<p class="font-body-lg text-body-lg text-primary font-semibold">6.990.000 ₫ <span class="text-secondary line-through text-sm font-normal ml-2">8.200.000 ₫</span></p>
+</div>
+<!-- Product 2 -->
+<div class="product-card bg-white rounded-lg p-4 transition-all duration-300">
+<div class="relative aspect-[4/5] bg-surface-container-lowest rounded-md overflow-hidden mb-4">
+<span class="absolute top-4 left-4 z-10 inline-block px-3 py-1 bg-white border border-[#121212] text-black font-label-sm text-label-sm rounded-full tracking-wider">MỚI</span>
+<img alt="" class="w-full h-full object-cover" data-alt="minimalist white cotton t-shirt neatly folded on a light grey background, high-end retail styling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWf0ESQamHhc7HLqCv_hA-ikZtt69cIsiVrBfyPeY3OtLjrpn6RLOfqvNbo4vbY9g0O4hKCC-yhGD8NGAaJX336TBK5B-ueRxSKle6uhxnbc-jTrjuNkxYyI3EoOddKDDns8otywOpPpAnfH2O6r3zlgOu0TriIpqjRhb4fyR2zRn8pu7at0kUM3Zolps9zI-bA0pS4Ht3gjbv_TB_sk15r_myL8xyyD7Mxw9K-WaIjL1TpNuD9eEEsgX6o7q76saJiVzs-EXYerv5"/>
+</div>
+<p class="font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-1">Máy Giặt &amp; Sấy</p>
+<h3 class="font-h3 text-h3 text-on-surface mb-2">Máy Giặt Thông Minh</h3>
+<p class="font-body-lg text-body-lg text-primary font-semibold">12.500.000 ₫</p>
+</div>
+<!-- Product 3 -->
+<div class="product-card bg-white rounded-lg p-4 transition-all duration-300">
+<div class="relative aspect-[4/5] bg-surface-container-lowest rounded-md overflow-hidden mb-4">
+<img alt="" class="w-full h-full object-cover" data-alt="minimalist matte white ceramic mug filled with coffee on a clean wooden table, natural morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjNbiIwYBh-vJdYWxX2q14opy11sO7QhberpzVUkEsJYbveoJUwz5tw60dzi6Vt6VeXPCsrhfKSEeRpcO1IP_6cav04Lr5fU0E3wB9NRwSYGl8l0s3Vq8ze6IaSVd2DFtfroClW39Wql-dnLOYiJToLkn3xQHkX71vRLq6rKLGlYs5g0rXM3XxeqkNuqSnzfOxIJilbzPVQpnYrc6um2HvCutOEx2Pr8QLf5fha7rYB9up642ZCImv-7xO92RXEW2Lb31gskJ7x-2h"/>
+</div>
+<p class="font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-1">Đồ Gia Dụng</p>
+<h3 class="font-h3 text-h3 text-on-surface mb-2">Máy Pha Cà Phê Cao Cấp</h3>
+<p class="font-body-lg text-body-lg text-primary font-semibold">4.800.000 ₫</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-zinc-50 dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800 w-full py-16">
+<div class="max-w-[1280px] mx-auto px-12 grid grid-cols-1 md:grid-cols-4 gap-12">
+<div>
+<span class="text-lg font-bold text-zinc-900 dark:text-zinc-100 block mb-4">MODERN_RETAIL</span>
+<p class="font-['Inter'] text-sm text-zinc-500 dark:text-zinc-400">© 2024 MODERN_RETAIL. KHÔNG GIAN SỐNG HOÀN MỸ.</p>
+</div>
+<div class="flex flex-col space-y-3">
+<a class="font-['Inter'] text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors opacity-80 hover:opacity-100" href="#">Chính Sách Bảo Mật</a>
+<a class="font-['Inter'] text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors opacity-80 hover:opacity-100" href="#">Điều Khoản Dịch Vụ</a>
+<a class="font-['Inter'] text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors opacity-80 hover:opacity-100" href="#">Vận Chuyển &amp; Đổi Trả</a>
+<a class="font-['Inter'] text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors opacity-80 hover:opacity-100" href="#">Liên Hệ</a>
+</div>
+</div>
+</footer>
+</body></html>

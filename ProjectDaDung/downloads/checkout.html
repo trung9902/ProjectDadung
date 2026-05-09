@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Thanh toán - MODERN_RETAIL</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#a33e00",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "secondary-fixed": "#e5e2e1",
+                        "on-primary-container": "#fffbff",
+                        "on-error-container": "#93000a",
+                        "outline": "#8d7165",
+                        "inverse-surface": "#3c2d27",
+                        "surface-container-high": "#fde3d9",
+                        "surface-container": "#ffe9e2",
+                        "surface-bright": "#fff8f6",
+                        "surface": "#fff8f6",
+                        "on-surface": "#261813",
+                        "error-container": "#ffdad6",
+                        "tertiary": "#005cad",
+                        "on-primary-fixed-variant": "#7c2e00",
+                        "tertiary-container": "#0075d8",
+                        "secondary": "#5f5e5e",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "on-background": "#261813",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#ffdbcd",
+                        "primary-fixed-dim": "#ffb596",
+                        "background": "#fff8f6",
+                        "tertiary-fixed-dim": "#a6c8ff",
+                        "on-tertiary-container": "#fefcff",
+                        "on-secondary-fixed-variant": "#474646",
+                        "surface-variant": "#f7ddd3",
+                        "inverse-primary": "#ffb596",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#656464",
+                        "surface-dim": "#eed5cb",
+                        "tertiary-fixed": "#d5e3ff",
+                        "on-surface-variant": "#594137",
+                        "on-primary-fixed": "#360f00",
+                        "on-tertiary-fixed-variant": "#004787",
+                        "surface-container-low": "#fff1ec",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#ffede7",
+                        "on-tertiary-fixed": "#001c3b",
+                        "outline-variant": "#e1bfb2",
+                        "secondary-container": "#e5e2e1",
+                        "primary-container": "#c74e00",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#f7ddd3",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#9f3d00",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "md": "24px",
+                        "gutter": "24px",
+                        "lg": "48px",
+                        "container-max": "1280px",
+                        "sm": "12px",
+                        "xl": "80px",
+                        "xs": "4px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "h1": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "h2": ["Inter"],
+                        "body-md": ["Inter"],
+                        "h3": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "h1": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "h2": ["32px", { "lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "h3": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- Minimal Transactional Header (Navigation Suppressed) -->
+<header class="w-full bg-surface-container-lowest border-b border-outline-variant py-md px-lg">
+<div class="max-w-container-max mx-auto flex justify-center items-center">
+<span class="font-h2 text-h2 text-on-surface tracking-tighter">MODERN_RETAIL</span>
+</div>
+</header>
+<!-- Main Checkout Container -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-4 md:px-lg py-lg md:py-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-xl">
+<!-- Left Column: Checkout Steps -->
+<div class="lg:col-span-7 xl:col-span-8 flex flex-col gap-lg">
+<!-- Progress Indicator -->
+<nav aria-label="Progress" class="flex items-center w-full">
+<div class="flex items-center">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-on-primary font-label-md text-label-md border-2 border-primary">
+                            1
+                        </div>
+<span class="ml-sm font-label-md text-label-md text-on-surface font-semibold">Địa chỉ giao hàng</span>
+</div>
+<div class="flex-1 h-[2px] bg-outline-variant mx-md"></div>
+<div class="flex items-center opacity-60">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-surface-variant text-on-surface-variant font-label-md text-label-md border-2 border-outline-variant">
+                            2
+                        </div>
+<span class="ml-sm font-label-md text-label-md text-on-surface-variant">Phương thức thanh toán</span>
+</div>
+</nav>
+<!-- Step 1: Shipping Address Form -->
+<section class="bg-surface-container-lowest rounded-lg border border-outline-variant p-lg shadow-[0px_4px_20px_rgba(0,0,0,0.04)]">
+<h2 class="font-h3 text-h3 text-on-surface mb-md">Thông tin liên hệ</h2>
+<div class="mb-lg">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs" for="email">Địa chỉ Email</label>
+<input class="w-full rounded-DEFAULT border border-outline-variant bg-surface px-md py-sm font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-shadow" id="email" name="email" placeholder="you@example.com" type="email"/>
+</div>
+<h2 class="font-h3 text-h3 text-on-surface mb-md">Địa chỉ giao hàng</h2>
+<form class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="md:col-span-1">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs" for="firstName">Tên</label>
+<input class="w-full rounded-DEFAULT border border-outline-variant bg-surface px-md py-sm font-body-md text-body-md text-on-surface focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-shadow" id="firstName" name="firstName" type="text"/>
+</div>
+<div class="md:col-span-1">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs" for="lastName">Họ</label>
+<input class="w-full rounded-DEFAULT border border-outline-variant bg-surface px-md py-sm font-body-md text-body-md text-on-surface focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-shadow" id="lastName" name="lastName" type="text"/>
+</div>
+<div class="md:col-span-2">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs" for="address">Địa chỉ đường</label>
+<input class="w-full rounded-DEFAULT border border-outline-variant bg-surface px-md py-sm font-body-md text-body-md text-on-surface focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-shadow" id="address" name="address" type="text"/>
+</div>
+<div class="md:col-span-2">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs" for="apartment">Căn hộ, dãy phòng, v.v. (không bắt buộc)</label>
+<input class="w-full rounded-DEFAULT border border-outline-variant bg-surface px-md py-sm font-body-md text-body-md text-on-surface focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-shadow" id="apartment" name="apartment" type="text"/>
+</div>
+<div class="md:col-span-1 lg:col-span-1">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs" for="city">Thành phố</label>
+<input class="w-full rounded-DEFAULT border border-outline-variant bg-surface px-md py-sm font-body-md text-body-md text-on-surface focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-shadow" id="city" name="city" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-md md:col-span-1">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs" for="state">Tiểu bang</label>
+<select class="w-full rounded-DEFAULT border border-outline-variant bg-surface px-md py-sm font-body-md text-body-md text-on-surface focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-shadow appearance-none" id="state" name="state">
+<option>Chọn</option>
+<option>CA</option>
+<option>NY</option>
+<option>TX</option>
+</select>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs" for="zip">Mã bưu chính</label>
+<input class="w-full rounded-DEFAULT border border-outline-variant bg-surface px-md py-sm font-body-md text-body-md text-on-surface focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-shadow" id="zip" name="zip" type="text"/>
+</div>
+</div>
+</form>
+<div class="mt-lg pt-lg border-t border-outline-variant flex justify-end">
+<button class="bg-primary text-on-primary font-label-md text-label-md py-sm px-lg rounded-DEFAULT hover:bg-surface-tint transition-colors duration-200 shadow-sm flex items-center gap-sm" type="button">
+                            Tiếp tục thanh toán
+                            <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- Step 2: Payment Method (Visually Muted to indicate next step) -->
+<section class="opacity-50 pointer-events-none bg-surface-container-lowest rounded-lg border border-outline-variant p-lg">
+<div class="flex items-center justify-between mb-md">
+<h2 class="font-h3 text-h3 text-on-surface">Phương thức thanh toán</h2>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="lock">lock</span>
+</div>
+<div class="h-20 bg-surface-variant rounded-DEFAULT border border-outline-variant flex items-center justify-center text-on-surface-variant font-body-md text-body-md">
+                        Hoàn thành bước giao hàng để mở khóa các tùy chọn thanh toán
+                    </div>
+</section>
+</div>
+<!-- Right Column: Order Summary (Sticky) -->
+<aside class="lg:col-span-5 xl:col-span-4 relative">
+<div class="sticky top-md bg-surface-container-lowest rounded-lg border border-outline-variant p-lg shadow-[0px_4px_20px_rgba(0,0,0,0.04)]">
+<h2 class="font-h3 text-h3 text-on-surface mb-md">Tóm tắt đơn hàng</h2>
+<!-- Items List -->
+<div class="flex flex-col gap-md mb-lg max-h-[400px] overflow-y-auto pr-sm">
+<!-- Item 1 -->
+<div class="flex gap-md">
+<div class="w-20 h-24 bg-surface-variant rounded-DEFAULT overflow-hidden flex-shrink-0 border border-outline-variant">
+<img alt="Minimalist black t-shirt folded neatly on a light background" class="w-full h-full object-cover" data-alt="Minimalist black cotton t-shirt folded neatly on a bright studio background, soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRIy7VWiIJUpyU9yai9-_kjx3pmCgPp5s16PJmeZ7IkzYKR-Ju37_0a7dTz59qlqM1VvCtruj5TmIkRy5QNJwsxEEqB3JGMBDtJIVBg_ltyUCb6TJMqukMMX2OqQleK0tO1kRXd9n8LrvwhfoTpJdywQsuMPg3Xh8C7WNaoTEbAsnY6Hxr3v4hZ3OIqE60x1TgCgx8eZ6NaeVEw-1kiZY09oWvEgWQhX_oEoCXtwi5B6CY5WpHsblFJMalJtMpltmIhfyVpAawSKIM"/>
+</div>
+<div class="flex flex-col flex-grow justify-center">
+<h3 class="font-label-md text-label-md text-on-surface mb-xs">Essential Cotton Tee</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-sm">Màu sắc: Onyx Black | Kích thước: M</p>
+<div class="flex justify-between items-center mt-auto">
+<span class="font-label-sm text-label-sm text-on-surface-variant">SL: 2</span>
+<span class="font-body-md text-body-md font-semibold text-on-surface">$76.00</span>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex gap-md">
+<div class="w-20 h-24 bg-surface-variant rounded-DEFAULT overflow-hidden flex-shrink-0 border border-outline-variant">
+<img alt="Ceramic coffee mug with a matte finish" class="w-full h-full object-cover" data-alt="Modern ceramic coffee mug with a matte beige finish sitting on a clean white surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_EsNk2voYalIxlOtYfeyyfchp0TF3XFL9DQZN3mEM4YBPeFZlc0oJ9YpduL34fVNWDC-kxS0F8OjvjW4vNp07pfPz-_d21d6kZMg1O6_pS0UlC-Dyfo4YyCOmpaB2UcUKkVj0TZLYA1toY3fFcnLD8vuBs3w4nvc1UOCnXShQHQyknS-_lmtRFsXepEsK4TqCLRZsNgOy8U3m4cxJHj3KlVvPHw_wmUZRavgkZUss1o9xwEIvyWXQrzaJ-KrmPXaEYF0XtkAi1bcM"/>
+</div>
+<div class="flex flex-col flex-grow justify-center">
+<h3 class="font-label-md text-label-md text-on-surface mb-xs">Artisan Mug</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-sm">Màu sắc: Sand</p>
+<div class="flex justify-between items-center mt-auto">
+<span class="font-label-sm text-label-sm text-on-surface-variant">SL: 1</span>
+<span class="font-body-md text-body-md font-semibold text-on-surface">$24.00</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Promo Code -->
+<div class="mb-lg border-t border-b border-outline-variant py-md">
+<label class="sr-only" for="promo">Thẻ quà tặng hoặc mã giảm giá</label>
+<div class="flex gap-sm">
+<input class="w-full rounded-DEFAULT border border-outline-variant bg-surface px-md py-sm font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-shadow" id="promo" name="promo" placeholder="Thẻ quà tặng hoặc mã giảm giá" type="text"/>
+<button class="bg-surface-variant text-on-surface font-label-md text-label-md py-sm px-md rounded-DEFAULT hover:bg-outline-variant transition-colors whitespace-nowrap" type="button">
+                                Áp dụng
+                            </button>
+</div>
+</div>
+<!-- Totals -->
+<div class="flex flex-col gap-sm mb-lg border-b border-outline-variant pb-md">
+<div class="flex justify-between font-body-md text-body-md text-on-surface-variant">
+<span>Tổng phụ</span>
+<span class="text-on-surface font-medium">$100.00</span>
+</div>
+<div class="flex justify-between font-body-md text-body-md text-on-surface-variant">
+<span>Giao hàng</span>
+<span class="text-on-surface font-medium">Được tính ở bước tiếp theo</span>
+</div>
+<div class="flex justify-between font-body-md text-body-md text-on-surface-variant">
+<span>Thuế ước tính</span>
+<span class="text-on-surface font-medium">$8.50</span>
+</div>
+</div>
+<div class="flex justify-between items-end mb-lg">
+<span class="font-h3 text-h3 text-on-surface">Tổng cộng</span>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-on-surface-variant mr-xs">USD</span>
+<span class="font-h2 text-h2 text-on-surface">$108.50</span>
+</div>
+</div>
+<!-- Trust Indicators -->
+<div class="flex items-center justify-center gap-sm text-on-surface-variant font-label-sm text-label-sm bg-surface py-sm rounded-DEFAULT border border-outline-variant">
+<span class="material-symbols-outlined text-[18px]" data-icon="lock">lock</span>
+<span>Thanh toán mã hóa bảo mật</span>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Minimal Footer (Navigation Suppressed for checkout) -->
+<footer class="w-full border-t border-outline-variant py-lg mt-auto bg-surface-container-low text-center">
+<p class="font-label-sm text-label-sm text-on-surface-variant">
+            © 2024 MODERN_RETAIL. Thanh toán bảo mật.
+        </p>
+</footer>
+</body></html>
