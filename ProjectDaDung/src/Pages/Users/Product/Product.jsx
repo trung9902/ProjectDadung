@@ -62,11 +62,16 @@ function Product() {
                             src={trendingProducts[0].image}
                         />
                     </div>
-                    <p className="product-category">{trendingProducts[0].category}</p>
-                    <h3 className="product-title">{trendingProducts[0].title}</h3>
+                    <Link to="/product/7" className="product-link">
+                        <p className="product-category">{trendingProducts[0].category}</p>
+                        <h3 className="product-title">{trendingProducts[0].title}</h3>
+                    </Link>
                     <p className="product-price">
                         {trendingProducts[0].price} <span className="product-price-old">{trendingProducts[0].oldPrice}</span>
                     </p>
+                    <Link className="btn-primary-product" to="/product/7">
+                        Mua Ngay
+                    </Link>
                 </div>
                 {/* Product 2 */}
                 <div className="product-card">
@@ -78,11 +83,16 @@ function Product() {
                             src={trendingProducts[1].image}
                         />
                     </div>
-                    <p className="product-category">{trendingProducts[1].category}</p>
-                    <h3 className="product-title">{trendingProducts[1].title}</h3>
+                    <Link to="/product/8" className="product-link">
+                        <p className="product-category">{trendingProducts[1].category}</p>
+                        <h3 className="product-title">{trendingProducts[1].title}</h3>
+                    </Link>
                     <p className="product-price">
                         {trendingProducts[1].price} <span className="product-price-old">{trendingProducts[1].oldPrice}</span>
                     </p>
+                    <Link className="btn-primary-product" to="/product/8">
+                        Mua Ngay
+                    </Link>
                 </div>
                 {/* Product 3 */}
                 <div className="product-card">
@@ -94,11 +104,16 @@ function Product() {
                             src={trendingProducts[2].image}
                         />
                     </div>
-                    <p className="product-category">{trendingProducts[2].category}</p>
-                    <h3 className="product-title">{trendingProducts[2].title}</h3>
+                    <Link to="/product/9" className="product-link">
+                        <p className="product-category">{trendingProducts[2].category}</p>
+                        <h3 className="product-title">{trendingProducts[2].title}</h3>
+                    </Link>
                     <p className="product-price">
                         {trendingProducts[2].price} <span className="product-price-old">{trendingProducts[2].oldPrice}</span>
                     </p>
+                    <Link className="btn-primary-product" to="/product/9">
+                        Mua Ngay
+                    </Link>
                 </div>
             </div>
         </section>

@@ -190,6 +190,7 @@
 
 .pl-product-img-wrapper {
   position: relative;
+  display: block;
   overflow: hidden;
   aspect-ratio: 4 / 3;
   background: var(--surface-container);
@@ -271,6 +272,14 @@
   font-size: 18px;
   font-weight: 800;
   line-height: 1.35;
+}
+
+.pl-product-name a {
+  transition: color 180ms ease;
+}
+
+.pl-product-name a:hover {
+  color: var(--primary);
 }
 
 .pl-product-meta {
