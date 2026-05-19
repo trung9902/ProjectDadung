@@ -15,6 +15,29 @@ const ProductList = () => {
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [selectedPriceRange, setSelectedPriceRange] = useState(10000000)
   const [selectedRating, setSelectedRating] = useState(0)
+  const [selectedSort, setSelectedSort] = useState('featured')
+  const [storageCart, setStorageCart] = useState([])
+  const [cart, setCart] = useState([])
+  const addCart = (id) => {
+    const product = products.find((p) => p.id === id)
+    const existingItem = cart.find((item) => item.id === product.id)
+    if (existingItem) {
+      const updatedCart = cart.map((item) =>
+        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+      )
+      if (existingItem.quantity >= product.stock) {
+        alert('Số lượng sản phẩm đã đạt tối đa trong kho!')
+        return
+      }
+      setCart(updatedCart)
+      localStorage.setItem('cart', JSON.stringify(updatedCart))
+    } else {
+      const newItem = { ...product, quantity: 1 }
+      const updatedCart = [...cart, newItem]
+      setCart(updatedCart)
+      localStorage.setItem('cart', JSON.stringify(updatedCart))
+    }
+  }
   const productsFiltered = (selectedCategory, selectedPriceRange, selectedRating) => {
     return products.filter((product) => {
       const matchCategory =
@@ -26,9 +49,19 @@ const ProductList = () => {
       const matchRating =
         product.rating >= selectedRating
       return matchCategory && matchPrice && matchRating
+    }).sort((a, b) => {
+      if (selectedSort === 'featured') {
+        return 0
+      } else if (selectedSort === 'price-asc') {
+        return a.price - b.price
+      } else if (selectedSort === 'price-desc') {
+        return b.price - a.price
+      } else if (selectedSort === 'newest') {
+        return b.id - a.id
+      }
     })
-
   }
+
   let handleCategoryChange = (category) => {
     setSelectedCategory(category)
     setFilteredProducts(productsFiltered(category, selectedPriceRange, selectedRating))
@@ -40,6 +73,10 @@ const ProductList = () => {
   let handleRatingChange = (rating) => {
     setSelectedRating(rating)
     setFilteredProducts(productsFiltered(selectedCategory, selectedPriceRange, rating))
+  }
+  let handleSortChange = (sort) => {
+    setSelectedSort(sort)
+    setFilteredProducts(productsFiltered(selectedCategory, selectedPriceRange, selectedRating))
   }
 
   return (
@@ -110,11 +147,11 @@ const ProductList = () => {
 
           <div className="pl-sort">
             <label htmlFor="sort" className="pl-sort-label">Sắp xếp</label>
-            <select id="sort" className="pl-sort-select">
-              <option>Đề xuất</option>
-              <option>Giá: Thấp đến cao</option>
-              <option>Giá: Cao xuống thấp</option>
-              <option>Hàng mới về</option>
+            <select id="sort" className="pl-sort-select" onChange={(e) => handleSortChange(e.target.value)}>
+              <option value="featured">Đề xuất</option>
+              <option value="price-asc">Giá: Thấp đến cao</option>
+              <option value="price-desc">Giá: Cao xuống thấp</option>
+              <option value="newest">Hàng mới về</option>
             </select>
           </div>
         </div>
@@ -154,7 +191,7 @@ const ProductList = () => {
                         </span>
                       )}
                     </p>
-                    <button type="button" className="pl-add-button" aria-label={`Thêm ${product.name} vào giỏ hàng`}>
+                    <button type="button" className="pl-add-button" aria-label={`Thêm ${product.name} vào giỏ hàng`} onClick={() => addCart(product.id)}>
                       <i className="fa-solid fa-cart-shopping" aria-hidden="true"></i>
                     </button>
                   </div>
