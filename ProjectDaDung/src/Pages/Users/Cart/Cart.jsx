@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './Cart.css'
+import { clearStoredCart, getCart, saveCart } from '../../../utils/cart'
 
 const Cart = () => {
-  const [storageCart, setStorageCart] = useState([])
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useState(() => getCart())
   const [currentPage, setCurrentPage] = useState(1)
   const productsPerPage = 4
   const indexOfLastProduct = currentPage * productsPerPage
@@ -16,13 +16,15 @@ const Cart = () => {
   const totalPages = Math.ceil(cart.length / productsPerPage)
   let moveOn = (id) => {
     let cartItem = cart.find((item) => item.id === id)
-    if (cartItem.quantity > cartItem.stock) {
+    if (cartItem.quantity >= cartItem.stock) {
       alert('Số lượng sản phẩm đã đạt tối đa trong kho!')
       return
     }
-    cartItem.quantity += 1
-    setCart([...cart])
-    localStorage.setItem('cart', JSON.stringify(cart))
+    const updatedCart = cart.map((item) =>
+      item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+    )
+    setCart(updatedCart)
+    saveCart(updatedCart)
   }
   let backDown = (id) => {
     let cartItem = cart.find((item) => item.id === id)
@@ -30,28 +32,21 @@ const Cart = () => {
       alert('Số lượng sản phẩm không thể nhỏ hơn 1!')
       return
     }
-    cartItem.quantity -= 1
-    setCart([...cart])
-    localStorage.setItem('cart', JSON.stringify(cart))
+    const updatedCart = cart.map((item) =>
+      item.id === id ? { ...item, quantity: item.quantity - 1 } : item
+    )
+    setCart(updatedCart)
+    saveCart(updatedCart)
   }
   let DeleteCartItem = (id) => {
     let updatedCart = cart.filter((item) => item.id !== id)
     setCart(updatedCart)
-    localStorage.setItem('cart', JSON.stringify(updatedCart))
+    saveCart(updatedCart)
   }
   let clearCart = () => {
     setCart([])
-    localStorage.removeItem('cart')
+    clearStoredCart()
   }
-  useEffect(() => {
-    const storedCart = localStorage.getItem('cart')
-    if (storedCart) {
-      setStorageCart(JSON.parse(storedCart))
-    }
-  }, [])
-  useEffect(() => {
-    setCart(storageCart)
-  }, [storageCart])
   return (
     <main className="cart-container">
       <div className="cart-header">

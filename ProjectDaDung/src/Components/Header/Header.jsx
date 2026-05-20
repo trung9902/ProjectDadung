@@ -1,7 +1,22 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './Header.css'
 import { Link } from "react-router-dom";
+import { CART_UPDATED_EVENT, getCartCount } from '../../utils/cart';
 const Header = () => {
+    const [numberCart, setNumberCart] = useState(() => getCartCount())
+    const updateCartCount = () => {
+        setNumberCart(getCartCount());
+    };
+    useEffect(() => {
+        window.addEventListener(CART_UPDATED_EVENT, updateCartCount);
+        window.addEventListener('storage', updateCartCount);
+
+        return () => {
+            window.removeEventListener(CART_UPDATED_EVENT, updateCartCount);
+            window.removeEventListener('storage', updateCartCount);
+        };
+    }, []);
+
     return (
         <nav className="header-nav">
             <div className="header-container">
@@ -18,6 +33,7 @@ const Header = () => {
                     <Link to="/cart">
                         <button className="header-action-btn">
                             <i className="fa-solid fa-cart-shopping"></i>
+                            <span className="header-cart-count">{numberCart}</span>
                         </button>
                     </Link>
                     <Link to="/login">

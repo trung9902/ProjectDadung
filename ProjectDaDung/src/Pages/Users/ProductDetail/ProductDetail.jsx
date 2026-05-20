@@ -1,7 +1,8 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import './ProductDetail.css'
 import { products } from '../../../data/products'
+import { getCart, saveCart } from '../../../utils/cart'
 
 const formatCurrency = (value) =>
   value.toLocaleString('vi-VN', {
@@ -16,10 +17,29 @@ const ProductDetail = () => {
     [id],
   )
   const [activeImage, setActiveImage] = useState(product.gallery[0])
+  const [quantity, setQuantity] = useState(1)
+  const currentImage = product.gallery.includes(activeImage) ? activeImage : product.gallery[0]
 
-  useEffect(() => {
-    setActiveImage(product.gallery[0])
-  }, [product])
+  const addCart = () => {
+    const cart = getCart()
+    const existingItem = cart.find((item) => item.id === product.id)
+    const currentQuantity = existingItem?.quantity || 0
+
+    if (currentQuantity + quantity > product.stock) {
+      alert('Số lượng sản phẩm đã đạt tối đa trong kho!')
+      return
+    }
+
+    const updatedCart = existingItem
+      ? cart.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
+        )
+      : [...cart, { ...product, quantity }]
+
+    saveCart(updatedCart)
+  }
 
   const discountPercent = product.oldPrice
     ? Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100)
@@ -39,7 +59,7 @@ const ProductDetail = () => {
         <div className="pd-gallery">
           <div className="pd-main-img-wrapper">
             {discountPercent > 0 && <span className="pd-badge">Giảm {discountPercent}%</span>}
-            <img src={activeImage} alt={product.name} className="pd-main-img" />
+            <img src={currentImage} alt={product.name} className="pd-main-img" />
           </div>
 
           <div className="pd-thumbnails" aria-label="Ảnh sản phẩm">
@@ -47,7 +67,7 @@ const ProductDetail = () => {
               <button
                 type="button"
                 key={image}
-                className={`pd-thumb-btn ${activeImage === image ? 'active' : ''}`}
+                className={`pd-thumb-btn ${currentImage === image ? 'active' : ''}`}
                 onClick={() => setActiveImage(image)}
                 aria-label={`Xem ảnh ${index + 1}`}
               >
@@ -93,16 +113,16 @@ const ProductDetail = () => {
 
           <div className="pd-actions">
             <div className="pd-quantity">
-              <button type="button" className="pd-qty-btn" aria-label="Giảm số lượng">
+              <button type="button" className="pd-qty-btn" aria-label="Giảm số lượng" onClick={() => setQuantity((value) => Math.max(1, value - 1))}>
                 <i className="fa-solid fa-minus" aria-hidden="true"></i>
               </button>
-              <input type="number" min="1" defaultValue="1" className="pd-qty-input" aria-label="Số lượng" />
-              <button type="button" className="pd-qty-btn" aria-label="Tăng số lượng">
+              <input type="number" min="1" max={product.stock} value={quantity} className="pd-qty-input" aria-label="Số lượng" onChange={(event) => setQuantity(Math.min(product.stock, Math.max(1, Number(event.target.value) || 1)))} />
+              <button type="button" className="pd-qty-btn" aria-label="Tăng số lượng" onClick={() => setQuantity((value) => Math.min(product.stock, value + 1))}>
                 <i className="fa-solid fa-plus" aria-hidden="true"></i>
               </button>
             </div>
 
-            <button type="button" className="pd-add-btn">
+            <button type="button" className="pd-add-btn" onClick={addCart}>
               <i className="fa-solid fa-cart-shopping" aria-hidden="true"></i>
               Thêm vào giỏ hàng
             </button>
