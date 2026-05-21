@@ -47,6 +47,9 @@ const Cart = () => {
     setCart([])
     clearStoredCart()
   }
+  let PayMentDefault = () => {
+    alert('Chức năng thanh toán đang được phát triển. Vui lòng quay lại sau!')
+  }
   return (
     <main className="cart-container">
       <div className="cart-header">
@@ -155,7 +158,7 @@ const Cart = () => {
               </div>
             </div>
 
-            <button className="cart-checkout-btn">
+            <button className="cart-checkout-btn" onClick={PayMentDefault}>
               Tiến hành Thanh toán
               <span className="material-symbols-outlined text-sm">arrow_forward</span>
             </button>

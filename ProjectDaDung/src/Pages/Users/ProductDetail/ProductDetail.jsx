@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import './ProductDetail.css'
-import { products } from '../../../data/products'
+import useProductsData from '../../../../servers/produc'
 import { getCart, saveCart } from '../../../utils/cart'
 
 const formatCurrency = (value) =>
@@ -11,6 +11,7 @@ const formatCurrency = (value) =>
   })
 
 const ProductDetail = () => {
+  const products = useProductsData();
   const { id } = useParams()
   const product = useMemo(
     () => products.find((item) => item.id === Number(id)) || products[0],
@@ -32,10 +33,10 @@ const ProductDetail = () => {
 
     const updatedCart = existingItem
       ? cart.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + quantity }
-            : item
-        )
+        item.id === product.id
+          ? { ...item, quantity: item.quantity + quantity }
+          : item
+      )
       : [...cart, { ...product, quantity }]
 
     saveCart(updatedCart)

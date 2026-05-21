@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './ProductList.css'
-import { products } from '../../../data/products'
+// import { products } from '../../../data/products'
+import useProductsData from '../../../../servers/produc'
 import { getCart, saveCart } from '../../../utils/cart'
 
 
@@ -12,6 +13,7 @@ const formatCurrency = (value) =>
   })
 
 const ProductList = () => {
+  const products = useProductsData()
   const [filteredProducts, setFilteredProducts] = useState(products)
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [selectedPriceRange, setSelectedPriceRange] = useState(10000000)
@@ -80,6 +82,10 @@ const ProductList = () => {
     setSelectedSort(sort)
     setFilteredProducts(productsFiltered(selectedCategory, selectedPriceRange, selectedRating))
   }
+
+  useEffect(() => {
+    setFilteredProducts(productsFiltered(selectedCategory, selectedPriceRange, selectedRating))
+  }, [products, selectedCategory, selectedPriceRange, selectedRating, selectedSort])
 
   return (
     <main className="pl-container">
