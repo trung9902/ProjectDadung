@@ -153,6 +153,17 @@
   pointer-events: none;
 }
 
+.checkout-message {
+  padding: 14px 18px;
+  border: 1px solid rgba(159, 61, 0, 0.24);
+  border-radius: 4px;
+  background: rgba(159, 61, 0, 0.08);
+  color: var(--on-surface);
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 600;
+}
+
 .checkout-section-title {
   font-family: var(--font-family);
   font-size: 24px;
@@ -216,6 +227,16 @@
 
 .checkout-input,
 .checkout-select {
+  border-radius: 0.125rem;
+  border: 1px solid var(--outline-variant);
+  background-color: var(--surface);
+  padding: 12px 24px;
+  font-family: var(--font-family);
+  font-size: 16px;
+  color: var(--on-surface);
+  transition: box-shadow 200ms;
+}
+.checkout-inputGift{
   width: 100%;
   border-radius: 0.125rem;
   border: 1px solid var(--outline-variant);
@@ -268,6 +289,125 @@
 
 .checkout-next-btn:hover {
   background-color: var(--surface-tint);
+}
+
+.checkout-next-btn:disabled,
+.checkout-cancel-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.checkout-payment-box {
+  display: grid;
+  gap: 24px;
+  color: var(--on-surface-variant);
+  font-family: var(--font-family);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.checkout-payment-box p {
+  margin: 0;
+}
+
+.checkout-payment-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.checkout-payment-methods {
+  display: grid;
+  gap: 12px;
+}
+
+.checkout-payment-method {
+  width: 100%;
+  min-height: 82px;
+  display: grid;
+  grid-template-columns: 116px minmax(0, 1fr);
+  align-items: center;
+  gap: 18px;
+  padding: 16px;
+  border: 1px solid var(--outline-variant);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--on-surface);
+  text-align: left;
+  transition: border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+}
+
+.checkout-payment-method:hover,
+.checkout-payment-method.active {
+  border-color: var(--primary);
+  background: var(--surface-container-lowest);
+  box-shadow: 0 8px 22px rgba(38, 24, 19, 0.08);
+}
+
+.checkout-payment-logo {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+  border-radius: 6px;
+  color: #fff;
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.cod-logo {
+  background: #1f2937;
+}
+
+.vnpay-logo {
+  background: linear-gradient(135deg, #005baa 0%, #00a3e0 54%, #ed1c24 55%, #ed1c24 100%);
+}
+
+.shopeepay-logo {
+  background: #ee4d2d;
+  font-size: 13px;
+}
+
+.checkout-payment-copy {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.checkout-payment-copy strong {
+  color: var(--on-surface);
+  font-family: var(--font-family);
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.checkout-payment-copy small {
+  color: var(--on-surface-variant);
+  font-family: var(--font-family);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.checkout-cancel-btn {
+  min-height: 44px;
+  padding: 12px 32px;
+  border: 1px solid var(--outline-variant);
+  border-radius: 0.125rem;
+  background: var(--surface);
+  color: var(--on-surface);
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 200ms, border-color 200ms;
+}
+
+.checkout-cancel-btn:hover {
+  border-color: var(--primary);
+  background: var(--surface-container-low);
 }
 
 .checkout-locked-message {

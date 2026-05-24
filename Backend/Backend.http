@@ -1,0 +1,67 @@
+@Backend_HostAddress = http://localhost:8080
+
+GET {{Backend_HostAddress}}/api/products
+Accept: application/json
+
+###
+
+GET {{Backend_HostAddress}}/api/categories
+Accept: application/json
+
+###
+
+POST {{Backend_HostAddress}}/api/orders
+Content-Type: application/json
+
+{
+  "email": "buyer@example.com",
+  "firstName": "An",
+  "lastName": "Nguyen",
+  "phone": "0900000000",
+  "address": "1 Nguyen Trai",
+  "city": "Ho Chi Minh",
+  "paymentMethod": "Cod",
+  "items": [
+    { "productId": 1, "quantity": 2 }
+  ]
+}
+
+###
+
+POST {{Backend_HostAddress}}/api/checkout-drafts
+Content-Type: application/json
+
+{
+  "email": "buyer@example.com",
+  "firstName": "An",
+  "lastName": "Nguyen",
+  "phone": "0900000000",
+  "address": "1 Nguyen Trai",
+  "city": "Ho Chi Minh",
+  "paymentMethod": "Cod",
+  "items": [
+    { "productId": 1, "quantity": 2 }
+  ]
+}
+
+###
+
+PATCH {{Backend_HostAddress}}/api/checkout-drafts/1/payment-method
+Content-Type: application/json
+
+{
+  "paymentMethod": "VnPay"
+}
+
+###
+
+POST {{Backend_HostAddress}}/api/checkout-drafts/1/complete
+
+###
+
+POST {{Backend_HostAddress}}/api/checkout-drafts/1/cancel
+Content-Type: application/json
+
+{
+  "reason": "Khach hang huy o buoc thanh toan"
+}

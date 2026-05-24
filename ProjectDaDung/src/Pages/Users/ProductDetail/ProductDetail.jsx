@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import './ProductDetail.css'
 import useProductsData from '../../../../servers/produc'
@@ -11,15 +11,54 @@ const formatCurrency = (value) =>
   })
 
 const ProductDetail = () => {
-  const products = useProductsData();
+  const products = useProductsData()
   const { id } = useParams()
-  const product = useMemo(
-    () => products.find((item) => item.id === Number(id)) || products[0],
-    [id],
-  )
-  const [activeImage, setActiveImage] = useState(product.gallery[0])
+  const [activeImage, setActiveImage] = useState('')
   const [quantity, setQuantity] = useState(1)
-  const currentImage = product.gallery.includes(activeImage) ? activeImage : product.gallery[0]
+
+  const product = useMemo(
+    () => products.find((item) => item.id === Number(id)),
+    [id, products],
+  )
+
+  const gallery = useMemo(() => {
+    if (!product) {
+      return []
+    }
+
+    const images = product.gallery?.length ? product.gallery : [product.image]
+    return images.filter(Boolean)
+  }, [product])
+
+  useEffect(() => {
+    if (gallery.length > 0) {
+      setActiveImage(gallery[0])
+    }
+  }, [gallery])
+
+  if (products.length === 0) {
+    return (
+      <main className="pd-container">
+        <div className="pd-state">Đang tải chi tiết sản phẩm...</div>
+      </main>
+    )
+  }
+
+  if (!product) {
+    return (
+      <main className="pd-container">
+        <div className="pd-state">
+          <h1>Không tìm thấy sản phẩm</h1>
+          <Link to="/products" className="pd-add-btn">Quay lại danh sách</Link>
+        </div>
+      </main>
+    )
+  }
+
+  const currentImage = gallery.includes(activeImage) ? activeImage : gallery[0]
+  const discountPercent = product.oldPrice
+    ? Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100)
+    : 0
 
   const addCart = () => {
     const cart = getCart()
@@ -35,16 +74,12 @@ const ProductDetail = () => {
       ? cart.map((item) =>
         item.id === product.id
           ? { ...item, quantity: item.quantity + quantity }
-          : item
+          : item,
       )
       : [...cart, { ...product, quantity }]
 
     saveCart(updatedCart)
   }
-
-  const discountPercent = product.oldPrice
-    ? Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100)
-    : 0
 
   return (
     <main className="pd-container">
@@ -64,7 +99,7 @@ const ProductDetail = () => {
           </div>
 
           <div className="pd-thumbnails" aria-label="Ảnh sản phẩm">
-            {product.gallery.map((image, index) => (
+            {gallery.map((image, index) => (
               <button
                 type="button"
                 key={image}
@@ -104,7 +139,7 @@ const ProductDetail = () => {
             </div>
             <div className="pd-feature-item">
               <i className="fa-solid fa-truck-fast pd-feature-icon" aria-hidden="true"></i>
-              Miễn phí giao hàng cho đơn từ 1.000.000 ₫
+              Miễn phí giao hàng cho đơn từ 1.000.000 đ
             </div>
             <div className="pd-feature-item">
               <i className="fa-solid fa-rotate-left pd-feature-icon" aria-hidden="true"></i>
@@ -147,10 +182,10 @@ const ProductDetail = () => {
           <p className="pd-eyebrow">Thông tin sản phẩm</p>
           <h2 className="pd-section-title">Thông số kỹ thuật</h2>
           <div className="pd-spec-list">
-            {product.specs.map(([label, value]) => (
-              <div key={label} className="pd-spec-item">
-                <span className="pd-spec-label">{label}</span>
-                <span className="pd-spec-value">{value}</span>
+            {product.specs.map((spec) => (
+              <div key={spec.name} className="pd-spec-item">
+                <span className="pd-spec-label">{spec.name}</span>
+                <span className="pd-spec-value">{spec.value}</span>
               </div>
             ))}
           </div>

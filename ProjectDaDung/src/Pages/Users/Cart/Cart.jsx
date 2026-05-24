@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import './Cart.css'
 import { clearStoredCart, getCart, saveCart } from '../../../utils/cart'
+import { useNavigate } from 'react-router-dom'
 
 const Cart = () => {
+  const navigate = useNavigate()
   const [cart, setCart] = useState(() => getCart())
   const [currentPage, setCurrentPage] = useState(1)
   const productsPerPage = 4
@@ -48,7 +50,7 @@ const Cart = () => {
     clearStoredCart()
   }
   let PayMentDefault = () => {
-    alert('Chức năng thanh toán đang được phát triển. Vui lòng quay lại sau!')
+    navigate('/checkout')
   }
   return (
     <main className="cart-container">
@@ -160,7 +162,6 @@ const Cart = () => {
 
             <button className="cart-checkout-btn" onClick={PayMentDefault}>
               Tiến hành Thanh toán
-              <span className="material-symbols-outlined text-sm">arrow_forward</span>
             </button>
 
             <div className="cart-secure-text">

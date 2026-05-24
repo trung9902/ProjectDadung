@@ -1,85 +1,104 @@
-# Backend Spring Boot - Web Ban Do Gia Dung
+# Backend ASP.NET Core MVC - Web Ban Do Gia Dung
 
-Backend nay dung Spring Boot + H2 de ban vua chay duoc API, vua hoc tung lop trong du an.
+Backend nay da duoc chuyen sang ASP.NET Core Web API theo mo hinh MVC:
 
-## 1. Yeu cau may
+- `Controllers`: nhan request HTTP.
+- `Dtos`: request/response model cho API.
+- `Models`: entity/domain model.
+- `Repositories`: luu du lieu in-memory va seed san pham mau.
+- `Services`: xu ly nghiep vu.
+- `Middleware`: tra loi loi JSON thong nhat.
 
-Can cai JDK 17 hoac 21. Hien may cua ban chua nhan lenh `java`, nen hay cai mot trong cac ban sau:
+## Yeu cau
 
-- Eclipse Temurin JDK 17: https://adoptium.net/temurin/releases/?version=17
-- Oracle JDK 21: https://www.oracle.com/java/technologies/downloads/
-
-Sau khi cai xong, mo terminal moi va kiem tra:
-
-```powershell
-java -version
-```
-
-Ban khong bat buoc cai Maven. Thu muc nay co `mvnw.cmd` de tai Maven ve local khi chay lan dau.
-
-## 2. Chay backend
-
-Tu thu muc `ProjectDaDung/backend`:
+Can cai .NET SDK 9.
 
 ```powershell
-.\mvnw.cmd spring-boot:run
+dotnet --info
 ```
 
-API se chay tai:
+## Chay backend
+
+Tu thu muc `Backend`:
+
+```powershell
+dotnet run
+```
+
+API chay tai:
 
 ```text
 http://localhost:8080
 ```
 
-H2 Console:
+Swagger UI:
 
 ```text
-http://localhost:8080/h2-console
+http://localhost:8080/swagger
 ```
 
-Thong tin dang nhap H2:
+## API co san
+
+San pham:
 
 ```text
-JDBC URL: jdbc:h2:mem:giadungdb
-User: sa
-Password: de trong
+GET    /api/products
+GET    /api/products?keyword=ca%20phe
+GET    /api/products?category=Phong%20khach
+GET    /api/products/{id}
+POST   /api/products
+PUT    /api/products/{id}
+DELETE /api/products/{id}
+GET    /api/categories
 ```
 
-## 3. API san pham
+Don hang:
 
-Lay tat ca san pham:
-
-```powershell
-curl http://localhost:8080/api/products
+```text
+GET   /api/orders
+POST  /api/orders
+GET   /api/orders/{id}
+PATCH /api/orders/{id}/status
 ```
 
-Tim san pham theo tu khoa:
+Checkout draft:
 
-```powershell
-curl "http://localhost:8080/api/products?keyword=ca%20phe"
+```text
+GET  /api/checkout-drafts
+POST /api/checkout-drafts
+GET  /api/checkout-drafts/{id}
+PUT  /api/checkout-drafts/{id}
+PATCH /api/checkout-drafts/{id}/payment-method
+POST /api/checkout-drafts/{id}/complete
+POST /api/checkout-drafts/{id}/cancel
 ```
 
-Loc theo danh muc:
+Gia tri `paymentMethod` hop le:
 
-```powershell
-curl "http://localhost:8080/api/products?category=Phong%20khach"
+```text
+Cod
+VnPay
+ShopeePay
 ```
 
-Lay chi tiet san pham:
+Gia tri `paymentStatus` backend tra ve:
 
-```powershell
-curl http://localhost:8080/api/products/1
+```text
+Unpaid
+Pending
+Paid
+Failed
+Refunded
+Cancelled
 ```
 
-Lay danh muc:
+He thong:
 
-```powershell
-curl http://localhost:8080/api/categories
+```text
+GET /api/health
 ```
 
-## 4. API don hang
-
-Tao don hang:
+## Tao don hang mau
 
 ```powershell
 curl -X POST http://localhost:8080/api/orders `
@@ -98,34 +117,8 @@ curl -X POST http://localhost:8080/api/orders `
   }'
 ```
 
-Xem lai don hang:
+## Build
 
 ```powershell
-curl http://localhost:8080/api/orders/1
+dotnet build
 ```
-
-## 5. Chay test
-
-```powershell
-.\mvnw.cmd test
-```
-
-## 6. Lo trinh hoc trong source code
-
-1. `entity`: hoc cach Java class map thanh bang database.
-2. `repository`: hoc cach Spring Data JPA tao truy van.
-3. `service`: hoc cach xu ly nghiep vu, tinh tien don hang, kiem tra ton kho.
-4. `dto`: hoc cach tach du lieu API khoi entity database.
-5. `controller`: hoc cach tao REST API.
-6. `config/SeedDataConfig.java`: hoc cach nap du lieu mau khi app khoi dong.
-7. `exception`: hoc cach tra loi loi API cho frontend.
-
-## 7. Ket noi frontend sau nay
-
-Frontend Vite mac dinh chay o `http://localhost:5173`, backend da mo CORS cho dia chi nay.
-
-Buoc tiep theo nen lam:
-
-- Thay `src/data/products.js` bang fetch `GET /api/products`.
-- Trang chi tiet san pham goi `GET /api/products/{id}`.
-- Trang checkout gui `POST /api/orders`.

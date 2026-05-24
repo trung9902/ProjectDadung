@@ -1,7 +1,7 @@
-target/
-.jdk/
+bin/
+obj/
+.vs/
+*.user
+*.suo
 backend.log
 backend-error.log
-.mvn/wrapper/apache-maven-*/
-.mvn/wrapper/*.zip
-.mvn/wrapper/*.tar.gz
