@@ -28,6 +28,10 @@ const Checkout = () => {
   const [paymentMethod, setPaymentMethod] = useState('cod')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [message, setMessage] = useState('')
+  const [couponCode, setCouponCode] = useState('')
+  const [couponMessage, setCouponMessage] = useState('')
+  const [couponError, setCouponError] = useState('')
+  const [isApplyingCoupon, setIsApplyingCoupon] = useState(false)
   const [cart, setCart] = useState(() => {
     try {
       const savedCart = localStorage.getItem('cart')
@@ -60,6 +64,60 @@ const Checkout = () => {
       ...prevData,
       [name]: value,
     }))
+  }
+
+  const handleApplyCoupon = async () => {
+    if (!draft) {
+      setCouponError('Vui lòng hoàn thành thông tin giao hàng trước.')
+      return
+    }
+    if (!couponCode.trim()) {
+      setCouponError('Vui lòng nhập mã giảm giá.')
+      return
+    }
+
+    setIsApplyingCoupon(true)
+    setCouponMessage('')
+    setCouponError('')
+
+    try {
+      const response = await fetch(`${API_URL}/checkout-drafts/${draft.id}/coupon`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: couponCode.trim() }),
+      })
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Mã giảm giá không hợp lệ.')
+      }
+
+      setDraft(data)
+      setCouponMessage(`Áp dụng thành công! Giảm ${formatCurrency(data.discountAmount)}`)
+    } catch (error) {
+      setCouponError(error.message)
+    } finally {
+      setIsApplyingCoupon(false)
+    }
+  }
+
+  const handleRemoveCoupon = async () => {
+    if (!draft) return
+
+    try {
+      const response = await fetch(`${API_URL}/checkout-drafts/${draft.id}/coupon`, {
+        method: 'DELETE',
+      })
+      const data = await response.json()
+      if (response.ok) {
+        setDraft(data)
+        setCouponCode('')
+        setCouponMessage('')
+        setCouponError('')
+      }
+    } catch {
+      // ignore
+    }
   }
 
   const handleInformation = async () => {
@@ -245,9 +303,25 @@ const Checkout = () => {
               </div>
 
               <div className="checkout-promo">
-                <input type="text" placeholder="Thẻ quà tặng hoặc mã giảm giá" className="checkout-inputGift flex-1" />
-                <button type="button" className="checkout-promo-btn">Áp dụng</button>
+                <input
+                  type="text"
+                  placeholder="Thẻ quà tặng hoặc mã giảm giá"
+                  className="checkout-inputGift flex-1"
+                  value={couponCode}
+                  onChange={(e) => setCouponCode(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && handleApplyCoupon()}
+                  disabled={!!draft?.couponCode}
+                />
+                {draft?.couponCode ? (
+                  <button type="button" className="checkout-promo-btn" onClick={handleRemoveCoupon}>Xóa</button>
+                ) : (
+                  <button type="button" className="checkout-promo-btn" onClick={handleApplyCoupon} disabled={isApplyingCoupon}>
+                    {isApplyingCoupon ? '...' : 'Áp dụng'}
+                  </button>
+                )}
               </div>
+              {couponMessage && <p style={{ color: 'green', fontSize: '0.85rem', marginTop: '4px' }}>{couponMessage}</p>}
+              {couponError && <p style={{ color: 'red', fontSize: '0.85rem', marginTop: '4px' }}>{couponError}</p>}
 
               <div className="checkout-totals">
                 <div className="checkout-total-row">
@@ -258,12 +332,20 @@ const Checkout = () => {
                   <span>Giao hàng</span>
                   <span className="font-medium">Miễn phí</span>
                 </div>
+                {draft?.discountAmount > 0 && (
+                  <div className="checkout-total-row" style={{ color: 'green' }}>
+                    <span>Giảm giá {draft.couponCode && `(${draft.couponCode})`}</span>
+                    <span className="font-medium">-{formatCurrency(draft.discountAmount)}</span>
+                  </div>
+                )}
               </div>
 
               <div className="checkout-final-total">
                 <span className="checkout-final-label">Tổng cộng</span>
                 <div className="checkout-final-value-group">
-                  <span className="checkout-final-value">{formatCurrency(subtotal)}</span>
+                  <span className="checkout-final-value">
+                    {formatCurrency(draft?.total ?? subtotal)}
+                  </span>
                 </div>
               </div>
 

@@ -31,6 +31,14 @@ public sealed class CheckoutDraftsController(CheckoutDraftService checkoutDraftS
     public ActionResult<CheckoutDraftResponse> UpdatePaymentMethod(long id, UpdateCheckoutPaymentRequest request) =>
         Ok(checkoutDraftService.UpdatePaymentMethod(id, request.PaymentMethod));
 
+    [HttpPatch("{id:long}/coupon")]
+    public ActionResult<CheckoutDraftResponse> ApplyCoupon(long id, ApplyCouponRequest request) =>
+        Ok(checkoutDraftService.ApplyCoupon(id, request.Code));
+
+    [HttpDelete("{id:long}/coupon")]
+    public ActionResult<CheckoutDraftResponse> RemoveCoupon(long id) =>
+        Ok(checkoutDraftService.RemoveCoupon(id));
+
     [HttpPost("{id:long}/complete")]
     public ActionResult<OrderResponse> CompleteDraft(long id) =>
         Ok(checkoutDraftService.CompleteDraft(id));

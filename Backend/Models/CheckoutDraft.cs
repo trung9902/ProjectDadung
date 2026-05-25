@@ -14,6 +14,8 @@ public sealed class CheckoutDraft
     public string? Zip { get; set; }
     public decimal Subtotal { get; set; }
     public decimal ShippingFee { get; set; }
+    public decimal DiscountAmount { get; set; }
+    public string? CouponCode { get; set; }
     public decimal Total { get; set; }
     public PaymentMethod? PaymentMethod { get; set; }
     public PaymentStatus PaymentStatus { get; set; } = PaymentStatus.Unpaid;

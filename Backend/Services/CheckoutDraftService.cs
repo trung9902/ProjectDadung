@@ -8,7 +8,8 @@ namespace Backend.Services;
 public sealed class CheckoutDraftService(
     ICheckoutDraftRepository draftRepository,
     IOrderRepository orderRepository,
-    IProductRepository productRepository)
+    IProductRepository productRepository,
+    CouponService couponService)
 {
     public IReadOnlyList<CheckoutDraftResponse> GetDrafts() =>
         draftRepository.GetAll().Select(ToResponse).ToList();
@@ -58,7 +59,42 @@ public sealed class CheckoutDraftService(
         var savedOrder = orderRepository.Add(order);
         draftRepository.Delete(id);
 
+        if (!string.IsNullOrEmpty(draft.CouponCode))
+            couponService.IncrementUsage(draft.CouponCode);
+
         return ToOrderResponse(savedOrder);
+    }
+
+    public CheckoutDraftResponse ApplyCoupon(long id, string code)
+    {
+        var draft = draftRepository.GetById(id)
+            ?? throw new ResourceNotFoundException($"Khong tim thay checkout draft id={id}");
+
+        var validation = couponService.ValidateCoupon(code, draft.Subtotal);
+
+        draft.CouponCode = validation.Code;
+        draft.DiscountAmount = validation.DiscountAmount;
+        draft.Total = draft.Subtotal + draft.ShippingFee - draft.DiscountAmount;
+
+        var updatedDraft = draftRepository.Update(id, draft)
+            ?? throw new ResourceNotFoundException($"Khong tim thay checkout draft id={id}");
+
+        return ToResponse(updatedDraft);
+    }
+
+    public CheckoutDraftResponse RemoveCoupon(long id)
+    {
+        var draft = draftRepository.GetById(id)
+            ?? throw new ResourceNotFoundException($"Khong tim thay checkout draft id={id}");
+
+        draft.CouponCode = null;
+        draft.DiscountAmount = 0;
+        draft.Total = draft.Subtotal + draft.ShippingFee;
+
+        var updatedDraft = draftRepository.Update(id, draft)
+            ?? throw new ResourceNotFoundException($"Khong tim thay checkout draft id={id}");
+
+        return ToResponse(updatedDraft);
     }
 
     public OrderResponse CancelDraft(long id, string? reason)
@@ -133,6 +169,8 @@ public sealed class CheckoutDraftService(
         Zip = draft.Zip,
         Subtotal = draft.Subtotal,
         ShippingFee = draft.ShippingFee,
+        DiscountAmount = draft.DiscountAmount,
+        CouponCode = draft.CouponCode,
         Total = draft.Total,
         Status = status,
         PaymentMethod = draft.PaymentMethod ?? PaymentMethod.Cod,
@@ -155,6 +193,8 @@ public sealed class CheckoutDraftService(
         draft.City,
         draft.Subtotal,
         draft.ShippingFee,
+        draft.DiscountAmount,
+        draft.CouponCode,
         draft.Total,
         draft.PaymentMethod,
         draft.PaymentStatus,

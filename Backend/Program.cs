@@ -22,8 +22,10 @@ builder.Services.AddCors(options =>
 builder.Services.AddSingleton<Backend.Repositories.IProductRepository, Backend.Repositories.InMemoryProductRepository>();
 builder.Services.AddSingleton<Backend.Repositories.IOrderRepository, Backend.Repositories.InMemoryOrderRepository>();
 builder.Services.AddSingleton<Backend.Repositories.ICheckoutDraftRepository, Backend.Repositories.InMemoryCheckoutDraftRepository>();
+builder.Services.AddSingleton<Backend.Repositories.ICouponRepository, Backend.Repositories.InMemoryCouponRepository>();
 builder.Services.AddScoped<Backend.Services.ProductService>();
 builder.Services.AddScoped<Backend.Services.OrderService>();
+builder.Services.AddScoped<Backend.Services.CouponService>();
 builder.Services.AddScoped<Backend.Services.CheckoutDraftService>();
 
 var app = builder.Build();

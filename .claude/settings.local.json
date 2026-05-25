@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"d:\\\\projectDaDung\\\\ProjectDadung\" -Directory)",
+      "Bash(Select-Object -ExpandProperty Name)",
+      "Bash(ls -la \"d:/projectDaDung/\")",
+      "Read(//d/projectDaDung/**)",
+      "Bash(xargs grep -l \"complete\\\\|confirmation\\\\|success\" -i)",
+      "Bash(Get-ChildItem -Recurse -Path \"d:\\\\projectDaDung\\\\ProjectDadung\\\\Backend\" -Include \"*.cs\")",
+      "Bash(Sort-Object)",
+      "Bash(Get-Unique)",
+      "Bash(Get-ChildItem -Path \"d:\\\\projectDaDung\\\\ProjectDadung\\\\Backend\" -Recurse -Directory)",
+      "Bash(Select-Object -First 30)",
+      "Bash(xargs grep -l \"DbContext\\\\|EF Core\\\\|SQLite\\\\|SqlServer\")"
+    ]
+  }
+}

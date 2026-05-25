@@ -24,6 +24,8 @@ public sealed record CheckoutDraftResponse(
     string City,
     decimal Subtotal,
     decimal ShippingFee,
+    decimal DiscountAmount,
+    string? CouponCode,
     decimal Total,
     PaymentMethod? PaymentMethod,
     PaymentStatus PaymentStatus,
