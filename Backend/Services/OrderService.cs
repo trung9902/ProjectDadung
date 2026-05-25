@@ -5,7 +5,10 @@ using Backend.Repositories;
 
 namespace Backend.Services;
 
-public sealed class OrderService(IOrderRepository orderRepository, IProductRepository productRepository)
+public sealed class OrderService(
+    IOrderRepository orderRepository,
+    IProductRepository productRepository,
+    CouponService couponService)
 {
     public IReadOnlyList<OrderResponse> GetOrders() =>
         orderRepository.GetAll().Select(ToResponse).ToList();
@@ -56,9 +59,18 @@ public sealed class OrderService(IOrderRepository orderRepository, IProductRepos
 
         order.Subtotal = order.Items.Sum(item => item.LineTotal);
         order.ShippingFee = 0;
-        order.Total = order.Subtotal + order.ShippingFee;
-        order.PaymentStatus = order.PaymentMethod == PaymentMethod.Cod ? PaymentStatus.Unpaid : PaymentStatus.Paid;
-        order.PaidAt = order.PaymentStatus == PaymentStatus.Paid ? DateTime.UtcNow : null;
+
+        if (!string.IsNullOrWhiteSpace(request.CouponCode))
+        {
+            var validation = couponService.ValidateCoupon(request.CouponCode, order.Subtotal);
+            order.CouponCode = validation.Code;
+            order.DiscountAmount = validation.DiscountAmount;
+            couponService.IncrementUsage(validation.Code);
+        }
+
+        order.Total = order.Subtotal + order.ShippingFee - order.DiscountAmount;
+        order.PaymentStatus = order.PaymentMethod == PaymentMethod.Cod ? PaymentStatus.Unpaid : PaymentStatus.Pending;
+        order.PaidAt = null;
 
         return ToResponse(orderRepository.Add(order));
     }
@@ -79,6 +91,8 @@ public sealed class OrderService(IOrderRepository orderRepository, IProductRepos
         order.City,
         order.Subtotal,
         order.ShippingFee,
+        order.DiscountAmount,
+        order.CouponCode,
         order.Total,
         order.Status,
         order.PaymentMethod,

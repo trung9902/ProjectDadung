@@ -292,7 +292,8 @@
 }
 
 .checkout-next-btn:disabled,
-.checkout-cancel-btn:disabled {
+.checkout-cancel-btn:disabled,
+.checkout-payment-title:disabled {
   cursor: not-allowed;
   opacity: 0.65;
 }
@@ -342,6 +343,48 @@
   border-color: var(--primary);
   background: var(--surface-container-lowest);
   box-shadow: 0 8px 22px rgba(38, 24, 19, 0.08);
+}
+
+.checkout-payment-title {
+  justify-self: end;
+  width: auto;
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6px;
+  padding: 11px 28px;
+  border: 1px solid var(--primary);
+  border-radius: 4px;
+  background-color: var(--primary);
+  color: var(--on-primary);
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(38, 24, 19, 0.08);
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background-color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.checkout-payment-title:hover {
+  background-color: var(--surface-tint);
+  box-shadow: 0 4px 10px rgba(38, 24, 19, 0.1);
+}
+
+.checkout-payment-title:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 3px rgba(38, 24, 19, 0.08);
+}
+
+.checkout-payment-title:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--primary) 30%, transparent);
+  outline-offset: 3px;
 }
 
 .checkout-payment-logo {
@@ -408,6 +451,14 @@
 .checkout-cancel-btn:hover {
   border-color: var(--primary);
   background: var(--surface-container-low);
+}
+
+@media (max-width: 640px) {
+  .checkout-payment-title {
+    min-height: 42px;
+    padding: 10px 20px;
+    font-size: 14px;
+  }
 }
 
 .checkout-locked-message {

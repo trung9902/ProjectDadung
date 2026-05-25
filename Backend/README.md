@@ -61,18 +61,6 @@ GET   /api/orders/{id}
 PATCH /api/orders/{id}/status
 ```
 
-Checkout draft:
-
-```text
-GET  /api/checkout-drafts
-POST /api/checkout-drafts
-GET  /api/checkout-drafts/{id}
-PUT  /api/checkout-drafts/{id}
-PATCH /api/checkout-drafts/{id}/payment-method
-POST /api/checkout-drafts/{id}/complete
-POST /api/checkout-drafts/{id}/cancel
-```
-
 Gia tri `paymentMethod` hop le:
 
 ```text

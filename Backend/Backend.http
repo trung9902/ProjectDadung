@@ -21,47 +21,17 @@ Content-Type: application/json
   "address": "1 Nguyen Trai",
   "city": "Ho Chi Minh",
   "paymentMethod": "Cod",
+  "couponCode": "GIAM10",
+  "subtotal": 9600000,
+  "shippingFee": 0,
+  "discountAmount": 0,
+  "total": 9600000,
   "items": [
-    { "productId": 1, "quantity": 2 }
+    {
+      "productId": 1,
+      "quantity": 2,
+      "unitPrice": 4800000,
+      "lineTotal": 9600000
+    }
   ]
-}
-
-###
-
-POST {{Backend_HostAddress}}/api/checkout-drafts
-Content-Type: application/json
-
-{
-  "email": "buyer@example.com",
-  "firstName": "An",
-  "lastName": "Nguyen",
-  "phone": "0900000000",
-  "address": "1 Nguyen Trai",
-  "city": "Ho Chi Minh",
-  "paymentMethod": "Cod",
-  "items": [
-    { "productId": 1, "quantity": 2 }
-  ]
-}
-
-###
-
-PATCH {{Backend_HostAddress}}/api/checkout-drafts/1/payment-method
-Content-Type: application/json
-
-{
-  "paymentMethod": "VnPay"
-}
-
-###
-
-POST {{Backend_HostAddress}}/api/checkout-drafts/1/complete
-
-###
-
-POST {{Backend_HostAddress}}/api/checkout-drafts/1/cancel
-Content-Type: application/json
-
-{
-  "reason": "Khach hang huy o buoc thanh toan"
 }

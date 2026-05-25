@@ -1,18 +1,15 @@
 import React, { useState } from 'react'
-const useSaveDraft = () => {
+const useCreateOrder = () => {
     const [loading, setLoading] = useState(false)
-    const fetchDraft = async (sectionId, payload) => {
+    const createOrder = async (payload) => {
         setLoading(true)
         try {
-            const res = await fetch('http://localhost:8080/api/checkout-drafts', {
+            const res = await fetch('http://localhost:8080/api/orders', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    sectionId,
-                    payload
-                })
+                body: JSON.stringify(payload)
 
             })
             const data = await res.json()
@@ -25,6 +22,6 @@ const useSaveDraft = () => {
             setLoading(false)
         }
     }
-    return { loading, fetchDraft }
+    return { loading, createOrder }
 }
-export default useSaveDraft
+export default useCreateOrder

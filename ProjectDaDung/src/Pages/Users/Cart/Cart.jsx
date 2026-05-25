@@ -31,7 +31,10 @@ const Cart = () => {
   let backDown = (id) => {
     let cartItem = cart.find((item) => item.id === id)
     if (cartItem.quantity <= 1) {
-      alert('Số lượng sản phẩm không thể nhỏ hơn 1!')
+      cartItem.removed = true
+      let updatedCart = cart.filter((item) => item.id !== id)
+      setCart(updatedCart)
+      saveCart(updatedCart)
       return
     }
     const updatedCart = cart.map((item) =>
@@ -50,6 +53,10 @@ const Cart = () => {
     clearStoredCart()
   }
   let PayMentDefault = () => {
+    if (cart.length === 0) {
+      alert('Giỏ hàng của bạn đang trống. Vui lòng thêm sản phẩm trước khi thanh toán.')
+      return
+    }
     navigate('/checkout')
   }
   return (
@@ -130,7 +137,12 @@ const Cart = () => {
 
           </div>
         ) : (
-          <p className="cart-empty-text">Giỏ hàng của bạn đang trống. Hãy thêm sản phẩm để bắt đầu mua sắm!</p>
+          // <CartEmpty />
+          <div className="cart-items-column-box">
+            <div className="cart-items-section">
+              <p className="cart-empty-text">Giỏ hàng của bạn đang trống. Hãy thêm sản phẩm để bắt đầu mua sắm!</p>
+            </div>
+          </div>
         )}
 
         {/* Order Summary Sidebar */}

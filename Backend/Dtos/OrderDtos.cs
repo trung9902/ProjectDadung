@@ -14,11 +14,18 @@ public sealed record CreateOrderRequest(
     string? State,
     string? Zip,
     PaymentMethod? PaymentMethod,
+    string? CouponCode,
+    decimal Subtotal,
+    decimal ShippingFee,
+    decimal DiscountAmount,
+    decimal Total,
     [Required, MinLength(1)] IReadOnlyList<OrderItemRequest> Items);
 
 public sealed record OrderItemRequest(
     [Range(1, long.MaxValue)] long ProductId,
-    [Range(1, int.MaxValue)] int Quantity);
+    [Range(1, int.MaxValue)] int Quantity,
+    decimal UnitPrice,
+    decimal LineTotal);
 
 public sealed record OrderResponse(
     long Id,
@@ -28,6 +35,8 @@ public sealed record OrderResponse(
     string City,
     decimal Subtotal,
     decimal ShippingFee,
+    decimal DiscountAmount,
+    string? CouponCode,
     decimal Total,
     OrderStatus Status,
     PaymentMethod PaymentMethod,

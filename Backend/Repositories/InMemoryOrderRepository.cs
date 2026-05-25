@@ -64,6 +64,8 @@ public sealed class InMemoryOrderRepository : IOrderRepository
         Zip = order.Zip,
         Subtotal = order.Subtotal,
         ShippingFee = order.ShippingFee,
+        DiscountAmount = order.DiscountAmount,
+        CouponCode = order.CouponCode,
         Total = order.Total,
         CreatedAt = order.CreatedAt,
         CancelledAt = order.CancelledAt,

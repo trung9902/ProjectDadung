@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './Checkout.css'
 
 const API_URL = 'http://localhost:8080/api'
@@ -20,18 +21,20 @@ const formatCurrency = (value) =>
     style: 'currency',
     currency: 'VND',
   })
+import { clearStoredCart } from '../../../utils/cart'
 
 const Checkout = () => {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState(initialFormData)
-  const [step, setStep] = useState(1)
-  const [draft, setDraft] = useState(null)
+  const [placedOrder, setPlacedOrder] = useState(null)
   const [paymentMethod, setPaymentMethod] = useState('cod')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [message, setMessage] = useState('')
   const [couponCode, setCouponCode] = useState('')
   const [couponMessage, setCouponMessage] = useState('')
   const [couponError, setCouponError] = useState('')
-  const [isApplyingCoupon, setIsApplyingCoupon] = useState(false)
+  const [couponDiscountAmount, setCouponDiscountAmount] = useState(0)
+  const [couponFinalTotal, setCouponFinalTotal] = useState(null)
   const [cart, setCart] = useState(() => {
     try {
       const savedCart = localStorage.getItem('cart')
@@ -46,13 +49,29 @@ const Checkout = () => {
     [cart],
   )
 
-  const payload = useMemo(() => ({
-    ...formData,
-    items: cart.map((item) => ({
-      productId: item.id,
-      quantity: item.quantity,
-    })),
-  }), [formData, cart])
+  const discountAmount = placedOrder?.discountAmount ?? couponDiscountAmount
+  const orderTotal = placedOrder?.total ?? couponFinalTotal ?? subtotal
+
+  const orderPayload = useMemo(() => {
+    const normalizedCouponCode = couponCode.trim()
+
+    return {
+      ...formData,
+      paymentMethod,
+      status: paymentMethod === 'cod' ? 'pending' : 'pending_payment',
+      couponCode: normalizedCouponCode || undefined,
+      subtotal,
+      shippingFee: 0,
+      discountAmount,
+      total: orderTotal,
+      items: cart.map((item) => ({
+        productId: item.id,
+        quantity: item.quantity,
+        unitPrice: item.price,
+        lineTotal: item.price * item.quantity,
+      })),
+    }
+  }, [formData, cart, couponCode, paymentMethod, subtotal, discountAmount, orderTotal])
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart))
@@ -67,60 +86,51 @@ const Checkout = () => {
   }
 
   const handleApplyCoupon = async () => {
-    if (!draft) {
-      setCouponError('Vui lòng hoàn thành thông tin giao hàng trước.')
-      return
-    }
     if (!couponCode.trim()) {
       setCouponError('Vui lòng nhập mã giảm giá.')
       return
     }
 
-    setIsApplyingCoupon(true)
-    setCouponMessage('')
-    setCouponError('')
-
     try {
-      const response = await fetch(`${API_URL}/checkout-drafts/${draft.id}/coupon`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code: couponCode.trim() }),
-      })
-      const data = await response.json()
+      const response = await fetch(
+        `${API_URL}/coupons/validate`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ code: couponCode.trim(), subtotal: subtotal })
+        }
+      )
+
+      const couponData = await response.json()
 
       if (!response.ok) {
-        throw new Error(data.message || 'Mã giảm giá không hợp lệ.')
+        setCouponError(couponData.message || 'Mã giảm giá không hợp lệ.')
+        return
       }
 
-      setDraft(data)
-      setCouponMessage(`Áp dụng thành công! Giảm ${formatCurrency(data.discountAmount)}`)
+      setCouponDiscountAmount(couponData.discountAmount)
+      setCouponFinalTotal(couponData.finalTotal)
+      setCouponError('')
+      setCouponMessage(
+        `Mã ${couponData.code} đã được áp dụng. Giảm ${formatCurrency(couponData.discountAmount)}`
+      )
+
     } catch (error) {
-      setCouponError(error.message)
-    } finally {
-      setIsApplyingCoupon(false)
+      console.error(error)
+      setCouponError('Có lỗi xảy ra khi kiểm tra mã giảm giá.')
     }
   }
-
-  const handleRemoveCoupon = async () => {
-    if (!draft) return
-
-    try {
-      const response = await fetch(`${API_URL}/checkout-drafts/${draft.id}/coupon`, {
-        method: 'DELETE',
-      })
-      const data = await response.json()
-      if (response.ok) {
-        setDraft(data)
-        setCouponCode('')
-        setCouponMessage('')
-        setCouponError('')
-      }
-    } catch {
-      // ignore
-    }
+  const handleRemoveCoupon = () => {
+    setCouponCode('')
+    setCouponMessage('')
+    setCouponError('')
+    setCouponDiscountAmount(0)
+    setCouponFinalTotal(null)
   }
 
-  const handleInformation = async () => {
+  const handleCheckout = async () => {
     if (cart.length === 0) {
       setMessage('Giỏ hàng đang trống.')
       return
@@ -130,20 +140,22 @@ const Checkout = () => {
     setMessage('')
 
     try {
-      const response = await fetch(`${API_URL}/checkout-drafts${draft ? `/${draft.id}` : ''}`, {
-        method: draft ? 'PUT' : 'POST',
+      const response = await fetch(`${API_URL}/orders`, {
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(orderPayload),
       })
       const data = await response.json()
 
       if (!response.ok) {
-        throw new Error(data.message || 'Không thể lưu thông tin giao hàng.')
+        throw new Error(data.message || 'Không thể tạo đơn hàng.')
       }
 
-      setDraft(data)
-      setStep(2)
-      setMessage('Thông tin đã được lưu tạm. Vui lòng chọn phương thức thanh toán.')
+      setPlacedOrder(data)
+
+      setMessage('Đơn hàng đã được tạo thành công.')
+      clearStoredCart()
+      navigate(`/cart`)
     } catch (error) {
       setMessage(error.message)
     } finally {
@@ -163,12 +175,12 @@ const Checkout = () => {
         <div className="checkout-grid">
           <div className="checkout-steps-col">
             <nav aria-label="Progress" className="checkout-progress">
-              <div className={`checkout-step ${step === 1 ? 'active' : ''}`}>
+              <div className="checkout-step active">
                 <div className="checkout-step-num">1</div>
                 <span className="checkout-step-label">Địa chỉ giao hàng</span>
               </div>
               <div className="checkout-step-divider"></div>
-              <div className={`checkout-step ${step === 2 ? 'active' : 'inactive'}`}>
+              <div className="checkout-step active">
                 <div className="checkout-step-num">2</div>
                 <span className="checkout-step-label">Phương thức thanh toán</span>
               </div>
@@ -176,7 +188,7 @@ const Checkout = () => {
 
             {message && <div className="checkout-message">{message}</div>}
 
-            <section className={`checkout-section ${step === 1 ? 'active' : ''}`}>
+            <section className="checkout-section active">
               <h2 className="checkout-section-title">Thông tin liên hệ</h2>
               <div className="checkout-form-group mb-lg">
                 <label htmlFor="email" className="checkout-label">Địa chỉ Email</label>
@@ -217,66 +229,59 @@ const Checkout = () => {
                 </div>
               </div>
 
-              <div className="checkout-step-footer">
-                <button type="button" className="checkout-next-btn" onClick={handleInformation} disabled={isSubmitting}>
-                  {isSubmitting ? 'Đang lưu...' : 'Tiếp tục thanh toán'}
-                </button>
-              </div>
             </section>
 
-            <section className={`checkout-section ${step === 2 ? 'active' : 'inactive'}`}>
+            <section className="checkout-section active">
               <div className="checkout-section-header">
                 <h2 className="checkout-section-title mb-0">Phương thức thanh toán</h2>
-                <span className="material-symbols-outlined text-muted">{step !== 2 ? 'lock' : ''}</span>
               </div>
               <div className="checkout-payment-box">
-                {step !== 2 ? (
-                  <p className="checkout-payment-lock-text">Vui lòng hoàn thành bước thông tin giao hàng trước khi chọn phương thức thanh toán.</p>
-                ) : (
-                  <div className="checkout-payment-methods" role="radiogroup" aria-label="Phương thức thanh toán">
-                    <button
-                      type="button"
-                      className={`checkout-payment-method ${paymentMethod === 'cod' ? 'active' : ''}`}
-                      onClick={() => setPaymentMethod('cod')}
-                      role="radio"
-                      aria-checked={paymentMethod === 'cod'}
-                    >
-                      <span className="checkout-payment-logo cod-logo">COD</span>
-                      <span className="checkout-payment-copy">
-                        <strong>Thanh toán khi nhận hàng</strong>
-                        <small>Thanh toán bằng tiền mặt khi đơn hàng được giao.</small>
-                      </span>
-                    </button>
+                <div className="checkout-payment-methods" role="radiogroup" aria-label="Phương thức thanh toán">
+                  <button
+                    type="button"
+                    className={`checkout-payment-method ${paymentMethod === 'cod' ? 'active' : ''}`}
+                    onClick={() => setPaymentMethod('cod')}
+                    role="radio"
+                    aria-checked={paymentMethod === 'cod'}
+                  >
+                    <span className="checkout-payment-logo cod-logo">COD</span>
+                    <span className="checkout-payment-copy">
+                      <strong>Thanh toán khi nhận hàng</strong>
+                      <small>Thanh toán bằng tiền mặt khi đơn hàng được giao.</small>
+                    </span>
+                  </button>
 
-                    <button
-                      type="button"
-                      className={`checkout-payment-method ${paymentMethod === 'vnpay' ? 'active' : ''}`}
-                      onClick={() => setPaymentMethod('vnpay')}
-                      role="radio"
-                      aria-checked={paymentMethod === 'vnpay'}
-                    >
-                      <span className="checkout-payment-logo vnpay-logo">VNPAY</span>
-                      <span className="checkout-payment-copy">
-                        <strong>Thanh toán VNPAY</strong>
-                        <small>Thanh toán qua mã QR, thẻ ATM hoặc ngân hàng nội địa.</small>
-                      </span>
-                    </button>
+                  <button
+                    type="button"
+                    className={`checkout-payment-method ${paymentMethod === 'vnpay' ? 'active' : ''}`}
+                    onClick={() => setPaymentMethod('vnpay')}
+                    role="radio"
+                    aria-checked={paymentMethod === 'vnpay'}
+                  >
+                    <span className="checkout-payment-logo vnpay-logo">VNPAY</span>
+                    <span className="checkout-payment-copy">
+                      <strong>Thanh toán VNPAY</strong>
+                      <small>Thanh toán qua mã QR, thẻ ATM hoặc ngân hàng nội địa.</small>
+                    </span>
+                  </button>
 
-                    <button
-                      type="button"
-                      className={`checkout-payment-method ${paymentMethod === 'shopeepay' ? 'active' : ''}`}
-                      onClick={() => setPaymentMethod('shopeepay')}
-                      role="radio"
-                      aria-checked={paymentMethod === 'shopeepay'}
-                    >
-                      <span className="checkout-payment-logo shopeepay-logo">ShopeePay</span>
-                      <span className="checkout-payment-copy">
-                        <strong>Thanh toán ShopeePay</strong>
-                        <small>Thanh toán nhanh bằng ví điện tử ShopeePay.</small>
-                      </span>
-                    </button>
-                  </div>
-                )}
+                  <button
+                    type="button"
+                    className={`checkout-payment-method ${paymentMethod === 'shopeepay' ? 'active' : ''}`}
+                    onClick={() => setPaymentMethod('shopeepay')}
+                    role="radio"
+                    aria-checked={paymentMethod === 'shopeepay'}
+                  >
+                    <span className="checkout-payment-logo shopeepay-logo">ShopeePay</span>
+                    <span className="checkout-payment-copy">
+                      <strong>Thanh toán ShopeePay</strong>
+                      <small>Thanh toán nhanh bằng ví điện tử ShopeePay.</small>
+                    </span>
+                  </button>
+                  <button type="button" className="checkout-payment-title" onClick={handleCheckout} disabled={isSubmitting}>
+                    {isSubmitting ? 'Đang xử lý...' : 'Thanh toán'}
+                  </button>
+                </div>
               </div>
             </section>
           </div>
@@ -310,14 +315,12 @@ const Checkout = () => {
                   value={couponCode}
                   onChange={(e) => setCouponCode(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleApplyCoupon()}
-                  disabled={!!draft?.couponCode}
+                  disabled={!!couponMessage}
                 />
-                {draft?.couponCode ? (
+                {couponMessage ? (
                   <button type="button" className="checkout-promo-btn" onClick={handleRemoveCoupon}>Xóa</button>
                 ) : (
-                  <button type="button" className="checkout-promo-btn" onClick={handleApplyCoupon} disabled={isApplyingCoupon}>
-                    {isApplyingCoupon ? '...' : 'Áp dụng'}
-                  </button>
+                  <button type="button" className="checkout-promo-btn" onClick={handleApplyCoupon}>Áp dụng</button>
                 )}
               </div>
               {couponMessage && <p style={{ color: 'green', fontSize: '0.85rem', marginTop: '4px' }}>{couponMessage}</p>}
@@ -332,10 +335,10 @@ const Checkout = () => {
                   <span>Giao hàng</span>
                   <span className="font-medium">Miễn phí</span>
                 </div>
-                {draft?.discountAmount > 0 && (
+                {discountAmount > 0 && (
                   <div className="checkout-total-row" style={{ color: 'green' }}>
-                    <span>Giảm giá {draft.couponCode && `(${draft.couponCode})`}</span>
-                    <span className="font-medium">-{formatCurrency(draft.discountAmount)}</span>
+                    <span>Giảm giá {couponCode && `(${couponCode})`}</span>
+                    <span className="font-medium">-{formatCurrency(discountAmount)}</span>
                   </div>
                 )}
               </div>
@@ -344,14 +347,9 @@ const Checkout = () => {
                 <span className="checkout-final-label">Tổng cộng</span>
                 <div className="checkout-final-value-group">
                   <span className="checkout-final-value">
-                    {formatCurrency(draft?.total ?? subtotal)}
+                    {formatCurrency(orderTotal)}
                   </span>
                 </div>
-              </div>
-
-              <div className="checkout-trust">
-                <span className="material-symbols-outlined text-[18px]">lock</span>
-                <span>Thanh toán mã hóa bảo mật</span>
               </div>
             </div>
           </aside>
