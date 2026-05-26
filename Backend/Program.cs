@@ -1,4 +1,12 @@
+using System.Text;
 using System.Text.Json.Serialization;
+using Backend.Data;
+using Backend.Models;
+using Backend.Repositories;
+using Backend.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +17,7 @@ builder.Services.AddControllers()
     });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("Frontend", policy =>
@@ -19,20 +28,68 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.Services.AddSingleton<Backend.Repositories.IProductRepository, Backend.Repositories.InMemoryProductRepository>();
-builder.Services.AddSingleton<Backend.Repositories.IOrderRepository, Backend.Repositories.InMemoryOrderRepository>();
-builder.Services.AddSingleton<Backend.Repositories.ICouponRepository, Backend.Repositories.InMemoryCouponRepository>();
-builder.Services.AddScoped<Backend.Services.ProductService>();
-builder.Services.AddScoped<Backend.Services.OrderService>();
-builder.Services.AddScoped<Backend.Services.CouponService>();
+// Database
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// JWT Authentication
+var jwtSettings = builder.Configuration.GetSection("JwtSettings");
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = jwtSettings["Issuer"],
+            ValidAudience = jwtSettings["Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(jwtSettings["Key"]!))
+        };
+    });
+builder.Services.AddAuthorization();
+
+// Repositories & Services
+builder.Services.AddSingleton<IProductRepository, Backend.Repositories.InMemoryProductRepository>();
+builder.Services.AddSingleton<IOrderRepository, Backend.Repositories.InMemoryOrderRepository>();
+builder.Services.AddSingleton<ICouponRepository, Backend.Repositories.InMemoryCouponRepository>();
+builder.Services.AddScoped<IUserRepository, EFUserRepository>();
+builder.Services.AddScoped<ProductService>();
+builder.Services.AddScoped<OrderService>();
+builder.Services.AddScoped<CouponService>();
+builder.Services.AddScoped<VnPayService>();
+builder.Services.AddScoped<AuthService>();
 
 var app = builder.Build();
+
+// Migrate DB and seed admin
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.Migrate();
+
+    if (!db.Users.Any(u => u.Role == UserRole.Admin))
+    {
+        db.Users.Add(new User
+        {
+            Email = "admin@modernretail.vn",
+            PasswordHash = BCrypt.Net.BCrypt.HashPassword("Admin@123"),
+            FullName = "Quản trị viên",
+            Role = UserRole.Admin,
+            CreatedAt = DateTime.UtcNow
+        });
+        db.SaveChanges();
+    }
+}
 
 app.UseMiddleware<Backend.Middleware.ExceptionHandlingMiddleware>();
 app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseCors("Frontend");
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

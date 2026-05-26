@@ -1,5 +1,6 @@
 using Backend.Dtos;
 using Backend.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers;
@@ -24,6 +25,7 @@ public sealed class OrdersController(OrderService orderService) : ControllerBase
     }
 
     [HttpPatch("{id:long}/status")]
+    [Authorize(Roles = "Admin")]
     public ActionResult<OrderResponse> UpdateStatus(long id, UpdateOrderStatusRequest request) =>
         Ok(orderService.UpdateStatus(id, request.Status));
 }

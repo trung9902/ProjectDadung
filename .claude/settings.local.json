@@ -11,7 +11,17 @@
       "Bash(Get-Unique)",
       "Bash(Get-ChildItem -Path \"d:\\\\projectDaDung\\\\ProjectDadung\\\\Backend\" -Recurse -Directory)",
       "Bash(Select-Object -First 30)",
-      "Bash(xargs grep -l \"DbContext\\\\|EF Core\\\\|SQLite\\\\|SqlServer\")"
+      "Bash(xargs grep -l \"DbContext\\\\|EF Core\\\\|SQLite\\\\|SqlServer\")",
+      "Bash(Get-ChildItem -Path \"d:\\\\projectDaDung\\\\ProjectDadung\" -Force)",
+      "Bash(Select-Object Name, PSIsContainer)",
+      "Bash(Format-Table)",
+      "Bash(xargs grep -l \"context\\\\|Context\\\\|redux\\\\|Redux\\\\|zustand\\\\|Zustand\")",
+      "Bash(dotnet add *)",
+      "Bash(dotnet tool *)",
+      "Bash(dotnet ef *)",
+      "Bash(dotnet build *)",
+      "Bash(taskkill /PID 23784 /F)",
+      "Bash(npm run *)"
     ]
   }
 }

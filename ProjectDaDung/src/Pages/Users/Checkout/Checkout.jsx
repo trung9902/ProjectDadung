@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { clearStoredCart } from '../../../utils/cart'
 import './Checkout.css'
 
 const API_URL = 'http://localhost:8080/api'
@@ -21,7 +22,6 @@ const formatCurrency = (value) =>
     style: 'currency',
     currency: 'VND',
   })
-import { clearStoredCart } from '../../../utils/cart'
 
 const Checkout = () => {
   const navigate = useNavigate()
@@ -54,10 +54,11 @@ const Checkout = () => {
 
   const orderPayload = useMemo(() => {
     const normalizedCouponCode = couponCode.trim()
+    const backendPaymentMethod = paymentMethod === 'vnpay' ? 'VnPay' : 'Cod'
 
     return {
       ...formData,
-      paymentMethod,
+      paymentMethod: backendPaymentMethod,
       status: paymentMethod === 'cod' ? 'pending' : 'pending_payment',
       couponCode: normalizedCouponCode || undefined,
       subtotal,
@@ -150,8 +151,29 @@ const Checkout = () => {
       if (!response.ok) {
         throw new Error(data.message || 'Không thể tạo đơn hàng.')
       }
-
       setPlacedOrder(data)
+
+      if (paymentMethod === 'vnpay') {
+        const paymentResponse = await fetch(
+          `${API_URL}/payment/create`,
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              orderId: data.id.toString(),
+              amount: data.total
+            })
+          }
+        )
+        const paymentData = await paymentResponse.json()
+
+        if (!paymentResponse.ok) {
+          throw new Error(paymentData.message || 'Không thể tạo thanh toán VNPAY.')
+        }
+
+        window.location.href = paymentData.paymentUrl
+        return
+      }
 
       setMessage('Đơn hàng đã được tạo thành công.')
       clearStoredCart()
@@ -162,7 +184,6 @@ const Checkout = () => {
       setIsSubmitting(false)
     }
   }
-
   return (
     <div className="checkout-page-bg">
       <header className="checkout-header">
@@ -265,19 +286,6 @@ const Checkout = () => {
                     </span>
                   </button>
 
-                  <button
-                    type="button"
-                    className={`checkout-payment-method ${paymentMethod === 'shopeepay' ? 'active' : ''}`}
-                    onClick={() => setPaymentMethod('shopeepay')}
-                    role="radio"
-                    aria-checked={paymentMethod === 'shopeepay'}
-                  >
-                    <span className="checkout-payment-logo shopeepay-logo">ShopeePay</span>
-                    <span className="checkout-payment-copy">
-                      <strong>Thanh toán ShopeePay</strong>
-                      <small>Thanh toán nhanh bằng ví điện tử ShopeePay.</small>
-                    </span>
-                  </button>
                   <button type="button" className="checkout-payment-title" onClick={handleCheckout} disabled={isSubmitting}>
                     {isSubmitting ? 'Đang xử lý...' : 'Thanh toán'}
                   </button>
