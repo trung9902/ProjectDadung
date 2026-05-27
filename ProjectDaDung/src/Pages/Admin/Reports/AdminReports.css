@@ -1,0 +1,37 @@
+.admin-report-main {
+  margin: 16px 0;
+}
+
+.admin-trend-up {
+  color: #15803d;
+  font-weight: 700;
+}
+
+.admin-trend-down {
+  color: #b91c1c;
+  font-weight: 700;
+}
+
+.admin-best-seller {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f4f4f5;
+}
+
+.admin-best-seller span {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  background: #ffdbcd;
+  color: #9f3d00;
+  font-weight: 800;
+}
+
+.admin-best-seller p {
+  margin: 4px 0 0;
+  color: #71717a;
+}

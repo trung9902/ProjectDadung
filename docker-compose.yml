@@ -1,0 +1,21 @@
+services:
+
+  backend:
+    build:
+      context: ./Backend
+
+    ports:
+      - "8080:8080"
+
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+
+  frontend:
+    build:
+      context: ./ProjectDaDung
+
+    ports:
+      - "5173:5173"
+
+    depends_on:
+      - backend

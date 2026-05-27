@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hàng Mới Về | ModernRetail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#594137",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#656464",
+                        "tertiary-fixed-dim": "#a6c8ff",
+                        "on-primary-container": "#fffbff",
+                        "primary-fixed-dim": "#ffb596",
+                        "on-secondary-fixed-variant": "#474646",
+                        "background": "#fff8f6",
+                        "surface": "#fff8f6",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "tertiary-fixed": "#d5e3ff",
+                        "surface-dim": "#eed5cb",
+                        "surface-container": "#ffe9e2",
+                        "on-tertiary-fixed": "#001c3b",
+                        "secondary-container": "#e5e2e1",
+                        "on-surface": "#261813",
+                        "inverse-surface": "#3c2d27",
+                        "on-tertiary-container": "#fefcff",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#360f00",
+                        "tertiary-container": "#0075d8",
+                        "surface-container-high": "#fde3d9",
+                        "surface-container-highest": "#f7ddd3",
+                        "primary-fixed": "#ffdbcd",
+                        "outline": "#8d7165",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "secondary": "#5f5e5e",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#a33e00",
+                        "secondary-fixed": "#e5e2e1",
+                        "tertiary": "#005cad",
+                        "surface-variant": "#f7ddd3",
+                        "error-container": "#ffdad6",
+                        "primary": "#9f3d00",
+                        "inverse-on-surface": "#ffede7",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#7c2e00",
+                        "on-primary": "#ffffff",
+                        "on-background": "#261813",
+                        "inverse-primary": "#ffb596",
+                        "primary-container": "#c74e00",
+                        "outline-variant": "#e1bfb2",
+                        "surface-bright": "#fff8f6",
+                        "surface-container-low": "#fff1ec",
+                        "on-tertiary-fixed-variant": "#004787"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "sm": "12px",
+                        "xl": "80px",
+                        "md": "24px",
+                        "xs": "4px",
+                        "lg": "48px",
+                        "unit": "8px",
+                        "container-max": "1280px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "h1": ["Inter"],
+                        "h2": ["Inter"],
+                        "h3": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "h1": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "h2": ["32px", {"lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #fff8f6;
+            color: #261813;
+        }
+        .product-card-shadow {
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.04);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .product-card-shadow:hover {
+            transform: translateY(-4px);
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.08);
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 bg-surface dark:bg-background shadow-[0px_10px_30px_rgba(0,0,0,0.08)]">
+<div class="max-w-container-max mx-auto px-lg py-sm flex justify-between items-center h-20">
+<div class="flex items-center gap-lg">
+<a class="text-h3 font-h3 font-bold text-primary dark:text-primary-fixed" href="/">ModernRetail</a>
+<nav class="hidden md:flex items-center gap-md font-body-md text-body-md">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 transition-colors duration-200" href="#">Sản phẩm</a>
+<a class="text-secondary dark:text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Bộ sưu tập</a>
+<a class="text-secondary dark:text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Khuyến mãi</a>
+<a class="text-secondary dark:text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Liên hệ</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container rounded-full border-none focus:ring-2 focus:ring-primary w-64 text-label-md" placeholder="Tìm kiếm sản phẩm..." type="text"/>
+</div>
+<div class="flex items-center gap-sm">
+<button class="p-2 hover:bg-surface-variant rounded-full transition-all duration-200">
+<span class="material-symbols-outlined text-primary">favorite</span>
+</button>
+<button class="p-2 hover:bg-surface-variant rounded-full transition-all duration-200">
+<span class="material-symbols-outlined text-primary">shopping_cart</span>
+</button>
+<button class="p-2 hover:bg-surface-variant rounded-full transition-all duration-200">
+<span class="material-symbols-outlined text-primary">account_circle</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-32 pb-xl px-lg max-w-container-max mx-auto">
+<!-- Hero Section / Title -->
+<div class="mb-xl text-center">
+<h1 class="font-h1 text-h1 text-on-surface mb-xs">Hàng Mới Về</h1>
+<p class="text-secondary font-body-lg text-body-lg max-w-2xl mx-auto">Khám phá những thiết kế mới nhất trong bộ sưu tập mùa này. Phong cách hiện đại, tinh tế và tối giản cho cuộc sống năng động.</p>
+</div>
+<!-- Filter & Sort Bar -->
+<div class="flex flex-col md:flex-row justify-between items-center mb-lg gap-md border-b border-outline-variant pb-md">
+<div class="flex items-center gap-md overflow-x-auto w-full md:w-auto pb-2 md:pb-0">
+<button class="px-4 py-2 bg-primary text-on-primary rounded-full text-label-md flex items-center gap-xs">
+                    Tất cả sản phẩm
+                </button>
+<button class="px-4 py-2 hover:bg-surface-container rounded-full text-label-md border border-outline-variant transition-colors">
+                    Áo Nam
+                </button>
+<button class="px-4 py-2 hover:bg-surface-container rounded-full text-label-md border border-outline-variant transition-colors">
+                    Váy Nữ
+                </button>
+<button class="px-4 py-2 hover:bg-surface-container rounded-full text-label-md border border-outline-variant transition-colors">
+                    Phụ kiện
+                </button>
+</div>
+<div class="flex items-center gap-sm self-end">
+<span class="text-label-md text-secondary">Sắp xếp theo:</span>
+<select class="bg-transparent border-none text-label-md font-bold focus:ring-0 cursor-pointer">
+<option>Mới nhất</option>
+<option>Giá: Thấp đến Cao</option>
+<option>Giá: Cao đến Thấp</option>
+<option>Phổ biến nhất</option>
+</select>
+</div>
+</div>
+<!-- Product Grid (Bento/Asymmetric Style Elements) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md">
+<!-- Product Card 1 (Large Feature) -->
+<div class="lg:col-span-2 lg:row-span-2 group relative overflow-hidden bg-white product-card-shadow rounded-lg">
+<div class="absolute top-4 left-4 z-10 flex flex-col gap-2">
+<span class="bg-primary text-white text-label-sm px-4 py-2 rounded-full font-bold uppercase tracking-wider">MỚI</span>
+</div>
+<div class="aspect-[4/5] lg:aspect-auto lg:h-[700px] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A high-fashion editorial shot of a model wearing a minimalist beige oversized coat and white trousers. The setting is a clean, architectural studio with soft daylight and subtle shadows. The aesthetic is extremely sophisticated and corporate modern, emphasizing clean lines and a premium fabric texture, matching a warm minimalist color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwuGRn_1YA6HIhKNBCGwogTa3MK-G509JVeVapihsNptOEmhkmIlCMMdk1PquEgSxmiPL0UwtuUb39FGAFsQ8lIj8Go2USGiukjG2ezsFx8-Y-KFCDwvTeY4JCq5eOiAUf12xMQmnKj1v-GY6qQRk0wcQSLGYy-Y04NzTwrbJtp2RWxetCtHZET_dFbxZkbMJ0MXUK-YSvYDacpxNif99iN_clPiMm1SiSRynu04PnZ9jmaJl4IDIz2Ecj8lws3VInvdFepCPWI1uh"/>
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-lg bg-gradient-to-t from-black/60 to-transparent text-white">
+<span class="text-label-sm uppercase tracking-widest opacity-80 mb-xs block">Signature Series</span>
+<h3 class="text-h2 font-h2 mb-sm">Áo Khoác Heritage Limited</h3>
+<p class="text-h3 font-h3 text-primary-fixed mb-md">4,250,000đ</p>
+<button class="bg-primary hover:bg-primary-container text-on-primary px-lg py-md rounded-lg font-bold transition-all duration-200 flex items-center gap-sm">
+<span class="material-symbols-outlined">shopping_cart</span>
+                        Thêm vào giỏ hàng
+                    </button>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group bg-white product-card-shadow rounded-lg overflow-hidden flex flex-col">
+<div class="relative aspect-square overflow-hidden bg-surface-container-low">
+<span class="absolute top-3 left-3 z-10 bg-primary text-white text-label-sm px-3 py-1 rounded-full font-bold">MỚI</span>
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A portrait-style product photograph of a premium wool scarf in a soft burnt orange color, draped elegantly on a minimalist white stand. The lighting is soft and diffused, creating a serene and luxurious mood. The background is a clean, textured off-white wall, emphasizing the corporate modern and high-trust retail aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdqCrlxIftGCEoRY3oDqrxF2tJjyiMmblEHZzqHK0Q9uuujKscOXbmQUR6NX_iwc1CX-X8M3GigrPpl10JQG9tYFzQXyKISawUAuhtXC4g1jPwtlFCwy8Q3ytLm8WRywZrsjCm67Z5Zz_FNFZaiqBs9ii_KICcU7FVguq0ny4ZmvLIogYdJzLyvwFujHHyXtoFeuyPQxYmVou6e7Qde4Ti7hfK82UsyC44ibr6JtLLHM2mjW0AXRREH3VTCL_fEvAxeuIqjFWRPAL8"/>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<span class="text-label-sm text-secondary uppercase mb-xs">Phụ kiện</span>
+<h3 class="text-body-lg font-h3 text-on-surface mb-sm line-clamp-1">Khăn Len Premium Cashmere</h3>
+<div class="mt-auto flex justify-between items-center">
+<p class="text-primary font-bold text-body-lg">1,200,000đ</p>
+<button class="p-2 text-primary hover:bg-primary-fixed rounded-full transition-colors">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group bg-white product-card-shadow rounded-lg overflow-hidden flex flex-col">
+<div class="relative aspect-square overflow-hidden bg-surface-container-low">
+<span class="absolute top-3 left-3 z-10 bg-primary text-white text-label-sm px-3 py-1 rounded-full font-bold">MỚI</span>
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Close up of a luxury women's handbag in deep brown leather with minimalist gold hardware. The bag is placed on a marble surface in a bright, modern interior. The lighting is crisp and professional, highlighting the quality of the leather and the elegant design, perfectly fitting a high-end retail experience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmp2urv9FKRCHq1Xl9RBhJ1bUY6s1FkIqA5Q7L5CYLgTjAMlSvzFiFN5JpMm2nV39MgZgH3wi7cMJ9tYDJh6YxJGw5Pm4vxJtZpOeRGXGXNA16LuTXPNjAFJNxTjTVGOBDjZX3OJZfQVwPXZZtPSAEfFuNMDreTnlPkGVEV4ieTFN63XNyY1oPvb_y3tIb5hTVAXSakXt_ZmT3xR1U53HW0aojTYA8yaJmd7yN7rVlzEfiIXwGDTkdgS1lca5AOZA9pJsHcZkokDDJ"/>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<span class="text-label-sm text-secondary uppercase mb-xs">Túi xách</span>
+<h3 class="text-body-lg font-h3 text-on-surface mb-sm line-clamp-1">Túi Da Mini Crossbody</h3>
+<div class="mt-auto flex justify-between items-center">
+<p class="text-primary font-bold text-body-lg">2,850,000đ</p>
+<button class="p-2 text-primary hover:bg-primary-fixed rounded-full transition-colors">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group bg-white product-card-shadow rounded-lg overflow-hidden flex flex-col">
+<div class="relative aspect-square overflow-hidden bg-surface-container-low">
+<span class="absolute top-3 left-3 z-10 bg-primary text-white text-label-sm px-3 py-1 rounded-full font-bold">MỚI</span>
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Pair of designer minimalist sneakers in white and cream tones, placed on a floating wooden shelf against a soft peach background. The image has a very clean, organized feel with soft ambient lighting that emphasizes the premium leather materials and modern silhouette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfLiiacyr5v6Sn-pVTQTc23-eNi-vSkYdzRG9KMt35bvD_e-xd2BhJZZZE_qz4VApHVQhALNraiXNlDh5raBKMvcOo8cUa_nI34EjjqNUwNIiIiy1uuA0iVKYDN-W7dDU6cB79mvD1_JJRKPpkWoFm_9hEbJagB-Sdv75YRLqrI5yGJkuxs8ohd0KIwjpNAVN4bwbiA0XnZ2r64v9bglsC9rsrGWxRFTIIxPP5Hbh2NIxaM6Hy1RNtJlb-wMiFTukcGH1dBy7wdv06"/>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<span class="text-label-sm text-secondary uppercase mb-xs">Giày dép</span>
+<h3 class="text-body-lg font-h3 text-on-surface mb-sm line-clamp-1">Sneaker Urban Lite</h3>
+<div class="mt-auto flex justify-between items-center">
+<p class="text-primary font-bold text-body-lg">1,950,000đ</p>
+<button class="p-2 text-primary hover:bg-primary-fixed rounded-full transition-colors">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 5 -->
+<div class="group bg-white product-card-shadow rounded-lg overflow-hidden flex flex-col">
+<div class="relative aspect-square overflow-hidden bg-surface-container-low">
+<span class="absolute top-3 left-3 z-10 bg-primary text-white text-label-sm px-3 py-1 rounded-full font-bold">MỚI</span>
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Detailed shot of a man's professional watch with a brown leather strap and a minimalist white dial. The watch is presented on a textured grey background with sharp shadows, conveying a sense of corporate precision and timeless quality in a modern luxury retail setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm4r1elWvtawt1BMO8LMPEMMUEioSiA3dAnu_sBQXMB3RXPoBqpF3lI8hJ9zXCm7_cwdD1lwmBmoiRtsTwOkmlbp7TScoh8vbJ9lXJZDpEiclzIVKh2llm5i6S46s68UKfB_SS2QC1ht03JJy-EtlKty3mr4nSL4HkGx63OigaYODBr4ZyPp8o0WRoa9bN8IuGDXebs6c2naTJcL1AKooyZ3z_F4GfiMLOzoT9QWT5Ut2DkUT8Id-SOzyLbvPcY3-u9jrxtwfUAELJ"/>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<span class="text-label-sm text-secondary uppercase mb-xs">Đồng hồ</span>
+<h3 class="text-body-lg font-h3 text-on-surface mb-sm line-clamp-1">Đồng Hồ Chrono Minimalist</h3>
+<div class="mt-auto flex justify-between items-center">
+<p class="text-primary font-bold text-body-lg">5,400,000đ</p>
+<button class="p-2 text-primary hover:bg-primary-fixed rounded-full transition-colors">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- More products can be added here -->
+</div>
+<!-- Load More Button -->
+<div class="mt-xl text-center">
+<button class="inline-flex items-center gap-sm px-lg py-md border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary hover:text-on-primary transition-all duration-300">
+                Xem thêm sản phẩm
+                <span class="material-symbols-outlined">expand_more</span>
+</button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-xl px-lg mt-xl bg-surface-container-highest dark:bg-surface-dim flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto transition-opacity duration-200">
+<div class="mb-md md:mb-0 text-center md:text-left">
+<h2 class="text-h3 font-h3 text-on-surface font-bold mb-xs">ModernRetail</h2>
+<p class="text-on-secondary-container font-body-md text-body-md">© 2024 ModernRetail. Tất cả quyền được bảo lưu.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-lg">
+<a class="text-on-secondary-container hover:text-primary transition-colors font-body-md text-body-md" href="#">Chính sách bảo mật</a>
+<a class="text-on-secondary-container hover:text-primary transition-colors font-body-md text-body-md" href="#">Điều khoản dịch vụ</a>
+<a class="text-on-secondary-container hover:text-primary transition-colors font-body-md text-body-md" href="#">Liên hệ hỗ trợ</a>
+</div>
+<div class="mt-md md:mt-0 flex gap-md">
+<a class="w-10 h-10 flex items-center justify-center rounded-full bg-surface hover:bg-primary hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">public</span>
+</a>
+<a class="w-10 h-10 flex items-center justify-center rounded-full bg-surface hover:bg-primary hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">mail</span>
+</a>
+</div>
+</footer>
+<!-- Simple Interactivity -->
+<script>
+        // Scroll behavior for TopNavBar
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('py-2');
+                header.classList.remove('py-sm');
+            } else {
+                header.classList.remove('py-2');
+                header.classList.add('py-sm');
+            }
+        });
+
+        // Add to cart toast simulation
+        const cartButtons = document.querySelectorAll('button:has(.material-symbols-outlined)');
+        cartButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const icon = btn.querySelector('.material-symbols-outlined');
+                if (icon && (icon.innerText === 'add_shopping_cart' || icon.innerText === 'shopping_cart')) {
+                    btn.style.transform = 'scale(0.9)';
+                    setTimeout(() => {
+                        btn.style.transform = 'scale(1)';
+                    }, 100);
+                }
+            });
+        });
+    </script>
+</body></html>

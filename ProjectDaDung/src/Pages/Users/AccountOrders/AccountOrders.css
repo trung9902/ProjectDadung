@@ -1,0 +1,32 @@
+@import "../StaticUserPages.css";
+
+.account-orders-card {
+  padding: 0;
+}
+
+.account-orders-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 20px;
+  border-bottom: 1px solid var(--outline-variant);
+}
+
+.account-orders-toolbar .static-input {
+  max-width: 320px;
+}
+
+.account-orders-link {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+@media (max-width: 760px) {
+  .account-orders-toolbar {
+    flex-direction: column;
+  }
+
+  .account-orders-toolbar .static-input {
+    max-width: none;
+  }
+}

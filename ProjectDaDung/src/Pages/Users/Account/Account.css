@@ -1,0 +1,37 @@
+@import "../StaticUserPages.css";
+
+.account-layout {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  gap: 24px;
+}
+
+.account-profile {
+  text-align: center;
+  align-self: start;
+}
+
+.account-profile h2 {
+  margin: 18px 0 4px;
+}
+
+.account-stats {
+  display: grid;
+  gap: 10px;
+  margin-top: 24px;
+  text-align: left;
+}
+
+.account-stats span {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  border-radius: 6px;
+  background: var(--surface-container-low);
+}
+
+@media (max-width: 820px) {
+  .account-layout {
+    grid-template-columns: 1fr;
+  }
+}

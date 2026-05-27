@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sản phẩm yêu thích | ModernRetail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .product-card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.08);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#594137",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#656464",
+                        "tertiary-fixed-dim": "#a6c8ff",
+                        "on-primary-container": "#fffbff",
+                        "primary-fixed-dim": "#ffb596",
+                        "on-secondary-fixed-variant": "#474646",
+                        "background": "#fff8f6",
+                        "surface": "#fff8f6",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "tertiary-fixed": "#d5e3ff",
+                        "surface-dim": "#eed5cb",
+                        "surface-container": "#ffe9e2",
+                        "on-tertiary-fixed": "#001c3b",
+                        "secondary-container": "#e5e2e1",
+                        "on-surface": "#261813",
+                        "inverse-surface": "#3c2d27",
+                        "on-tertiary-container": "#fefcff",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#360f00",
+                        "tertiary-container": "#0075d8",
+                        "surface-container-high": "#fde3d9",
+                        "surface-container-highest": "#f7ddd3",
+                        "primary-fixed": "#ffdbcd",
+                        "outline": "#8d7165",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "secondary": "#5f5e5e",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#a33e00",
+                        "secondary-fixed": "#e5e2e1",
+                        "tertiary": "#005cad",
+                        "surface-variant": "#f7ddd3",
+                        "error-container": "#ffdad6",
+                        "primary": "#9f3d00",
+                        "inverse-on-surface": "#ffede7",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#7c2e00",
+                        "on-primary": "#ffffff",
+                        "on-background": "#261813",
+                        "inverse-primary": "#ffb596",
+                        "primary-container": "#c74e00",
+                        "outline-variant": "#e1bfb2",
+                        "surface-bright": "#fff8f6",
+                        "surface-container-low": "#fff1ec",
+                        "on-tertiary-fixed-variant": "#004787"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "sm": "12px",
+                        "xl": "80px",
+                        "md": "24px",
+                        "xs": "4px",
+                        "lg": "48px",
+                        "unit": "8px",
+                        "container-max": "1280px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "h1": ["Inter"],
+                        "h2": ["Inter"],
+                        "h3": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "h1": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "h2": ["32px", {"lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 bg-surface dark:bg-background shadow-[0px_10px_30px_rgba(0,0,0,0.08)]">
+<div class="max-w-container-max mx-auto px-lg py-sm flex justify-between items-center">
+<a class="text-h3 font-h3 font-bold text-primary dark:text-primary-fixed" href="#">ModernRetail</a>
+<nav class="hidden md:flex items-center gap-md font-body-md text-body-md">
+<a class="text-secondary dark:text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Sản phẩm</a>
+<a class="text-secondary dark:text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Bộ sưu tập</a>
+<a class="text-secondary dark:text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Khuyến mãi</a>
+<a class="text-secondary dark:text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Liên hệ</a>
+</nav>
+<div class="flex items-center gap-sm">
+<button class="p-xs text-primary dark:text-primary-fixed hover:bg-surface-variant rounded-full transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+<button class="p-xs text-secondary dark:text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+<button class="p-xs text-secondary dark:text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-xl mt-md">
+<div class="max-w-container-max mx-auto px-lg pt-lg">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-xs text-label-md font-label-md text-on-surface-variant mb-md">
+<a class="hover:text-primary" href="#">Trang chủ</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-on-surface font-semibold">Sản phẩm yêu thích</span>
+</nav>
+<!-- Page Title & Stats -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md mb-xl">
+<div>
+<h1 class="font-h1 text-h1 text-on-surface mb-xs">Sản phẩm yêu thích</h1>
+<p class="font-body-lg text-body-lg text-secondary">Bạn đang có <span class="text-primary font-bold">4</span> sản phẩm trong danh sách lưu trữ.</p>
+</div>
+<button class="flex items-center gap-sm px-md py-sm bg-surface-container-low text-primary border border-primary hover:bg-primary hover:text-on-primary transition-all duration-300 rounded-lg font-label-md">
+<span class="material-symbols-outlined">delete_sweep</span>
+                    Xóa tất cả
+                </button>
+</div>
+<!-- Wishlist Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter mb-xl">
+<!-- Product Card 1 -->
+<div class="product-card-hover group relative bg-surface-container-lowest transition-all duration-300">
+<div class="relative overflow-hidden aspect-[4/5] bg-surface-container-high">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A premium minimalist white designer watch resting on a clean, architectural concrete surface. The lighting is bright and high-key, emphasizing the sleek metallic edges and the pure white watch face. Soft, subtle shadows create a sense of depth and corporate elegance, perfectly aligning with a high-trust modern retail aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNx_JHjfQHMSdse7Vphjp1pJIOjiVIBX73SLWY70ZtWKMxQp69SvweN0Qd9UAQ0GIK9MLEKwOj89t3eZ45rYOFe9uu0R_wXgLFf4zR_ILW1b5c_HWqVsnXLPvldUsB_YogL1Gt5sMBpa2mSWmzGH-pGBcVUpdM5nennL2DujWVtsFwqroVWMIJKDQ1E1YrhpHPAAOrV2FtMM2kXm-IvqCbZXlcy2v6hOEnPt15tlRGAwjjDgKnWgZ-NXx-SmlSFPlQ3Rb_Y4vSPnC5"/>
+<div class="absolute top-sm left-sm flex flex-col gap-xs">
+<span class="bg-primary text-on-primary px-sm py-xs text-label-sm font-label-sm rounded-full">GIẢM 20%</span>
+</div>
+<button class="absolute top-sm right-sm p-sm bg-white/80 hover:bg-white text-error rounded-full shadow-sm transition-all opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+<div class="p-md">
+<p class="font-label-sm text-label-sm text-secondary mb-xs">TIMEPIECE CO.</p>
+<h3 class="font-h3 text-h3 text-on-surface mb-xs truncate">Đồng hồ Minimalist White</h3>
+<p class="font-body-lg text-body-lg text-primary font-bold">1.250.000₫</p>
+<button class="mt-md w-full flex items-center justify-center gap-sm bg-primary text-on-primary font-bold py-sm hover:brightness-110 transition-all duration-200">
+<span class="material-symbols-outlined">shopping_cart</span>
+                            THÊM VÀO GIỎ
+                        </button>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="product-card-hover group relative bg-surface-container-lowest transition-all duration-300">
+<div class="relative overflow-hidden aspect-[4/5] bg-surface-container-high">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Modern high-fidelity over-ear headphones in charcoal black, positioned against a soft-focus minimalist workspace. Warm daylight illuminates the premium leather texture of the earcups. The composition is clean and editorial, emphasizing a luxurious, high-end tech lifestyle with subtle orange accents in the environment reflecting corporate branding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTSOu0vW0A0pFwvoJvr5CKSIhF9zv8eLViycyEOnkGQ5LmWULm7z1oYfZdCYaMTOCPyKtnMbc5N0lHSjYNzRvmsgz25jsez9n6J4jIWsziPcArKA0D46vCXWmtzZO-JS1phkX2AUUpD16XMA9ZyhR-0iSWOiv1aHEQaJ-9SEnlmXHj5v-qrK9P75LvSOzjH4gJj6lI1iP3s3HLDFw3mG8C9Bv6Kf-ztqTdhZbXuF3bOX-UXahXWfU_nioonykXvQD31kECqryf6ZJt"/>
+<div class="absolute top-sm left-sm flex flex-col gap-xs">
+<span class="bg-on-surface text-surface px-sm py-xs text-label-sm font-label-sm rounded-full border border-on-surface">MỚI</span>
+</div>
+<button class="absolute top-sm right-sm p-sm bg-white/80 hover:bg-white text-error rounded-full shadow-sm transition-all opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+<div class="p-md">
+<p class="font-label-sm text-label-sm text-secondary mb-xs">AUDIO PRO</p>
+<h3 class="font-h3 text-h3 text-on-surface mb-xs truncate">Tai nghe Wireless Studio</h3>
+<p class="font-body-lg text-body-lg text-primary font-bold">3.490.000₫</p>
+<button class="mt-md w-full flex items-center justify-center gap-sm bg-primary text-on-primary font-bold py-sm hover:brightness-110 transition-all duration-200">
+<span class="material-symbols-outlined">shopping_cart</span>
+                            THÊM VÀO GIỎ
+                        </button>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="product-card-hover group relative bg-surface-container-lowest transition-all duration-300">
+<div class="relative overflow-hidden aspect-[4/5] bg-surface-container-high">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A pair of iconic white leather sneakers with minimalist stitching, presented in an airy, minimalist studio setting with architectural shadows. The lighting is diffused and bright, creating a high-fashion, clean-mode aesthetic. Every detail of the leather texture is crisp, suggesting high quality and reliable durability for the modern urban shopper." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaSHYf3lmOYhWt7vYBq_PUFN1w2V_vnhfVQk3Ed2NmVx7HD8Ap9iQK1Pu9TzcVLeyuSlNhEtEZRC4ZqFctv1Rcgd0_HfwWQKyDCphB7lWTjSq9lJFK3wVDo2TvC1SEHE6yvK7X7Qn3nCxg5WhuVfimdRCU6EJ7lJV7nFsYscijWGNtfbtnN88D8V9uX-Vw_Hi6_Os3ktsnf3shKTLEPT4rIrPSrdNOdKthArOLRHJlnN32cL7hRVE19mhkO-W9ACoPe-u-COJXRIpv"/>
+<button class="absolute top-sm right-sm p-sm bg-white/80 hover:bg-white text-error rounded-full shadow-sm transition-all opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+<div class="p-md">
+<p class="font-label-sm text-label-sm text-secondary mb-xs">STREET CORE</p>
+<h3 class="font-h3 text-h3 text-on-surface mb-xs truncate">Giày Sneaker Urban White</h3>
+<p class="font-body-lg text-body-lg text-primary font-bold">1.800.000₫</p>
+<button class="mt-md w-full flex items-center justify-center gap-sm bg-primary text-on-primary font-bold py-sm hover:brightness-110 transition-all duration-200">
+<span class="material-symbols-outlined">shopping_cart</span>
+                            THÊM VÀO GIỎ
+                        </button>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="product-card-hover group relative bg-surface-container-lowest transition-all duration-300">
+<div class="relative overflow-hidden aspect-[4/5] bg-surface-container-high">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="An elegant, minimalist desktop lamp with a sleek matte finish and metallic joints, glowing softly in a high-end corporate office setting at dusk. The lighting is warm and inviting, contrasted by cool blue tones through a large window. The image exudes professional efficiency and curated taste, with deep tonal layering and subtle shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPOadCJP_BYY658C3jrV9eKvYXPLXRckIs8KEA17oZ3-SyPNPTmCw4yIydseA_3FBWspsphJ1S6CMKhsZ2MIkavo7yKyAaJhtR8zc-Z83GCH874V2wxj-S-eLEr9bA9hVmExstjSJlu4pcZaRs8kbovZfgKp7mZSePl2TFoSTy7jia4GV0EUjNv6YjvtUX-AGq7ldLs2CTewdZlXExLCOJVsyJtM2zEoPP_mwL2ltxnCa_JigsBh3ZddGHM4Tj6-FcnHtnxYWInyYG"/>
+<button class="absolute top-sm right-sm p-sm bg-white/80 hover:bg-white text-error rounded-full shadow-sm transition-all opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+<div class="p-md">
+<p class="font-label-sm text-label-sm text-secondary mb-xs">OFFICE LUXE</p>
+<h3 class="font-h3 text-h3 text-on-surface mb-xs truncate">Đèn bàn làm việc Nordic</h3>
+<p class="font-body-lg text-body-lg text-primary font-bold">950.000₫</p>
+<button class="mt-md w-full flex items-center justify-center gap-sm bg-primary text-on-primary font-bold py-sm hover:brightness-110 transition-all duration-200">
+<span class="material-symbols-outlined">shopping_cart</span>
+                            THÊM VÀO GIỎ
+                        </button>
+</div>
+</div>
+</div>
+<!-- Recommended Section -->
+<section class="mt-xl py-xl border-t border-outline-variant">
+<div class="flex items-center justify-between mb-lg">
+<h2 class="font-h2 text-h2 text-on-surface">Có thể bạn sẽ thích</h2>
+<a class="text-primary font-bold hover:underline flex items-center gap-xs" href="#">
+                        Xem tất cả
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<!-- Recommendation Card 1 -->
+<div class="group cursor-pointer">
+<div class="relative overflow-hidden aspect-square bg-surface-container-high mb-sm">
+<img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="A vibrant red sports sneaker suspended in mid-air against a clean white backdrop, illuminated by sharp studio lighting that highlights its technical fabric and streamlined design. The image is energetic and modern, capturing a high-performance athletic vibe within a sophisticated, minimalist corporate framework." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmTTNgWMoLJAuwBGe9Cos9xP6na0Uk441gcZmYxJfSBVFFhZpHfyLR0CiSVxa_SSjk0CLjbsoklP5A2Qy4YJ9HpVy3xLtdPpLRczSnbI1Qt09yn1hAhE_4DgLLXSnOPZqxpMluVGN9XLYlZXqnidJtULYf59J0ZXvnnIrqmmoJrVhBnNxm0LEUwFCGqAgsoV9LCTKIm_QYwf12ABHniFF9n8NpvRxDBymjreuYBGOVSZtsLWJ4Q4Med2G-pnXGKVU2tMJouf1hm2AF"/>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface">Giày chạy bộ Velocity Red</h4>
+<p class="font-body-md text-body-md text-primary font-bold">2.100.000₫</p>
+</div>
+<!-- Recommendation Card 2 -->
+<div class="group cursor-pointer">
+<div class="relative overflow-hidden aspect-square bg-surface-container-high mb-sm">
+<img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="Premium designer sunglasses with golden frames resting on a reflective surface, bathed in warm, direct sunlight that creates dramatic, sharp shadows. The setting is luxurious and minimalist, evoking a sense of high-end travel and refined aesthetic taste, consistent with a curated modern retail journey." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBh_IUVvfFaqq6y82zhY2PzI03jVeFtkiCIQBlpQJj2N8T8yAqMOzPxaCnHqHQnpLXWcLTtcpMtwMO-GwcaGFJOHdMU7jajkphUEoCDFl4tEg53oV8MU8FKLMsKJouhpf9_NAzDvQLrbPS_EP4Hm9iHL0VoW8mCrEg1Gevr0yXuq7FeNfiFy5QKqNWIx8kYOX1U8ElrwbrccPg7mr-x1ImB7UOBV-rjkGHHObXeZBaMS3UXn_WeblQl8TEXU-0GwrJNOyGA_rh5kUrz"/>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface">Kính mát Classic Gold</h4>
+<p class="font-body-md text-body-md text-primary font-bold">1.550.000₫</p>
+</div>
+<!-- Recommendation Card 3 -->
+<div class="group cursor-pointer">
+<div class="relative overflow-hidden aspect-square bg-surface-container-high mb-sm">
+<img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="A high-quality cotton white t-shirt hanging on a minimalist wooden hanger against a clean, off-white wall. The texture of the fabric is visible through soft, natural lighting. The overall mood is peaceful, organized, and focused on essential quality, typical of a professional and modern lifestyle brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBw0Ha8niU8IMIYYY6pvRN0L_Feh4kFA5Oiw8qKlctN2lrhO3lndWTLwRZmEBz-cvAEWBvG0eZSWhArAvp6Z1KNfEmdwgbrz2zNz9UPfFG_lJKhnATUBuYZtl0RExWN43HI0em1ViKFy6DibQQR6siZ9NevtuhsAAMNl-PeV1CefVBLwU4kkqsQXjXKVhR-Sfyuiqk20-ep7FqR-hYBrs3KLtpG5QMRgaru2qdgu9vkV5LRT13LquCkv5ZfuDcaIQUCCEkgoUSMBphx"/>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface">Áo thun Cotton Basic</h4>
+<p class="font-body-md text-body-md text-primary font-bold">350.000₫</p>
+</div>
+<!-- Recommendation Card 4 -->
+<div class="group cursor-pointer">
+<div class="relative overflow-hidden aspect-square bg-surface-container-high mb-sm">
+<img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="A minimalist grey sofa and a sleek side table in a bright, modern living room with large windows. The lighting is soft and airy, creating a high-trust, cozy atmosphere. The composition emphasizes clean lines, generous whitespace, and a harmonious color palette of neutrals and warm wood tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuATXm5INYYo-o8Lv5Fw4HQVOojH1GSQ6HmYC0WVNbcQz2X7OPd_3reBywMxG4VV0wLEsPp_-VoY2nKtLS46vAWimE80K3_87t2n8dXfWOK40A2ULMak3Jrena87OoUY_igXR95UI6CC5jL3qJFxjsTMakuHObbdS1Vc6xV52U3jJA6Y3UD_1xBGf74EfrW62h42D2CPHc6KFn-_TTOxUnwylpyei-oY7z5GSn5p92RPCkJ0RuA_mF45Dd3U1pFfbcnyiB3e5hKjffLs"/>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface">Gối tựa lưng Slate Grey</h4>
+<p class="font-body-md text-body-md text-primary font-bold">420.000₫</p>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-xl px-lg mt-xl bg-surface-container-highest dark:bg-surface-dim flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto transition-opacity duration-200">
+<div class="mb-md md:mb-0">
+<span class="text-h3 font-h3 text-on-surface font-bold">ModernRetail</span>
+<p class="mt-xs text-secondary font-body-md text-body-md">© 2024 ModernRetail. Tất cả quyền được bảo lưu.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-md">
+<a class="text-on-secondary-container font-body-md text-body-md hover:text-primary transition-colors" href="#">Chính sách bảo mật</a>
+<a class="text-on-secondary-container font-body-md text-body-md hover:text-primary transition-colors" href="#">Điều khoản dịch vụ</a>
+<a class="text-on-secondary-container font-body-md text-body-md hover:text-primary transition-colors" href="#">Liên hệ hỗ trợ</a>
+</div>
+</footer>
+<script>
+        // Micro-interactions for removal
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                if (this.querySelector('.material-symbols-outlined')?.innerText === 'delete') {
+                    const card = this.closest('.product-card-hover');
+                    card.style.opacity = '0';
+                    card.style.transform = 'scale(0.9)';
+                    setTimeout(() => {
+                        card.remove();
+                    }, 300);
+                }
+            });
+        });
+
+        // Add to cart animation feedback
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                if (this.innerText.includes('THÊM VÀO GIỎ')) {
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<span class="material-symbols-outlined">done</span> ĐÃ THÊM';
+                    this.classList.replace('bg-primary', 'bg-green-600');
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.classList.replace('bg-green-600', 'bg-primary');
+                    }, 2000);
+                }
+            });
+        });
+    </script>
+</body></html>

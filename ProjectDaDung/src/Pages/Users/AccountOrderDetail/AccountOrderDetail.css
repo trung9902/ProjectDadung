@@ -1,0 +1,73 @@
+@import "../StaticUserPages.css";
+
+.account-order-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.account-order-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) 360px;
+  gap: 32px;
+}
+
+.account-order-items {
+  display: grid;
+  gap: 16px;
+}
+
+.account-order-item {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 20px;
+  padding: 12px;
+}
+
+.account-order-item img {
+  width: 96px;
+  height: 96px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.account-order-price {
+  text-align: right;
+  display: grid;
+  gap: 6px;
+  color: var(--primary);
+}
+
+.account-order-summary {
+  position: sticky;
+  top: 24px;
+  align-self: start;
+}
+
+.account-order-summary p,
+.account-order-total {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.account-order-total {
+  margin: 20px 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--outline-variant);
+  color: var(--primary);
+  font-size: 20px;
+}
+
+@media (max-width: 900px) {
+  .account-order-info-grid,
+  .account-order-layout,
+  .account-order-item {
+    grid-template-columns: 1fr;
+  }
+
+  .account-order-price {
+    text-align: left;
+  }
+}

@@ -1,0 +1,65 @@
+@import "../StaticUserPages.css";
+
+.collections-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.collections-card {
+  position: relative;
+  min-height: 360px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--surface-container-high);
+}
+
+.collections-card img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.collections-card:hover img {
+  transform: scale(1.05);
+}
+
+.collections-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 28px;
+  color: white;
+  background: linear-gradient(180deg, transparent 20%, rgba(0, 0, 0, 0.66));
+}
+
+.collections-overlay h2 {
+  margin-bottom: 8px;
+  font-size: 28px;
+}
+
+.collections-subscribe {
+  margin-top: 56px;
+  padding: 32px;
+  border-radius: 8px;
+  background: var(--surface-container);
+}
+
+.collections-subscribe-row {
+  display: flex;
+  gap: 12px;
+  max-width: 520px;
+}
+
+@media (max-width: 760px) {
+  .collections-grid,
+  .collections-subscribe-row {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+  }
+}

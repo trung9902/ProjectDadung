@@ -1,0 +1,38 @@
+.admin-order-main-col,
+.admin-order-side-col {
+  display: grid;
+  gap: 16px;
+  align-self: start;
+}
+
+.admin-order-total {
+  display: flex;
+  justify-content: flex-end;
+  gap: 24px;
+  padding-top: 18px;
+  margin-top: 18px;
+  border-top: 1px solid #e4e4e7;
+  font-size: 18px;
+}
+
+.admin-order-total strong {
+  color: #9f3d00;
+}
+
+.admin-order-timeline {
+  display: grid;
+  gap: 12px;
+}
+
+.admin-order-timeline p {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding-left: 18px;
+  border-left: 3px solid #9f3d00;
+}
+
+.admin-order-timeline span {
+  color: #71717a;
+  font-size: 13px;
+}

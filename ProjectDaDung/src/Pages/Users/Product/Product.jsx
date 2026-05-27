@@ -1,8 +1,5 @@
 import React from 'react'
 import './Product.css'
-import product from '@/img/Content/Product/product.png'
-import product2 from '@/img/Content/Product/product2.png'
-import product3 from '@/img/Content/Product/product3.png'
 import {Link} from 'react-router-dom'
 const trendingProducts = [
   {

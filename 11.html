@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Chi tiết đơn hàng | ModernRetail Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#594137",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-container": "#656464",
+                    "tertiary-fixed-dim": "#a6c8ff",
+                    "on-primary-container": "#fffbff",
+                    "primary-fixed-dim": "#ffb596",
+                    "on-secondary-fixed-variant": "#474646",
+                    "background": "#fff8f6",
+                    "surface": "#fff8f6",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "tertiary-fixed": "#d5e3ff",
+                    "surface-dim": "#eed5cb",
+                    "surface-container": "#ffe9e2",
+                    "on-tertiary-fixed": "#001c3b",
+                    "secondary-container": "#e5e2e1",
+                    "on-surface": "#261813",
+                    "inverse-surface": "#3c2d27",
+                    "on-tertiary-container": "#fefcff",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed": "#360f00",
+                    "tertiary-container": "#0075d8",
+                    "surface-container-high": "#fde3d9",
+                    "surface-container-highest": "#f7ddd3",
+                    "primary-fixed": "#ffdbcd",
+                    "outline": "#8d7165",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "secondary": "#5f5e5e",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#a33e00",
+                    "secondary-fixed": "#e5e2e1",
+                    "tertiary": "#005cad",
+                    "surface-variant": "#f7ddd3",
+                    "error-container": "#ffdad6",
+                    "primary": "#9f3d00",
+                    "inverse-on-surface": "#ffede7",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#7c2e00",
+                    "on-primary": "#ffffff",
+                    "on-background": "#261813",
+                    "inverse-primary": "#ffb596",
+                    "primary-container": "#c74e00",
+                    "outline-variant": "#e1bfb2",
+                    "surface-bright": "#fff8f6",
+                    "surface-container-low": "#fff1ec",
+                    "on-tertiary-fixed-variant": "#004787"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "sm": "12px",
+                    "xl": "80px",
+                    "md": "24px",
+                    "xs": "4px",
+                    "lg": "48px",
+                    "unit": "8px",
+                    "container-max": "1280px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "h1": ["Inter"],
+                    "h2": ["Inter"],
+                    "h3": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "h1": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "h2": ["32px", {"lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-tab .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex min-h-screen overflow-hidden">
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 h-full w-64 bg-surface-container-low flex flex-col p-md gap-sm z-50 border-r border-outline-variant">
+<div class="mb-lg">
+<h1 class="text-h3 font-h3 font-bold text-primary">Quản trị viên</h1>
+<p class="text-label-md font-label-md text-on-surface-variant">Hệ thống ModernRetail</p>
+</div>
+<nav class="flex-1 flex flex-col gap-xs">
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-variant rounded-xl transition-transform scale-98 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-label-md font-label-md">Bảng điều khiển</span>
+</a>
+<!-- Active Tab: Đơn hàng -->
+<a class="flex items-center gap-sm px-md py-sm bg-primary text-on-primary rounded-xl transition-transform scale-98 active:scale-95 active-tab shadow-sm" href="#">
+<span class="material-symbols-outlined" data-icon="package_2" style="font-variation-settings: 'FILL' 1;">package_2</span>
+<span class="text-label-md font-label-md">Đơn hàng</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-variant rounded-xl transition-transform scale-98 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="confirmation_number">confirmation_number</span>
+<span class="text-label-md font-label-md">Mã giảm giá</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-variant rounded-xl transition-transform scale-98 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="category">category</span>
+<span class="text-label-md font-label-md">Danh mục</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-variant rounded-xl transition-transform scale-98 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="text-label-md font-label-md">Phân tích</span>
+</a>
+</nav>
+<button class="mb-lg w-full py-sm bg-primary text-on-primary rounded-xl font-label-md text-label-md hover:opacity-90 transition-all flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+            Thêm sản phẩm mới
+        </button>
+<div class="border-t border-outline-variant pt-md flex flex-col gap-xs">
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-variant rounded-xl transition-transform scale-98 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-label-md font-label-md">Cài đặt</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-variant rounded-xl transition-transform scale-98 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="text-label-md font-label-md">Đăng xuất</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 flex-1 h-screen overflow-y-auto bg-surface-container-low p-lg">
+<header class="flex justify-between items-start mb-lg">
+<div>
+<div class="flex items-center gap-sm mb-xs">
+<button class="p-xs hover:bg-surface-variant rounded-full transition-colors">
+<span class="material-symbols-outlined text-primary" data-icon="arrow_back">arrow_back</span>
+</button>
+<h2 class="text-h2 font-h2 text-on-surface">Chi tiết đơn hàng #ORD-88291</h2>
+</div>
+<div class="flex gap-sm items-center mt-sm">
+<span class="px-sm py-xs bg-primary-container text-on-primary-container text-label-sm font-label-sm rounded-full">Đang xử lý</span>
+<span class="text-label-md text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]" data-icon="calendar_today">calendar_today</span>
+                        Ngày đặt: 24/10/2024 - 14:30
+                    </span>
+</div>
+</div>
+<div class="flex gap-sm">
+<button class="px-md py-sm border border-outline text-primary font-label-md rounded-xl hover:bg-primary/5 transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[20px]" data-icon="print">print</span>
+                    In hóa đơn
+                </button>
+<button class="px-md py-sm bg-primary text-on-primary font-label-md rounded-xl shadow-sm hover:opacity-90 transition-all flex items-center gap-xs" onclick="document.getElementById('status-modal').classList.remove('hidden')">
+<span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span>
+                    Cập nhật trạng thái
+                </button>
+</div>
+</header>
+<!-- Asymmetric Dashboard Grid -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Main Details Column -->
+<div class="col-span-8 flex flex-col gap-gutter">
+<!-- Product List Card -->
+<section class="bg-surface-container-lowest rounded-xl p-md shadow-[0px_4px_20px_rgba(0,0,0,0.04)]">
+<h3 class="text-h3 font-h3 mb-md flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="shopping_basket">shopping_basket</span>
+                        Sản phẩm trong đơn
+                    </h3>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="border-b border-outline-variant">
+<tr>
+<th class="py-sm font-label-md text-on-surface-variant">Sản phẩm</th>
+<th class="py-sm font-label-md text-on-surface-variant text-center">Số lượng</th>
+<th class="py-sm font-label-md text-on-surface-variant text-right">Giá</th>
+<th class="py-sm font-label-md text-on-surface-variant text-right">Tổng</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="group">
+<td class="py-md flex gap-md items-center">
+<div class="w-16 h-16 rounded-lg bg-surface-variant overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A premium minimalist product photography of a sleek white modern watch on a soft beige background with elegant lighting, reflecting a corporate and high-end retail aesthetic in light mode colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2LPWEv8slULW5IDX0BJbyyjh_Hkeb25HinKxIgMXf1PcxxMrYq815B7pTgzvzKheWbluUGghBc31QNX5DfP5A6WWUrWzzX62l07HSJWq5n_uSZQU1ryiInPq857AVi3Fo4cNHF6NRBFPSIMRbvU8oCfzhLpBVjnh_rHQ7VLhD7pLtFnj5xvilltPuc0iF44hrHF0oAsOVVKGAMjyz8bKf7pRaU6sG0hyc9vLIKrT0uRXAvNzNtV4bPKGTK0RcpqabERdZqqjL8LHH"/>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Đồng hồ thông minh Modern S1</p>
+<p class="text-label-sm text-on-surface-variant">Màu: Trắng Tuyết | Size: 44mm</p>
+</div>
+</td>
+<td class="py-md text-center font-body-md text-on-surface">1</td>
+<td class="py-md text-right font-body-md text-on-surface">2.490.000đ</td>
+<td class="py-md text-right font-label-md text-primary font-bold">2.490.000đ</td>
+</tr>
+<tr class="group">
+<td class="py-md flex gap-md items-center">
+<div class="w-16 h-16 rounded-lg bg-surface-variant overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="High-quality professional product shot of premium wireless headphones in a minimalist studio setting. Soft directional lighting highlights the sleek curves and metallic textures, adhering to a sophisticated corporate modern style with a primary orange accent in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdN3R4d5FoixzmZ9szyANKsjxbUuOhaFj3KwfPpR2kPnqWBi9eQlUbpMJEd1YS1OMzZAd-e7fQ2i8U6ZtCcOC2cF_HhqyyMTtaxvXL_6GSiNAvS1L0ik9X1ERQK6RurmiOhS2Pu0BD4OdP03QCq6LYvBk7vQJ224AaMmUSH66NgarzXfXIfC-_9US01JoUmaiAQnALIegshDGuCXbqwbC3wsgW2bm0S5oRs-RdV0UbdqC2y-8wrazCHkmhw1QDyS9KNHmA0nKeGVMW"/>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Tai nghe chống ồn Pro Max</p>
+<p class="text-label-sm text-on-surface-variant">Màu: Đen Than</p>
+</div>
+</td>
+<td class="py-md text-center font-body-md text-on-surface">2</td>
+<td class="py-md text-right font-body-md text-on-surface">1.250.000đ</td>
+<td class="py-md text-right font-label-md text-primary font-bold">2.500.000đ</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-md pt-md border-t border-outline-variant flex flex-col items-end gap-xs">
+<div class="flex justify-between w-64 text-label-md text-on-surface-variant">
+<span>Tạm tính:</span>
+<span>4.990.000đ</span>
+</div>
+<div class="flex justify-between w-64 text-label-md text-on-surface-variant">
+<span>Phí vận chuyển:</span>
+<span>35.000đ</span>
+</div>
+<div class="flex justify-between w-64 text-label-md text-on-surface-variant">
+<span>Giảm giá:</span>
+<span class="text-error">-100.000đ</span>
+</div>
+<div class="flex justify-between w-64 mt-sm pt-sm border-t border-outline-variant">
+<span class="font-h3 text-h3 text-on-surface">Tổng cộng:</span>
+<span class="font-h3 text-h3 text-primary">4.925.000đ</span>
+</div>
+</div>
+</section>
+<!-- Order Timeline / Status History -->
+<section class="bg-surface-container-lowest rounded-xl p-md shadow-[0px_4px_20px_rgba(0,0,0,0.04)]">
+<h3 class="text-h3 font-h3 mb-md flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="history">history</span>
+                        Lịch sử đơn hàng
+                    </h3>
+<div class="relative pl-8 space-y-md before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-outline-variant">
+<!-- Timeline Item -->
+<div class="relative">
+<span class="absolute -left-8 top-1 w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</span>
+<div>
+<p class="font-label-md text-on-surface">Đơn hàng đang được xử lý</p>
+<p class="text-label-sm text-on-surface-variant">25/10/2024 - 09:15 | Bởi Admin: Nguyễn Văn A</p>
+<p class="mt-xs text-body-md text-on-secondary-container bg-surface-container-low p-sm rounded-lg border border-outline-variant">
+                                    Đã kiểm tra kho và xác nhận đủ số lượng sản phẩm.
+                                </p>
+</div>
+</div>
+<div class="relative">
+<span class="absolute -left-8 top-1 w-6 h-6 rounded-full bg-outline-variant text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">done</span>
+</span>
+<div>
+<p class="font-label-md text-on-surface">Đơn hàng đã được tạo</p>
+<p class="text-label-sm text-on-surface-variant">24/10/2024 - 14:30 | Hệ thống</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Sidebar Info Column -->
+<div class="col-span-4 flex flex-col gap-gutter">
+<!-- Customer Info Card -->
+<section class="bg-surface-container-lowest rounded-xl p-md shadow-[0px_4px_20px_rgba(0,0,0,0.04)]">
+<div class="flex justify-between items-center mb-md">
+<h3 class="text-label-md font-bold text-on-surface uppercase tracking-wider">Khách hàng</h3>
+<a class="text-primary text-label-sm hover:underline" href="#">Chi tiết</a>
+</div>
+<div class="flex items-center gap-md mb-md">
+<div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold">
+                            TD
+                        </div>
+<div>
+<p class="font-label-md text-on-surface">Trần Minh Đức</p>
+<p class="text-label-sm text-on-surface-variant">Khách hàng thân thiết</p>
+</div>
+</div>
+<div class="space-y-sm border-t border-outline-variant pt-md">
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="mail">mail</span>
+<div>
+<p class="text-label-sm font-bold text-on-surface">Email</p>
+<p class="text-body-md text-on-surface-variant">duc.tran@email.com</p>
+</div>
+</div>
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="phone">phone</span>
+<div>
+<p class="text-label-sm font-bold text-on-surface">Điện thoại</p>
+<p class="text-body-md text-on-surface-variant">090 123 4567</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Shipping Address Card -->
+<section class="bg-surface-container-lowest rounded-xl p-md shadow-[0px_4px_20px_rgba(0,0,0,0.04)]">
+<h3 class="text-label-md font-bold text-on-surface uppercase tracking-wider mb-md">Giao hàng &amp; Thanh toán</h3>
+<div class="space-y-md">
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+<div>
+<p class="text-label-sm font-bold text-on-surface">Địa chỉ nhận hàng</p>
+<p class="text-body-md text-on-surface-variant">123 Đường Lê Lợi, Phường Bến Thành, Quận 1, TP. Hồ Chí Minh</p>
+</div>
+</div>
+<div class="flex items-start gap-sm border-t border-outline-variant pt-md">
+<span class="material-symbols-outlined text-primary" data-icon="payments">payments</span>
+<div>
+<p class="text-label-sm font-bold text-on-surface">Phương thức thanh toán</p>
+<p class="text-body-md text-on-surface-variant">Chuyển khoản ngân hàng (Techcombank)</p>
+<span class="inline-block mt-xs px-sm py-xs bg-surface-container text-on-secondary-container text-label-sm rounded-lg border border-outline-variant">Đã thanh toán</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Admin Internal Notes -->
+<section class="bg-surface-container-lowest rounded-xl p-md shadow-[0px_4px_20px_rgba(0,0,0,0.04)] border border-primary/20">
+<h3 class="text-label-md font-bold text-on-surface uppercase tracking-wider mb-sm">Ghi chú nội bộ</h3>
+<textarea class="w-full bg-surface-container-low border-outline-variant rounded-lg p-sm text-body-md focus:ring-2 focus:ring-primary focus:border-primary" placeholder="Nhập ghi chú cho nhân viên khác..." rows="4"></textarea>
+<button class="mt-sm w-full py-sm bg-primary/10 text-primary font-label-md rounded-lg hover:bg-primary/20 transition-colors">Lưu ghi chú</button>
+</section>
+</div>
+</div>
+</main>
+<!-- Status Update Modal (Hidden by default) -->
+<div class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm" id="status-modal">
+<div class="bg-surface-container-lowest w-[480px] rounded-2xl shadow-xl p-lg animate-in fade-in zoom-in duration-200">
+<div class="flex justify-between items-center mb-md">
+<h3 class="text-h3 font-h3 text-on-surface">Cập nhật trạng thái</h3>
+<button class="p-xs hover:bg-surface-variant rounded-full" onclick="document.getElementById('status-modal').classList.add('hidden')">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<div class="space-y-md">
+<div>
+<label class="block text-label-md font-bold text-on-surface mb-xs">Trạng thái mới</label>
+<select class="w-full p-md bg-surface-container-low border-outline-variant rounded-xl focus:ring-2 focus:ring-primary">
+<option value="processing">Đang xử lý</option>
+<option value="shipping">Đang giao hàng</option>
+<option value="completed">Đã hoàn thành</option>
+<option value="cancelled">Đã hủy</option>
+<option value="refunded">Đã hoàn tiền</option>
+</select>
+</div>
+<div>
+<label class="block text-label-md font-bold text-on-surface mb-xs">Thông báo cho khách hàng</label>
+<textarea class="w-full p-md bg-surface-container-low border-outline-variant rounded-xl focus:ring-2 focus:ring-primary" rows="3">Đơn hàng của bạn đã được đóng gói và chuẩn bị bàn giao cho đơn vị vận chuyển.</textarea>
+</div>
+<div class="flex items-center gap-sm">
+<input class="rounded border-outline-variant text-primary focus:ring-primary" id="send-email" type="checkbox"/>
+<label class="text-body-md text-on-surface-variant" for="send-email">Gửi email thông báo cho khách hàng</label>
+</div>
+<div class="flex gap-sm pt-md">
+<button class="flex-1 py-sm border border-outline text-on-surface-variant rounded-xl font-label-md" onclick="document.getElementById('status-modal').classList.add('hidden')">Hủy</button>
+<button class="flex-1 py-sm bg-primary text-on-primary rounded-xl font-label-md shadow-sm" onclick="document.getElementById('status-modal').classList.add('hidden')">Xác nhận cập nhật</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+        // Simple interactivity for the modal backdrop click
+        window.onclick = function(event) {
+            let modal = document.getElementById('status-modal');
+            if (event.target == modal) {
+                modal.classList.add('hidden');
+            }
+        }
+    </script>
+</body></html>

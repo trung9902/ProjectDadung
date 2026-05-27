@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#594137",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-container": "#656464",
+                    "tertiary-fixed-dim": "#a6c8ff",
+                    "on-primary-container": "#fffbff",
+                    "primary-fixed-dim": "#ffb596",
+                    "on-secondary-fixed-variant": "#474646",
+                    "background": "#fff8f6",
+                    "surface": "#fff8f6",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "tertiary-fixed": "#d5e3ff",
+                    "surface-dim": "#eed5cb",
+                    "surface-container": "#ffe9e2",
+                    "on-tertiary-fixed": "#001c3b",
+                    "secondary-container": "#e5e2e1",
+                    "on-surface": "#261813",
+                    "inverse-surface": "#3c2d27",
+                    "on-tertiary-container": "#fefcff",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed": "#360f00",
+                    "tertiary-container": "#0075d8",
+                    "surface-container-high": "#fde3d9",
+                    "surface-container-highest": "#f7ddd3",
+                    "primary-fixed": "#ffdbcd",
+                    "outline": "#8d7165",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "secondary": "#5f5e5e",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#a33e00",
+                    "secondary-fixed": "#e5e2e1",
+                    "tertiary": "#005cad",
+                    "surface-variant": "#f7ddd3",
+                    "error-container": "#ffdad6",
+                    "primary": "#9f3d00",
+                    "inverse-on-surface": "#ffede7",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#7c2e00",
+                    "on-primary": "#ffffff",
+                    "on-background": "#261813",
+                    "inverse-primary": "#ffb596",
+                    "primary-container": "#c74e00",
+                    "outline-variant": "#e1bfb2",
+                    "surface-bright": "#fff8f6",
+                    "surface-container-low": "#fff1ec",
+                    "on-tertiary-fixed-variant": "#004787"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "sm": "12px",
+                    "xl": "80px",
+                    "md": "24px",
+                    "xs": "4px",
+                    "lg": "48px",
+                    "unit": "8px",
+                    "container-max": "1280px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "h1": ["Inter"],
+                    "h2": ["Inter"],
+                    "h3": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "h1": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "h2": ["32px", {"lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fff8f6;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .category-card:hover .category-image {
+            transform: scale(1.05);
+        }
+        .category-card:hover {
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-surface shadow-[0px_10px_30px_rgba(0,0,0,0.08)]">
+<div class="max-w-container-max mx-auto px-lg py-sm flex justify-between items-center h-20">
+<!-- Brand Logo -->
+<div class="text-h3 font-h3 font-bold text-primary">ModernRetail</div>
+<!-- Navigation Links -->
+<div class="hidden md:flex items-center space-x-md">
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors duration-200" href="#">Sản phẩm</a>
+<a class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary pb-1 transition-colors duration-200" href="#">Bộ sưu tập</a>
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors duration-200" href="#">Khuyến mãi</a>
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors duration-200" href="#">Liên hệ</a>
+</div>
+<!-- Action Icons & Search -->
+<div class="flex items-center space-x-md">
+<div class="hidden lg:flex items-center bg-surface-container px-sm py-xs rounded-full">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-md px-xs w-48" placeholder="Tìm kiếm..." type="text"/>
+</div>
+<div class="flex items-center space-x-sm">
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined" data-icon="favorite">favorite</span></button>
+<button class="hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="absolute -top-1 -right-1 bg-primary text-on-primary text-[10px] w-4 h-4 rounded-full flex items-center justify-center">2</span>
+</button>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined" data-icon="account_circle">account_circle</span></button>
+</div>
+</div>
+</div>
+</nav>
+<main class="pt-[120px]">
+<!-- Page Header -->
+<header class="max-w-container-max mx-auto px-lg mb-xl">
+<nav class="flex items-center space-x-xs text-secondary mb-sm">
+<a class="text-label-md font-label-md hover:text-primary" href="#">Trang chủ</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-label-md font-label-md text-on-surface">Bộ sưu tập</span>
+</nav>
+<h1 class="font-h1 text-h1 text-on-surface">Bộ sưu tập không gian</h1>
+<p class="font-body-lg text-body-lg text-secondary max-w-2xl mt-sm">Khám phá các bộ sưu tập nội thất được tuyển chọn kỹ lưỡng, mang đến sự tiện nghi và phong cách tinh tế cho mọi căn phòng trong ngôi nhà của bạn.</p>
+</header>
+<!-- Category Grid -->
+<section class="max-w-container-max mx-auto px-lg pb-xl">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
+<!-- Category 1: Thiết bị bếp -->
+<a class="category-card group relative block overflow-hidden rounded-xl bg-white shadow-[0px_4px_20px_rgba(0,0,0,0.04)] transition-all duration-300" href="#">
+<div class="aspect-[4/5] overflow-hidden">
+<img class="category-image h-full w-full object-cover transition-transform duration-500" data-alt="A modern, high-end minimalist kitchen featuring sleek wood cabinetry and marble countertops. The lighting is soft and natural, emphasizing a bright and organized atmosphere with high-quality stainless steel appliances. The overall aesthetic is professional and corporate modern with warm wood tones and a clean white color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBojEpK8FlDyrd02MKMZ0zoiTcW6_3UOzzUfRcnVLJP1tKEwm1-dnQNr5Zg4QiEaPpjZZiqIM7UNx8ml6rcqiA5ZPcPKZWGX8cwNU9tcIC-vugM3_dHKsTnn7aseJGwEhr0w0tk7g6nBqon-W6dTnYgNMIF7VuDjI3T2J7gBKY_LOxhTcFMDwUjxB_O9v_YCJ-1aEEk-_a2XF9oVZ4eOFbkCiM4kmcfPdDIH6TIUggwsAWtnB_geFflqiygRw0hNJodI_q6XCSvXIwy"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
+<div class="absolute bottom-0 left-0 p-lg w-full">
+<span class="text-white/80 font-label-sm text-label-sm tracking-widest block mb-xs">NỘI THẤT CAO CẤP</span>
+<h3 class="text-white font-h3 text-h3">Thiết bị bếp</h3>
+<div class="mt-md flex items-center text-white font-label-md text-label-md group-hover:translate-x-2 transition-transform">
+                            Khám phá ngay <span class="material-symbols-outlined ml-xs">arrow_forward</span>
+</div>
+</div>
+</a>
+<!-- Category 2: Phòng khách -->
+<a class="category-card group relative block overflow-hidden rounded-xl bg-white shadow-[0px_4px_20px_rgba(0,0,0,0.04)] transition-all duration-300" href="#">
+<div class="aspect-[4/5] overflow-hidden">
+<img class="category-image h-full w-full object-cover transition-transform duration-500" data-alt="An elegant, spacious living room with a large neutral-toned sofa, minimalist coffee table, and large floor-to-ceiling windows. The room is filled with soft, diffused sunlight creating a serene and trustworthy ambiance. The color scheme is a sophisticated blend of cream, beige, and warm wood, perfectly aligned with a premium modern design system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNJ1L7rM6j8Og3lf3qDwvbf8EwqD7-JZt5126hAPr06vvkp0YYCbFi1qJ5Ezrui8t3GjC9sSoywi7-qEeLFfFk0R_Upbe0PzDA6vwWnYu4rVPNuvpY_sL9v1r4qtz-yvt7jeJKjY5SpPeqO-DtoQYExTqFi1FMekWj5cQbdsaIV2LzRY_FBTnmjrnkUQ22ZHceISSu1sv-6_Cj9EE5esn9eKoavqY32JEoPv81kk3R_HswwWg0Z94vvH-z96Z7OqdYuJ2wa_ZUnSBG"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
+<div class="absolute bottom-0 left-0 p-lg w-full">
+<span class="text-white/80 font-label-sm text-label-sm tracking-widest block mb-xs">TIỆN NGHI &amp; SANG TRỌNG</span>
+<h3 class="text-white font-h3 text-h3">Phòng khách</h3>
+<div class="mt-md flex items-center text-white font-label-md text-label-md group-hover:translate-x-2 transition-transform">
+                            Khám phá ngay <span class="material-symbols-outlined ml-xs">arrow_forward</span>
+</div>
+</div>
+</a>
+<!-- Category 3: Phòng tắm -->
+<a class="category-card group relative block overflow-hidden rounded-xl bg-white shadow-[0px_4px_20px_rgba(0,0,0,0.04)] transition-all duration-300" href="#">
+<div class="aspect-[4/5] overflow-hidden">
+<img class="category-image h-full w-full object-cover transition-transform duration-500" data-alt="A spa-like modern bathroom featuring a freestanding white tub, minimalist vanity, and natural stone textures. The lighting is calm and atmospheric, creating a sense of physical quality and depth. The aesthetic is extremely clean and organized, focusing on relaxation and high-end retail quality with soft shadows and tonal layering." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbyrCJCXWisJIiGBgdpgqq-BOIhS8AFuO4ojBV_uEzWg4sDGymVTJXuqG0PE4Ri4mApQdxCdirifpA8VeNEEScm-jinCj5IPsnJ6XZvUh9s5gWa6TzvUzfFZnyV6cLDc2WpeAfSc5eb64tgQ8iUXjZ4duohPaA8cel2M24oTsHo7GQqbR7PgCW2kQdlzGnkwHDoFNfzG9Rp0T-yEuuBJZ9w6K2vuhuyB3elNPMIONU3cMivx8RVT05htOz-x0OTlBuXkItQErnwC_B"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
+<div class="absolute bottom-0 left-0 p-lg w-full">
+<span class="text-white/80 font-label-sm text-label-sm tracking-widest block mb-xs">THƯ GIÃN TUYỆT ĐỐI</span>
+<h3 class="text-white font-h3 text-h3">Phòng tắm</h3>
+<div class="mt-md flex items-center text-white font-label-md text-label-md group-hover:translate-x-2 transition-transform">
+                            Khám phá ngay <span class="material-symbols-outlined ml-xs">arrow_forward</span>
+</div>
+</div>
+</a>
+<!-- Category 4: Phòng ngủ -->
+<a class="category-card group relative block overflow-hidden rounded-xl bg-white shadow-[0px_4px_20px_rgba(0,0,0,0.04)] transition-all duration-300" href="#">
+<div class="aspect-[4/5] overflow-hidden">
+<img class="category-image h-full w-full object-cover transition-transform duration-500" data-alt="A tranquil and minimalist bedroom with premium white bedding and soft wooden accents. The room is designed for effortless organization and peace, featuring thin lines and subtle tonal shifts. The morning light is bright but soft, emphasizing a high-trust, high-quality living experience in a contemporary corporate modern style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmqWB-5NWJCg7CuS60ViPIUT9d_n5h6FfknI-nLCdJlXdXldUfDeOBQcETGxhaLaOP8NA4T34RUn16XDHDLpR_ICIb4tg6Grhq9uOAKfYfZkfaaq2qEdAdNG2kmuw4JU2tOUSDOXAv7MWZltWQjDPpLsgHIJfzUwKYEUowC16n_qCIs6hatmAmCyzwWSrv7FrTu44eBRjK_y_JToUnA8KBwrP2O9LDCotERI8Mcvk-Y8hO7LOhqa0eycRGphOg0R5CwctYSd8RI97u"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
+<div class="absolute bottom-0 left-0 p-lg w-full">
+<span class="text-white/80 font-label-sm text-label-sm tracking-widest block mb-xs">GIẤC NGỦ HOÀN HẢO</span>
+<h3 class="text-white font-h3 text-h3">Phòng ngủ</h3>
+<div class="mt-md flex items-center text-white font-label-md text-label-md group-hover:translate-x-2 transition-transform">
+                            Khám phá ngay <span class="material-symbols-outlined ml-xs">arrow_forward</span>
+</div>
+</div>
+</a>
+<!-- Category 5: Phòng làm việc -->
+<a class="category-card group relative block overflow-hidden rounded-xl bg-white shadow-[0px_4px_20px_rgba(0,0,0,0.04)] transition-all duration-300" href="#">
+<div class="aspect-[4/5] overflow-hidden">
+<img class="category-image h-full w-full object-cover transition-transform duration-500" data-alt="A modern and highly productive home office space featuring an ergonomic desk, premium chair, and minimalist storage solutions. The design is focused on efficiency and clarity, using a restrained color palette of light grays and warm oranges. The lighting is precise, suitable for a professional workspace with a corporate modern feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCviTOoSLJ7OPvBq54zSEwKXpOSMSbDJ00jB4hWs6F_MKUAylSw1e7MeD0YbxK0KVSlSMe1IvDSVWln2HThb56awrNtE0EmBXBKC0B_detFWyiVmkMMzKYOOICzQfpgNEEUw3YWACNNg_GyP8D0P0fgIKy5-fTN7M0T3q273driuMIVMzqg8L5i-HAKjvleUN5d1I711BncKnZdajI0FWsKsvV_K521YsmOvl0dm0M1EocEMDUJoWbxQgT-MggNPCxohiWRe65D6qkW"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
+<div class="absolute bottom-0 left-0 p-lg w-full">
+<span class="text-white/80 font-label-sm text-label-sm tracking-widest block mb-xs">CẢM HỨNG SÁNG TẠO</span>
+<h3 class="text-white font-h3 text-h3">Phòng làm việc</h3>
+<div class="mt-md flex items-center text-white font-label-md text-label-md group-hover:translate-x-2 transition-transform">
+                            Khám phá ngay <span class="material-symbols-outlined ml-xs">arrow_forward</span>
+</div>
+</div>
+</a>
+<!-- Category 6: Ngoại thất -->
+<a class="category-card group relative block overflow-hidden rounded-xl bg-white shadow-[0px_4px_20px_rgba(0,0,0,0.04)] transition-all duration-300" href="#">
+<div class="aspect-[4/5] overflow-hidden">
+<img class="category-image h-full w-full object-cover transition-transform duration-500" data-alt="A beautiful outdoor patio area featuring minimalist garden furniture and high-quality stone tiles. The scene is set during a golden hour sunset, creating warm, rich tones and soft, long shadows. The overall mood is one of premium relaxation and curated outdoor living, maintaining a consistent minimalist and modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3pQd_odalKwWTm_JantDjRDstsYsmNKpWCf78RgHAgNwxmQJPtn4DNVKcinHLBQLCRTYtaLr1PNAzcC2J6NpOeeDg3OMJLfzb25XYc-8AzHZIsBA2ks6JnIxN1YbyEOH2-P8x2BgofIRlEPkaHnLD26n2K2liaRvYn-_7WDuGxbKuy7VhV0mBHcCVCseyD8MBBVnmldGwbejtP00u4TuMkbokYk8ohkyOgU4XNuggp4yTe0RQ4RSYW_1V2x8qscc7taMFea1P18ou"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
+<div class="absolute bottom-0 left-0 p-lg w-full">
+<span class="text-white/80 font-label-sm text-label-sm tracking-widest block mb-xs">KHÔNG GIAN MỞ</span>
+<h3 class="text-white font-h3 text-h3">Ngoại thất</h3>
+<div class="mt-md flex items-center text-white font-label-md text-label-md group-hover:translate-x-2 transition-transform">
+                            Khám phá ngay <span class="material-symbols-outlined ml-xs">arrow_forward</span>
+</div>
+</div>
+</a>
+</div>
+</section>
+<!-- Newsletter Section (Asymmetric / Modern) -->
+<section class="max-w-container-max mx-auto px-lg my-xl">
+<div class="bg-primary text-on-primary rounded-xl overflow-hidden flex flex-col lg:flex-row items-center">
+<div class="p-lg lg:p-xl lg:w-3/5">
+<h2 class="font-h2 text-h2 mb-md">Nhận thông báo về bộ sưu tập mới nhất</h2>
+<p class="font-body-md text-body-md text-primary-fixed mb-lg max-w-lg">Đăng ký để không bỏ lỡ các sản phẩm độc quyền và chương trình ưu đãi dành riêng cho thành viên ModernRetail.</p>
+<form class="flex flex-col sm:flex-row gap-sm">
+<input class="flex-grow rounded-lg border-none bg-primary-container text-white placeholder:text-white/60 px-md py-sm focus:ring-2 focus:ring-on-primary-container" placeholder="Địa chỉ email của bạn" type="email"/>
+<button class="bg-white text-primary font-bold px-lg py-sm rounded-lg hover:bg-primary-fixed transition-colors duration-200" type="submit">Đăng ký ngay</button>
+</form>
+</div>
+<div class="lg:w-2/5 h-64 lg:h-full relative overflow-hidden hidden lg:block">
+<img class="absolute inset-0 w-full h-full object-cover grayscale brightness-125 contrast-75" data-alt="A stylized, minimalist architectural detail shot with clean geometric lines and soft shadows. The visual focuses on texture and form, utilizing a monochrome palette with primary orange light reflections. This atmospheric image complements a modern retail environment, evoking feelings of high-end design and professional efficiency." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzHEH6dEYKYaVyjNftZw-fLFX_Y8LbcFEh6vyhFWFEXGI3v4vOlfL4iosvNvOZWR1vZbfT3SuddaqD-8uN5cqI5xg3d4VMQuwOy84TeiKjbN0VgoqnZHvZmTsrTyzNkOOXI4P7yxReyJMqxx1V6gGrcmHmJmqHYxkIfEMA_dQlN8DFVyQS8QhNQuDbh24bil7UgNNZYnxKFDkLwJUbJJF7sO9yYGfjaQcNYkSV0EPUsyHZp3lSovl17Ovqv0HcNwF8yqKPcx_lxqBH"/>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-xl px-lg mt-xl flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto bg-surface-container-highest">
+<div class="flex flex-col items-center md:items-start space-y-md">
+<div class="text-h3 font-h3 text-on-surface font-bold">ModernRetail</div>
+<p class="font-body-md text-body-md text-on-secondary-container">© 2024 ModernRetail. Tất cả quyền được bảo lưu.</p>
+</div>
+<div class="flex flex-col md:flex-row items-center space-y-sm md:space-y-0 md:space-x-lg mt-lg md:mt-0">
+<a class="font-body-md text-body-md text-on-secondary-container hover:text-primary transition-colors" href="#">Chính sách bảo mật</a>
+<a class="font-body-md text-body-md text-on-secondary-container hover:text-primary transition-colors" href="#">Điều khoản dịch vụ</a>
+<a class="font-body-md text-body-md text-on-secondary-container hover:text-primary transition-colors" href="#">Liên hệ hỗ trợ</a>
+</div>
+<div class="flex space-x-md mt-lg md:mt-0">
+<a class="w-10 h-10 rounded-full bg-surface flex items-center justify-center text-on-surface hover:bg-primary hover:text-on-primary transition-all shadow-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">public</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-surface flex items-center justify-center text-on-surface hover:bg-primary hover:text-on-primary transition-all shadow-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+</a>
+</div>
+</footer>
+<!-- Mobile Nav Bar (Visibility Handled by Tailwind) -->
+<div class="md:hidden fixed bottom-0 left-0 w-full bg-surface shadow-[0px_-4px_20px_rgba(0,0,0,0.04)] z-50 flex justify-around items-center py-sm border-t border-surface-variant">
+<button class="flex flex-col items-center text-secondary">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] mt-xs">Trang chủ</span>
+</button>
+<button class="flex flex-col items-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+<span class="text-[10px] mt-xs font-bold">Bộ sưu tập</span>
+</button>
+<button class="flex flex-col items-center text-secondary">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="text-[10px] mt-xs">Cửa hàng</span>
+</button>
+<button class="flex flex-col items-center text-secondary">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] mt-xs">Tài khoản</span>
+</button>
+</div>
+<script>
+        // Micro-interactions for header appearance on scroll
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('py-2');
+                nav.classList.remove('py-sm');
+            } else {
+                nav.classList.add('py-sm');
+                nav.classList.remove('py-2');
+            }
+        });
+    </script>
+</body></html>

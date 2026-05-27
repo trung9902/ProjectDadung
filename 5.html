@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lịch sử đơn hàng | ModernRetail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#594137",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-container": "#656464",
+                    "tertiary-fixed-dim": "#a6c8ff",
+                    "on-primary-container": "#fffbff",
+                    "primary-fixed-dim": "#ffb596",
+                    "on-secondary-fixed-variant": "#474646",
+                    "background": "#fff8f6",
+                    "surface": "#fff8f6",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "tertiary-fixed": "#d5e3ff",
+                    "surface-dim": "#eed5cb",
+                    "surface-container": "#ffe9e2",
+                    "on-tertiary-fixed": "#001c3b",
+                    "secondary-container": "#e5e2e1",
+                    "on-surface": "#261813",
+                    "inverse-surface": "#3c2d27",
+                    "on-tertiary-container": "#fefcff",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed": "#360f00",
+                    "tertiary-container": "#0075d8",
+                    "surface-container-high": "#fde3d9",
+                    "surface-container-highest": "#f7ddd3",
+                    "primary-fixed": "#ffdbcd",
+                    "outline": "#8d7165",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "secondary": "#5f5e5e",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#a33e00",
+                    "secondary-fixed": "#e5e2e1",
+                    "tertiary": "#005cad",
+                    "surface-variant": "#f7ddd3",
+                    "error-container": "#ffdad6",
+                    "primary": "#9f3d00",
+                    "inverse-on-surface": "#ffede7",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#7c2e00",
+                    "on-primary": "#ffffff",
+                    "on-background": "#261813",
+                    "inverse-primary": "#ffb596",
+                    "primary-container": "#c74e00",
+                    "outline-variant": "#e1bfb2",
+                    "surface-bright": "#fff8f6",
+                    "surface-container-low": "#fff1ec",
+                    "on-tertiary-fixed-variant": "#004787"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "sm": "12px",
+                    "xl": "80px",
+                    "md": "24px",
+                    "xs": "4px",
+                    "lg": "48px",
+                    "unit": "8px",
+                    "container-max": "1280px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "h1": ["Inter"],
+                    "h2": ["Inter"],
+                    "h3": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "h1": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "h2": ["32px", {"lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #fff8f6;
+            font-family: 'Inter', sans-serif;
+        }
+        .order-card-hover:hover {
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="text-on-background">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-lg py-sm max-w-container-max mx-auto bg-surface dark:bg-background shadow-[0px_10px_30px_rgba(0,0,0,0.08)]">
+<div class="flex items-center gap-md">
+<span class="text-h3 font-h3 font-bold text-primary dark:text-primary-fixed">ModernRetail</span>
+<div class="hidden md:flex gap-md items-center ml-lg">
+<a class="font-body-md text-body-md text-secondary dark:text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Sản phẩm</a>
+<a class="font-body-md text-body-md text-secondary dark:text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Bộ sưu tập</a>
+<a class="font-body-md text-body-md text-secondary dark:text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Khuyến mãi</a>
+<a class="font-body-md text-body-md text-secondary dark:text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Liên hệ</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative group">
+<span class="material-symbols-outlined text-primary cursor-pointer transition-all duration-200 ease-in-out" data-icon="favorite">favorite</span>
+</div>
+<div class="relative group">
+<span class="material-symbols-outlined text-primary cursor-pointer transition-all duration-200 ease-in-out" data-icon="shopping_cart">shopping_cart</span>
+</div>
+<div class="relative group">
+<span class="material-symbols-outlined text-primary font-bold border-b-2 border-primary pb-1 cursor-pointer transition-all duration-200 ease-in-out" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</nav>
+<main class="mt-[100px] mb-xl max-w-container-max mx-auto px-md md:px-lg">
+<!-- Hero Header -->
+<header class="mb-lg">
+<h1 class="font-h1 text-h1 text-on-surface mb-xs">Lịch sử đơn hàng</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Quản lý và theo dõi hành trình các đơn hàng của bạn.</p>
+</header>
+<div class="flex flex-col lg:flex-row gap-lg">
+<!-- Order Filter Tabs -->
+<aside class="w-full lg:w-64 flex flex-col gap-sm">
+<nav class="flex flex-row lg:flex-col overflow-x-auto lg:overflow-visible gap-xs py-xs">
+<button class="whitespace-nowrap px-md py-sm rounded-xl font-label-md text-label-md bg-primary text-on-primary transition-transform scale-98 active:scale-95">
+                        Tất cả đơn hàng
+                    </button>
+<button class="whitespace-nowrap px-md py-sm rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-variant transition-transform scale-98 active:scale-95">
+                        Đang xử lý
+                    </button>
+<button class="whitespace-nowrap px-md py-sm rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-variant transition-transform scale-98 active:scale-95">
+                        Đang giao
+                    </button>
+<button class="whitespace-nowrap px-md py-sm rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-variant transition-transform scale-98 active:scale-95">
+                        Đã giao
+                    </button>
+<button class="whitespace-nowrap px-md py-sm rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-variant transition-transform scale-98 active:scale-95">
+                        Đã hủy
+                    </button>
+</nav>
+</aside>
+<!-- Orders Grid/List -->
+<section class="flex-1 space-y-md">
+<!-- Order Card 1: Processing -->
+<div class="bg-surface-container-lowest p-md md:p-lg rounded-xl shadow-[0px_4px_20px_rgba(0,0,0,0.04)] transition-all duration-200 order-card-hover flex flex-col md:flex-row justify-between items-start md:items-center gap-md">
+<div class="flex flex-col gap-xs">
+<div class="flex items-center gap-sm">
+<span class="font-label-sm text-label-sm uppercase text-secondary">Mã đơn hàng:</span>
+<span class="font-h3 text-h3 text-on-surface">#MR-99281</span>
+</div>
+<div class="flex items-center gap-sm mt-xs">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="calendar_today">calendar_today</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Ngày đặt: 24/10/2023</span>
+</div>
+<div class="inline-flex items-center gap-xs px-sm py-[2px] bg-secondary-container rounded-full w-fit mt-sm">
+<span class="material-symbols-outlined text-[16px]" data-icon="sync">sync</span>
+<span class="font-label-md text-label-md text-on-secondary-container">Đang xử lý</span>
+</div>
+</div>
+<div class="flex flex-col items-start md:items-end gap-sm w-full md:w-auto">
+<div class="text-right">
+<p class="font-label-sm text-label-sm text-secondary">Tổng tiền</p>
+<p class="font-h2 text-h2 text-primary">2.450.000₫</p>
+</div>
+<button class="w-full md:w-auto bg-primary text-on-primary font-bold px-lg py-sm rounded-none hover:bg-primary-container transition-all duration-200 ease-in-out">
+                            Xem chi tiết
+                        </button>
+</div>
+</div>
+<!-- Order Card 2: Shipping -->
+<div class="bg-surface-container-lowest p-md md:p-lg rounded-xl shadow-[0px_4px_20px_rgba(0,0,0,0.04)] transition-all duration-200 order-card-hover flex flex-col md:flex-row justify-between items-start md:items-center gap-md border-l-4 border-tertiary">
+<div class="flex flex-col gap-xs">
+<div class="flex items-center gap-sm">
+<span class="font-label-sm text-label-sm uppercase text-secondary">Mã đơn hàng:</span>
+<span class="font-h3 text-h3 text-on-surface">#MR-88120</span>
+</div>
+<div class="flex items-center gap-sm mt-xs">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="calendar_today">calendar_today</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Ngày đặt: 20/10/2023</span>
+</div>
+<div class="inline-flex items-center gap-xs px-sm py-[2px] bg-tertiary text-on-tertiary rounded-full w-fit mt-sm">
+<span class="material-symbols-outlined text-[16px]" data-icon="local_shipping">local_shipping</span>
+<span class="font-label-md text-label-md">Đang giao</span>
+</div>
+</div>
+<div class="flex flex-col items-start md:items-end gap-sm w-full md:w-auto">
+<div class="text-right">
+<p class="font-label-sm text-label-sm text-secondary">Tổng tiền</p>
+<p class="font-h2 text-h2 text-primary">1.120.000₫</p>
+</div>
+<button class="w-full md:w-auto bg-primary text-on-primary font-bold px-lg py-sm rounded-none hover:bg-primary-container transition-all duration-200 ease-in-out">
+                            Xem chi tiết
+                        </button>
+</div>
+</div>
+<!-- Order Card 3: Delivered -->
+<div class="bg-surface-container-lowest p-md md:p-lg rounded-xl shadow-[0px_4px_20px_rgba(0,0,0,0.04)] transition-all duration-200 order-card-hover flex flex-col md:flex-row justify-between items-start md:items-center gap-md border-l-4 border-on-secondary-fixed-variant">
+<div class="flex flex-col gap-xs">
+<div class="flex items-center gap-sm">
+<span class="font-label-sm text-label-sm uppercase text-secondary">Mã đơn hàng:</span>
+<span class="font-h3 text-h3 text-on-surface">#MR-77054</span>
+</div>
+<div class="flex items-center gap-sm mt-xs">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="calendar_today">calendar_today</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Ngày đặt: 15/10/2023</span>
+</div>
+<div class="inline-flex items-center gap-xs px-sm py-[2px] bg-surface-container-highest text-on-surface rounded-full w-fit mt-sm">
+<span class="material-symbols-outlined text-[16px]" data-icon="check_circle">check_circle</span>
+<span class="font-label-md text-label-md">Đã giao</span>
+</div>
+</div>
+<div class="flex flex-col items-start md:items-end gap-sm w-full md:w-auto">
+<div class="text-right">
+<p class="font-label-sm text-label-sm text-secondary">Tổng tiền</p>
+<p class="font-h2 text-h2 text-primary">5.800.000₫</p>
+</div>
+<button class="w-full md:w-auto border border-primary text-primary font-bold px-lg py-sm rounded-none hover:bg-primary-fixed transition-all duration-200 ease-in-out">
+                            Xem chi tiết
+                        </button>
+</div>
+</div>
+<!-- Order Card 4: Delivered -->
+<div class="bg-surface-container-lowest p-md md:p-lg rounded-xl shadow-[0px_4px_20px_rgba(0,0,0,0.04)] transition-all duration-200 order-card-hover flex flex-col md:flex-row justify-between items-start md:items-center gap-md">
+<div class="flex flex-col gap-xs">
+<div class="flex items-center gap-sm">
+<span class="font-label-sm text-label-sm uppercase text-secondary">Mã đơn hàng:</span>
+<span class="font-h3 text-h3 text-on-surface">#MR-55201</span>
+</div>
+<div class="flex items-center gap-sm mt-xs">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="calendar_today">calendar_today</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Ngày đặt: 02/10/2023</span>
+</div>
+<div class="inline-flex items-center gap-xs px-sm py-[2px] bg-surface-container-highest text-on-surface rounded-full w-fit mt-sm">
+<span class="material-symbols-outlined text-[16px]" data-icon="check_circle">check_circle</span>
+<span class="font-label-md text-label-md">Đã giao</span>
+</div>
+</div>
+<div class="flex flex-col items-start md:items-end gap-sm w-full md:w-auto">
+<div class="text-right">
+<p class="font-label-sm text-label-sm text-secondary">Tổng tiền</p>
+<p class="font-h2 text-h2 text-primary">890.000₫</p>
+</div>
+<button class="w-full md:w-auto border border-primary text-primary font-bold px-lg py-sm rounded-none hover:bg-primary-fixed transition-all duration-200 ease-in-out">
+                            Xem chi tiết
+                        </button>
+</div>
+</div>
+</section>
+</div>
+<!-- Recommendations or Empty State Context (Visual Interest) -->
+<div class="mt-xl grid grid-cols-1 md:grid-cols-3 gap-md">
+<div class="md:col-span-2 relative overflow-hidden rounded-xl h-[300px] flex items-end p-lg group cursor-pointer">
+<img alt="Special Offer" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A luxurious lifestyle shopping scene featuring high-end accessories and tech gadgets arranged on a minimalist white marble surface. Warm afternoon sunlight creates long, soft shadows. The color palette is composed of soft beige, crisp white, and sophisticated primary orange accents, conveying a sense of corporate modernity and elite consumer choice." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeTg3X8q3w15OyOEO2QTs2-wve9EVmbdUWg0BwxhAvE5V_54GF9RGJcgykV6blpClmR0OC7HZrCL2p9SwaJiwgmawNMycY81aeOqccO3OSDxeXmzPPQ3VfOuvoXvs0Ct1Ikmh6xYYl7aKr3nXOMBmNHh2d32KoRXr3qi-AEa9iH0JXqqRiEOcK6JRPBHhqJymhountKT_Ois_4OlsKm8A06-C3qaIXsRd9u4WZVNUiypx47jlTxsqUPjYlt2TqKt175if7wQrLBxc9"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 to-transparent"></div>
+<div class="relative z-10">
+<span class="bg-primary text-on-primary px-sm py-xs font-label-sm text-label-sm mb-sm inline-block uppercase">Ưu đãi độc quyền</span>
+<h3 class="font-h2 text-h2 text-white mb-xs">Khám phá bộ sưu tập Thu Đông</h3>
+<p class="font-body-md text-body-md text-white/80">Nhận mã giảm giá 15% cho đơn hàng tiếp theo của bạn.</p>
+</div>
+</div>
+<div class="bg-primary-container p-lg flex flex-col justify-center items-start rounded-xl text-white">
+<span class="material-symbols-outlined text-[48px] mb-md" data-icon="support_agent">support_agent</span>
+<h3 class="font-h3 text-h3 mb-sm">Bạn cần hỗ trợ?</h3>
+<p class="font-body-md text-body-md mb-lg">Đội ngũ chăm sóc khách hàng của chúng tôi luôn sẵn sàng 24/7 để giải đáp mọi thắc mắc về đơn hàng.</p>
+<button class="bg-white text-primary font-bold px-lg py-sm rounded-none hover:bg-surface-container transition-all">Liên hệ ngay</button>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-xl px-lg mt-xl flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto bg-surface-container-highest dark:bg-surface-dim">
+<div class="mb-lg md:mb-0">
+<span class="text-h3 font-h3 text-on-surface">ModernRetail</span>
+<p class="mt-xs font-body-md text-body-md text-on-surface-variant max-w-xs">Giải pháp mua sắm hiện đại, tinh tế và đáng tin cậy cho mọi gia đình Việt.</p>
+</div>
+<div class="flex flex-col items-center md:items-end gap-md">
+<div class="flex gap-lg">
+<a class="font-body-md text-body-md text-on-secondary-container hover:text-primary transition-colors" href="#">Chính sách bảo mật</a>
+<a class="font-body-md text-body-md text-on-secondary-container hover:text-primary transition-colors" href="#">Điều khoản dịch vụ</a>
+<a class="font-body-md text-body-md text-on-secondary-container hover:text-primary transition-colors" href="#">Liên hệ hỗ trợ</a>
+</div>
+<p class="font-body-md text-body-md text-secondary">© 2024 ModernRetail. Tất cả quyền được bảo lưu.</p>
+</div>
+</footer>
+<script>
+        // Micro-interactions
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', () => {
+                button.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    button.style.transform = '';
+                }, 150);
+            });
+        });
+    </script>
+</body></html>

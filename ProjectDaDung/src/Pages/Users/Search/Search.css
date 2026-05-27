@@ -1,0 +1,60 @@
+@import "../StaticUserPages.css";
+
+.search-hero {
+  text-align: center;
+  padding: 32px;
+  border-radius: 8px;
+  background: var(--surface-container-low);
+  margin-bottom: 32px;
+}
+
+.search-hero .static-subtitle {
+  margin: 0 auto 24px;
+}
+
+.search-box {
+  display: flex;
+  gap: 12px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.search-layout {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 24px;
+}
+
+.search-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-self: start;
+}
+
+.search-filters label {
+  display: flex;
+  gap: 10px;
+  color: var(--on-surface-variant);
+}
+
+.search-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding: 16px;
+  border-radius: 8px;
+  background: var(--surface-container-low);
+}
+
+@media (max-width: 820px) {
+  .search-box,
+  .search-layout,
+  .search-toolbar {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
