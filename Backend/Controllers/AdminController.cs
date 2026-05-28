@@ -1,4 +1,5 @@
 using Backend.Dtos;
+using Backend.Enums;
 using Backend.Models;
 using Backend.Repositories;
 using Microsoft.AspNetCore.Authorization;

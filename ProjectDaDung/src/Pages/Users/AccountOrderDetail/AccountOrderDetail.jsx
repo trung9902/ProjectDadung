@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import './AccountOrderDetail.css'
+import { useGetOrdersById } from '../../../../servers/order'
 
 const orderItems = [
   ['Air Zoom Pegasus 38 Premium', 'Nike Performance', '3.450.000 VND', 'x1', 'https://lh3.googleusercontent.com/aida-public/AB6AXuAgA2ibG5LxLZhsBhAaaFfPVVvZ0xWdPotgocZTrZWkoOxaQQELOpevEa56TfWjw0wJr-hKfHz-gxcJPyEqYU22mngC120lmbObMFIiZMMEr4_0Ipotd3Woa_kJ40hyw1sJCE98KkiWLgLPvbPSwC9yPsCcTl_8qOmdiAC0aEcRp-CDgjKp3NB8NLumKquE4oYxq2uz1pOAuAWDdnVeCUPMifLV-wBRKjCJl75Mo-L_ZnrSiSICfwz1PUWPOYaAg6WenBXvitqu0Fdq'],
@@ -8,39 +10,68 @@ const orderItems = [
 ]
 
 const AccountOrderDetail = () => {
+  const { getOrdersById } = useGetOrdersById()
+  const [loading, setLoading] = useState(false)
+  const [ordersById, setOrdersById] = useState([])
+  const { id } = useParams()
+
+  useEffect(() => {
+    const fetchOrder = async () => {
+      const data = await getOrdersById(id)
+      setOrdersById(Array.isArray(data) ? data : [data])
+    }
+
+    fetchOrder()
+  }, [id])
+
   return (
     <main className="static-page account-order-detail-page">
-      <section className="static-header">
-        <div>
-          <p className="static-eyebrow">Tai khoan / Don hang / #ORD-882910</p>
-          <h1 className="static-heading">Chi tiet don hang #ORD-882910</h1>
-          <p className="static-subtitle">Ngay dat: 24/10/2023 - 14:35</p>
-        </div>
-        <span className="status-pill blue">Dang giao hang</span>
-      </section>
+      {loading ?
+        (<p>Loading...</p>) :
+        (
 
-      <section className="account-order-info-grid">
-        <article className="static-card static-card-pad">
-          <h2>Thong tin van chuyen</h2>
-          <p><strong>Nguyen Van A</strong></p>
-          <p className="static-muted">090 123 4567</p>
-          <p className="static-muted">123 Le Loi, Phuong Ben Thanh, Quan 1, TP. Ho Chi Minh</p>
-        </article>
-        <article className="static-card static-card-pad">
-          <h2>Phuong thuc thanh toan</h2>
-          <p><strong>The tin dung Visa</strong></p>
-          <p className="static-muted">**** **** **** 4582</p>
-          <span className="status-pill green">Da thanh toan</span>
-        </article>
-        <article className="static-card static-card-pad">
-          <h2>Lich su don hang</h2>
-          <div className="timeline">
-            <div className="timeline-item"><span className="timeline-dot">✓</span><strong>Dat hang thanh cong</strong><p>24/10/2023 14:35</p></div>
-            <div className="timeline-item"><span className="timeline-dot">✓</span><strong>Da xac nhan</strong><p>24/10/2023 15:10</p></div>
-            <div className="timeline-item"><span className="timeline-dot">✓</span><strong>Dang giao hang</strong><p>25/10/2023 09:30</p></div>
-          </div>
-        </article>
-      </section>
+          ordersById.map((order) => {
+            return (
+              <div key={order.id}>
+                <section className="static-header">
+                  <div>
+                    <p className="static-eyebrow">Tai khoan / Don hang / #ORD-882910</p>
+                    <h1 className="static-heading">Chi tiet don hang #ORD-882910</h1>
+                    <p className="static-subtitle">Ngay dat: {order.createdAt ? new Date(order.createdAt).toLocaleDateString() : 'N/A'} - {order.createdAt ? new Date(order.createdAt).toLocaleTimeString([], {
+                      hour: '2-digit',
+                      minute: '2-digit'
+                    }) : 'N/A'}</p>
+                  </div>
+                  <span className="status-pill blue">{(order.status === 'pending' ? 'Dang cho xac nhan' : order.status === 'confirmed' ? 'Da xac nhan' : 'Dang giao hang')}</span>
+                </section>
+
+                <section className="account-order-info-grid">
+                  <article className="static-card static-card-pad">
+                    <h2>Thong tin van chuyen</h2>
+                    <p><strong>Nguyen Van A</strong></p>
+                    <p className="static-muted">090 123 4567</p>
+                    <p className="static-muted">123 Le Loi, Phuong Ben Thanh, Quan 1, TP. Ho Chi Minh</p>
+                  </article>
+                  <article className="static-card static-card-pad">
+                    <h2>Phuong thuc thanh toan</h2>
+                    <p><strong>The tin dung Visa</strong></p>
+                    <p className="static-muted">**** **** **** 4582</p>
+                    <span className="status-pill green">Da thanh toan</span>
+                  </article>
+                  <article className="static-card static-card-pad">
+                    <h2>Lich su don hang</h2>
+                    <div className="timeline">
+                      <div className="timeline-item"><span className="timeline-dot">✓</span><strong>Dat hang thanh cong</strong><p>24/10/2023 14:35</p></div>
+                      <div className="timeline-item"><span className="timeline-dot">✓</span><strong>Da xac nhan</strong><p>24/10/2023 15:10</p></div>
+                      <div className="timeline-item"><span className="timeline-dot">✓</span><strong>Dang giao hang</strong><p>25/10/2023 09:30</p></div>
+                    </div>
+                  </article>
+                </section>
+              </div>
+            )
+          })
+
+        )}
 
       <section className="account-order-layout static-section">
         <div>

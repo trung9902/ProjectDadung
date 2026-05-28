@@ -2,6 +2,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Backend.Dtos;
+using Backend.Enums;
 using Backend.Exceptions;
 using Backend.Models;
 using Backend.Repositories;

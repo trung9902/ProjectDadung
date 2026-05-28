@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-const useCreateOrder = () => {
+export const useCreateOrder = () => {
     const [loading, setLoading] = useState(false)
     const createOrder = async (payload) => {
         setLoading(true)
@@ -24,4 +24,23 @@ const useCreateOrder = () => {
     }
     return { loading, createOrder }
 }
-export default useCreateOrder
+export const useGetOrdersById = () => {
+    const [loading, setLoading] = useState(false)
+    const getOrdersById = async (userId) => {
+        setLoading(true)
+        try {
+            const res = await fetch(`http://localhost:8080/api/orders/${userId}`)
+            const data = await res.json()
+            return data
+        }
+        catch (error) {
+            console.log(error)
+        }
+        finally {
+            setLoading(false)
+        }
+    }
+    return { loading, getOrdersById }
+}
+
+

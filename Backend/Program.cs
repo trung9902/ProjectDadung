@@ -1,6 +1,7 @@
 using System.Text;
 using System.Text.Json.Serialization;
 using Backend.Data;
+using Backend.Enums;
 using Backend.Models;
 using Backend.Repositories;
 using Backend.Services;
@@ -30,8 +31,9 @@ builder.Services.AddCors(options =>
 
 // Database
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
-
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")
+    ));
 // JWT Authentication
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -52,9 +54,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddAuthorization();
 
 // Repositories & Services
-builder.Services.AddSingleton<IProductRepository, Backend.Repositories.InMemoryProductRepository>();
-builder.Services.AddSingleton<IOrderRepository, Backend.Repositories.InMemoryOrderRepository>();
-builder.Services.AddSingleton<ICouponRepository, Backend.Repositories.InMemoryCouponRepository>();
+builder.Services.AddScoped<IProductRepository, EFProductRepository>();
+builder.Services.AddScoped<IOrderRepository, EFOrderRepository>();
+builder.Services.AddScoped<ICouponRepository, EFCouponRepository>();
 builder.Services.AddScoped<IUserRepository, EFUserRepository>();
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<OrderService>();
@@ -69,6 +71,7 @@ using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     db.Database.Migrate();
+    DbSeeder.SeedProductsAndCoupons(db);
 
     if (!db.Users.Any(u => u.Role == UserRole.Admin))
     {

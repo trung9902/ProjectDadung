@@ -177,7 +177,7 @@ const Checkout = () => {
 
       setMessage('Đơn hàng đã được tạo thành công.')
       clearStoredCart()
-      navigate(`/cart`)
+      navigate(`/Account/Orders/${data.id}`)
     } catch (error) {
       setMessage(error.message)
     } finally {

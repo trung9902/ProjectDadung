@@ -1,6 +1,6 @@
-namespace Backend.Models;
+using Backend.Enums;
 
-public enum UserRole { Customer, Admin }
+namespace Backend.Models;
 
 public sealed class User
 {

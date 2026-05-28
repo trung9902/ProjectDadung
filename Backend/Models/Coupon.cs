@@ -1,3 +1,5 @@
+using Backend.Enums;
+
 namespace Backend.Models;
 
 public sealed class Coupon

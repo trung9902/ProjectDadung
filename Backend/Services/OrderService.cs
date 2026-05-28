@@ -1,4 +1,5 @@
 using Backend.Dtos;
+using Backend.Enums;
 using Backend.Exceptions;
 using Backend.Models;
 using Backend.Repositories;
