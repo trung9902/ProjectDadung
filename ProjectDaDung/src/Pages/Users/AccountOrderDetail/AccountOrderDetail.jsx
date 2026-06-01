@@ -14,6 +14,7 @@ const AccountOrderDetail = () => {
   const [loading, setLoading] = useState(false)
   const [ordersById, setOrdersById] = useState([])
   const { id } = useParams()
+  const orderDetail = ordersById[0]
 
   useEffect(() => {
     const fetchOrder = async () => {
@@ -55,8 +56,14 @@ const AccountOrderDetail = () => {
                   <article className="static-card static-card-pad">
                     <h2>Phuong thuc thanh toan</h2>
                     <p><strong>The tin dung Visa</strong></p>
-                    <p className="static-muted">**** **** **** 4582</p>
-                    <span className="status-pill green">Da thanh toan</span>
+                    {
+                      order.paymentMethod == 'Cod'
+                        ? <p className="static-muted">COD</p> : order.paymentMethod == 'VnPay'
+                          ? <p className="static-muted">VnPay</p> : order.paymentMethod == 'ShopeePay'
+                            ? <p className="static-muted">ShopeePay</p> : 'N/A'
+                    }
+                    {/* <p className="static-muted">**** **** **** 4582</p> */}
+                    <span className="status-pill green">{order.paymentStatus === 'paid' ? 'Da thanh toan' : 'Chua thanh toan'}</span>
                   </article>
                   <article className="static-card static-card-pad">
                     <h2>Lich su don hang</h2>
@@ -77,31 +84,63 @@ const AccountOrderDetail = () => {
         <div>
           <h2>San pham da dat (3)</h2>
           <div className="account-order-items">
-            {orderItems.map(([name, brand, price, qty, image]) => (
-              <article className="static-card account-order-item" key={name}>
-                <img src={image} alt={name} />
-                <div>
-                  <p className="static-brand">{brand}</p>
-                  <h3>{name}</h3>
-                  <p className="static-muted">Mau sac: Tieu chuan</p>
-                </div>
-                <div className="account-order-price">
-                  <strong>{price}</strong>
-                  <span>{qty}</span>
-                </div>
-              </article>
-            ))}
+            {
+              ordersById.map((order) =>
+                order.items.map((item) => (
+                  <article
+                    className="static-card account-order-item"
+                    key={item.productId}
+                  >
+
+                    <img
+                      src={`https://lh3.googleusercontent.com/aida-public/AB6AXuANMVeq41pPwCBMgJzMm8xwunb6MegYzfu-SJFyqho9dH-F4hGLzBVZCd79fcpZ0sVo-Esc5DslpTOkotjvSrquNrRdkk_lAnhwijsU7KNenyClKzcBfx1_v62Ao4PnpLw36jom7MwIuRBNwVdfeXB3pWu11Zl3SrWk4fyY_40TSZEtpdVR6kJZXMb8Wn5Fh9r7mYbe8QWvqIGKVb9dw-pIr5hbTxb18BXXL2J-gsGUrSw-WIANiipZ3KolkdYjqVQrMRJyrUMwZF6U`}
+                      alt={item.productName}
+                    />
+
+                    <div>
+                      <h3>{item.productName}</h3>
+                      <p className="static-muted">
+                        Số lượng: {item.quantity}
+                      </p>
+                    </div>
+
+                    <div className="account-order-price">
+                      <strong>
+                        {item.unitPrice.toLocaleString('vi-VN')}₫
+                      </strong>
+                      <span>
+                        Thành tiền: {item.lineTotal.toLocaleString('vi-VN')}₫
+                      </span>
+                    </div>
+                  </article>
+                ))
+              )
+            }
           </div>
         </div>
         <aside className="static-card static-card-pad account-order-summary">
           <h2>Tom tat thanh toan</h2>
-          <p><span>Tam tinh</span><strong>13.540.000 VND</strong></p>
-          <p><span>Phi van chuyen</span><strong>35.000 VND</strong></p>
-          <p><span>Giam gia</span><strong>-200.000 VND</strong></p>
+
+          <p>
+            <span>Tam tinh</span>
+            <strong>{orderDetail?.subtotal?.toLocaleString('vi-VN') || '0'} VND</strong>
+          </p>
+
+          <p>
+            <span>Phi van chuyen</span>
+            <strong>{orderDetail?.shippingFee?.toLocaleString('vi-VN') || '0'} VND</strong>
+          </p>
+
+          <p>
+            <span>Giam gia</span>
+            <strong>-{orderDetail?.discountAmount?.toLocaleString('vi-VN') || '0'} VND</strong>
+          </p>
+
           <div className="account-order-total">
             <span>Tong cong</span>
-            <strong>13.375.000 VND</strong>
+            <strong>{orderDetail?.total?.toLocaleString('vi-VN') || '0'} VND</strong>
           </div>
+
           <button type="button" className="static-btn">Theo doi don hang</button>
         </aside>
       </section>
