@@ -48,7 +48,7 @@ const AccountOrderDetail = () => {
                 <section className="account-order-info-grid">
                   <article className="static-card static-card-pad">
                     <h2>Thong tin van chuyen</h2>
-                    <p><strong>Nguyen Van A</strong></p>
+                    <p><strong>{order.customerName || 'N/A'}</strong></p>
                     <p className="static-muted">090 123 4567</p>
                     <p className="static-muted">123 Le Loi, Phuong Ben Thanh, Quan 1, TP. Ho Chi Minh</p>
                   </article>
