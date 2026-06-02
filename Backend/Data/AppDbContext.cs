@@ -10,6 +10,8 @@ public sealed class AppDbContext(DbContextOptions<AppDbContext> options) : DbCon
 {
     public DbSet<User> Users => Set<User>();
     public DbSet<Product> Products => Set<Product>();
+    public DbSet<Collection> Collections => Set<Collection>();
+    public DbSet<CollectionProduct> CollectionProducts => Set<CollectionProduct>();
     public DbSet<CustomerOrder> Orders => Set<CustomerOrder>();
     public DbSet<Coupon> Coupons => Set<Coupon>();
 
@@ -104,6 +106,36 @@ public sealed class AppDbContext(DbContextOptions<AppDbContext> options) : DbCon
                 item.Property(i => i.UnitPrice).HasPrecision(18, 2);
                 item.Ignore(i => i.LineTotal);
             });
+        });
+
+        modelBuilder.Entity<Collection>(e =>
+        {
+            e.HasKey(c => c.Id);
+            e.HasIndex(c => c.Slug).IsUnique();
+            e.HasIndex(c => new { c.IsPublished, c.DisplayOrder });
+            e.Property(c => c.Name).HasMaxLength(200).IsRequired();
+            e.Property(c => c.Slug).HasMaxLength(220).IsRequired();
+            e.Property(c => c.Description).HasMaxLength(2000);
+            e.Property(c => c.CoverImage).HasMaxLength(1000);
+            e.Property(c => c.IsPublished).HasDefaultValue(false);
+            e.Property(c => c.DisplayOrder).HasDefaultValue(0);
+            e.Property(c => c.CreatedAt).HasDefaultValueSql("GETUTCDATE()");
+            e.Property(c => c.UpdatedAt).HasDefaultValueSql("GETUTCDATE()");
+        });
+
+        modelBuilder.Entity<CollectionProduct>(e =>
+        {
+            e.HasKey(cp => new { cp.CollectionId, cp.ProductId });
+            e.HasIndex(cp => new { cp.CollectionId, cp.DisplayOrder });
+            e.Property(cp => cp.DisplayOrder).HasDefaultValue(0);
+            e.HasOne(cp => cp.Collection)
+                .WithMany(c => c.CollectionProducts)
+                .HasForeignKey(cp => cp.CollectionId)
+                .OnDelete(DeleteBehavior.Cascade);
+            e.HasOne(cp => cp.Product)
+                .WithMany(p => p.CollectionProducts)
+                .HasForeignKey(cp => cp.ProductId)
+                .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<Coupon>(e =>

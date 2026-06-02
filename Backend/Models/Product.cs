@@ -15,4 +15,5 @@ public sealed class Product
     public List<string> Gallery { get; set; } = [];
     public List<ProductBadge> Badges { get; set; } = [];
     public List<ProductSpec> Specs { get; set; } = [];
+    public List<CollectionProduct> CollectionProducts { get; set; } = [];
 }
