@@ -14,28 +14,23 @@ public sealed class EFCollectionRepository(
 
     public Collection? GetById(long id)
     {
-        return context.Collections
-            .FirstOrDefault(x => x.Id == id);
+        return context.Collections.Where(c => c.Id == id).FirstOrDefault();
     }
-
     public void Create(Collection collection)
     {
         context.Collections.Add(collection);
-
         context.SaveChanges();
     }
 
     public void Update(Collection collection)
     {
         context.Collections.Update(collection);
-
         context.SaveChanges();
     }
 
     public void Delete(Collection collection)
     {
         context.Collections.Remove(collection);
-
         context.SaveChanges();
     }
 }
