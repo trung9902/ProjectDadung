@@ -36,18 +36,29 @@ const Header = () => {
     setDropdownOpen(false)
     navigate('/')
   }
+  const handleActiveMenu = (path) => {
+    return window.location.pathname === path ? 'header-menu-item active' : 'header-menu-item'
+  }
 
   return (
     <nav className="header-nav">
       <div className="header-container">
         <div className="header-left">
-          <a className="header-logo" href="/">MODERN_RETAIL</a>
+          <Link to="/">MODERN_RETAIL</Link>
         </div>
         <div className="header-menu">
-          <a className="header-menu-item active" href="/">Cửa hàng</a>
-          <a className="header-menu-item" href="/collections">Bộ sưu tập</a>
-          <a className="header-menu-item" href="/new-arrivals">Hàng mới về</a>
-          <a className="header-menu-item" href="/sale">Giảm giá</a>
+          <Link className={handleActiveMenu('/')} to="/">
+            Cửa hàng
+          </Link>
+          <Link className={handleActiveMenu('/collections')} to="/collections">
+            Bộ sưu tập
+          </Link>
+          <Link className={handleActiveMenu('/new-arrivals')} to="/new-arrivals">
+            Hàng mới về
+          </Link>
+          <Link className={handleActiveMenu('/sale')} to="/sale">
+            Giảm giá
+          </Link>
         </div>
         <div className="header-actions">
           <Link to="/cart">

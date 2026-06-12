@@ -10,4 +10,5 @@ public sealed class User
     public string FullName { get; set; } = string.Empty;
     public UserRole Role { get; set; } = UserRole.Customer;
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public List<WishlistItem> WishlistItems { get; set; } = [];
 }

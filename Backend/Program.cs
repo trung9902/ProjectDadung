@@ -59,12 +59,14 @@ builder.Services.AddScoped<IOrderRepository, EFOrderRepository>();
 builder.Services.AddScoped<ICouponRepository, EFCouponRepository>();
 builder.Services.AddScoped<IUserRepository, EFUserRepository>();
 builder.Services.AddScoped<ICollectionRepository, EFCollectionRepository>();
+builder.Services.AddScoped<IWishlistRepository, EFWishlistRepository>();
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<OrderService>();
 builder.Services.AddScoped<CouponService>();
 builder.Services.AddScoped<VnPayService>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<CollectionService>();
+builder.Services.AddScoped<WishlistService>();
 
 var app = builder.Build();
 

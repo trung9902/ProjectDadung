@@ -14,6 +14,7 @@ public sealed class AppDbContext(DbContextOptions<AppDbContext> options) : DbCon
     public DbSet<CollectionProduct> CollectionProducts => Set<CollectionProduct>();
     public DbSet<CustomerOrder> Orders => Set<CustomerOrder>();
     public DbSet<Coupon> Coupons => Set<Coupon>();
+    public DbSet<WishlistItem> WishlistItems => Set<WishlistItem>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -135,6 +136,23 @@ public sealed class AppDbContext(DbContextOptions<AppDbContext> options) : DbCon
             e.HasOne(cp => cp.Product)
                 .WithMany(p => p.CollectionProducts)
                 .HasForeignKey(cp => cp.ProductId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        modelBuilder.Entity<WishlistItem>(e =>
+        {
+            e.HasKey(w => new { w.UserId, w.ProductId });
+            e.HasIndex(w => new { w.UserId, w.CreatedAt });
+            e.Property(w => w.CreatedAt).HasDefaultValueSql("GETUTCDATE()");
+
+            e.HasOne(w => w.User)
+                .WithMany(u => u.WishlistItems)
+                .HasForeignKey(w => w.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            e.HasOne(w => w.Product)
+                .WithMany(p => p.WishlistItems)
+                .HasForeignKey(w => w.ProductId)
                 .OnDelete(DeleteBehavior.Cascade);
         });
 

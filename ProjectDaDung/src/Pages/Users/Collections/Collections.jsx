@@ -19,7 +19,7 @@ const Collections = () => {
       <section className="collections-grid">
         {loading ? (
           <p>Dang tai bo suu tap...</p>
-        ) : collections.length > 0 ? (
+        ) : collections?.length > 0 ? (
           collections.map((collection) => (
             <article className="collections-card" key={collection.id}>
               <img src={collection.image} alt={collection.title} />
