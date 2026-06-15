@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import './ProductDetail.css'
 import useProductsData from '../../../../servers/produc'
 import { getCart, saveCart } from '../../../utils/cart'
+import { useGetWishlistItemStatus, useAddToWishlist, useDeleteFromWishlist } from '../../../../hook/useWishlist'
 
 const formatCurrency = (value) =>
   value.toLocaleString('vi-VN', {
@@ -11,10 +12,14 @@ const formatCurrency = (value) =>
   })
 
 const ProductDetail = () => {
+  const { status } = useGetWishlistItemStatus(Number(useParams().id))
+  const { addProductToWishlist } = useAddToWishlist(Number(useParams().id))
+  const { deleteProductFromWishlist } = useDeleteFromWishlist(Number(useParams().id))
   const products = useProductsData()
   const { id } = useParams()
   const [activeImage, setActiveImage] = useState('')
   const [quantity, setQuantity] = useState(1)
+  const [isFavorite, setIsFavorite] = useState(null)
 
   const product = useMemo(
     () => products.find((item) => item.id === Number(id)),
@@ -35,7 +40,19 @@ const ProductDetail = () => {
       setActiveImage(gallery[0])
     }
   }, [gallery])
-
+  useEffect(() => {
+    setIsFavorite(!!status?.isFavorite)
+  }, [status])
+  const handleWishlistToggle = () => {
+    if (isFavorite) {
+      deleteProductFromWishlist();
+      setIsFavorite(false);
+    }
+    else {
+      addProductToWishlist();
+      setIsFavorite(true);
+    }
+  }
   if (products.length === 0) {
     return (
       <main className="pd-container">
@@ -165,9 +182,19 @@ const ProductDetail = () => {
           </div>
 
           <div className="pd-secondary-actions">
-            <button type="button" className="pd-sec-btn">
-              <i className="fa-regular fa-heart" aria-hidden="true"></i>
-              Yêu thích
+
+            <button type="button" className="pd-sec-btn" onClick={handleWishlistToggle}>
+              {isFavorite ? (
+                <>
+                  <i className="fa-solid fa-heart" aria-hidden="true"></i>
+                  Đã yêu thích
+                </>
+              ) : (
+                <>
+                  <i className="fa-regular fa-heart" aria-hidden="true"></i>
+                  Yêu thích
+                </>
+              )}
             </button>
             <button type="button" className="pd-sec-btn">
               <i className="fa-solid fa-share-nodes" aria-hidden="true"></i>

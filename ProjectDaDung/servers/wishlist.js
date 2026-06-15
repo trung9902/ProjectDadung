@@ -1,8 +1,19 @@
 const fetchJson = async (url, options = {}) => {
-    const res = await fetch(url, options);
-    const data = await res.json();
+    const token = localStorage.getItem('auth_token');
+    const headers = {
+        ...(options.headers || {}),
+        ...(token ? { Authorization: `Bearer ${token}` } : {})
+    };
+
+    const res = await fetch(url, {
+        ...options,
+        headers
+    });
+    const text = await res.text();
+    const data = text ? JSON.parse(text) : null;
+
     if (!res.ok) {
-        throw new Error(data.message || 'Request failed');
+        throw new Error(data?.message || 'Request failed');
     };
     return data;
 }
@@ -30,12 +41,11 @@ export const DeleteWishlistAll = async () => {
 
 export const addToWishlist = async (productId) => {
     try {
-        return await fetchJson('/api/wishlist', {
+        return await fetchJson(`/api/wishlist/${productId}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ productId })
         });
     } catch (error) {
         console.error("Error adding to wishlist:", error);
@@ -57,7 +67,7 @@ export const deleteFromWishlist = async (productId) => {
 };
 export const getWishlistItemStatus = async (productId) => {
     try {
-        return await fetchJson(`/api/wishlist/status/${productId}`);
+        return await fetchJson(`/api/wishlist/${productId}/status`);
     }
     catch (error) {
         console.error("Error getting wishlist item status:", error);
