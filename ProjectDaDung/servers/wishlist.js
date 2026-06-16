@@ -19,7 +19,7 @@ const fetchJson = async (url, options = {}) => {
 }
 export const getWishlist = async () => {
     try {
-        return await fetchJson('/api/wishlist');
+        return await fetchJson('http://localhost:8080/api/wishlist');
     } catch (error) {
         console.error("Error fetching wishlist:", error);
         return [];
