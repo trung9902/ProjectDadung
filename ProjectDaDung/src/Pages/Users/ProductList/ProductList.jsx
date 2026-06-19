@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './ProductList.css'
 // import { products } from '../../../data/products'
-import useProductsData from '../../../../servers/produc'
 import { getCart, saveCart } from '../../../utils/cart'
+import { useGetProductsData } from '../../../../hook/useProduct'
 
 
 const formatCurrency = (value) =>
@@ -13,7 +13,8 @@ const formatCurrency = (value) =>
   })
 
 const ProductList = () => {
-  const products = useProductsData()
+  const { products, loading } = useGetProductsData()
+  // const products = useGetProductsData()
   const [filteredProducts, setFilteredProducts] = useState(products)
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [selectedPriceRange, setSelectedPriceRange] = useState(10000000)

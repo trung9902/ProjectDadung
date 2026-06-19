@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import './ProductDetail.css'
-import useProductsData from '../../../../servers/produc'
 import { getCart, saveCart } from '../../../utils/cart'
+import { useGetProductsData } from '../../../../hook/useProduct'
 import { useGetWishlistItemStatus, useAddToWishlist, useDeleteFromWishlist } from '../../../../hook/useWishlist'
 
 const formatCurrency = (value) =>
@@ -15,7 +15,7 @@ const ProductDetail = () => {
   const { status } = useGetWishlistItemStatus(Number(useParams().id))
   const { addProductToWishlist } = useAddToWishlist(Number(useParams().id))
   const { deleteProductFromWishlist } = useDeleteFromWishlist(Number(useParams().id))
-  const products = useProductsData()
+  const { products } = useGetProductsData()
   const { id } = useParams()
   const [activeImage, setActiveImage] = useState('')
   const [quantity, setQuantity] = useState(1)

@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
 import './Wishlist.css'
-import { useWishlist } from '../../../../hook/useWishlist'
+import { useWishlist, useDeleteFromWishlist, useDeleteWishlistAll } from '../../../../hook/useWishlist'
 import { getCart, saveCart } from '../../../utils/cart'
-import useProductsData from '../../../../servers/produc'
+import { useGetProductsData } from '../../../../hook/useProduct'
 
 const Wishlist = () => {
   const { wishlist, loading } = useWishlist();
+  const { deleteProductFromWishlist } = useDeleteFromWishlist();
+  const { deleteWishlist } = useDeleteWishlistAll();
   const [cart, setCart] = useState(() => {
     return getCart()
   })
-  // const { deleteWishlistAll } = useDeleteWishlistAll();
-  const products = useProductsData()
+  const { products } = useGetProductsData()
 
   const addCart = (id) => {
     const product = products.find((p) => p.id === id)
@@ -46,7 +47,7 @@ const Wishlist = () => {
             )
           }
         </div>
-        <button type="button" className="static-btn-outline">
+        <button type="button" className="static-btn-outline" onClick={() => deleteWishlist()}>
           <span className="material-symbols-outlined">delete_sweep</span>
           Xoa tat ca
         </button>
@@ -68,7 +69,7 @@ const Wishlist = () => {
                       <span className="static-badge wishlist-badge">{firstBadge.label}</span>
                     )}
 
-                    <button type="button" className="static-icon-btn wishlist-remove" aria-label="Xoa san pham">
+                    <button type="button" className="static-icon-btn wishlist-remove" aria-label="Xoa san pham" onClick={() => deleteProductFromWishlist(product.id)}>
                       <span className="material-symbols-outlined">delete</span>
                     </button>
                   </div>

@@ -18,7 +18,7 @@ export const useWishlist = () => {
             }
         };
         fetchWishlist();
-    }, []);
+    }, [wishlist]);
     return { wishlist, loading, error };
 }
 export const useDeleteWishlistAll = () => {
@@ -58,10 +58,10 @@ export const useAddToWishlist = (productId) => {
     }, [productId]);
     return { addProductToWishlist, loading, error };
 }
-export const useDeleteFromWishlist = (productId) => {
+export const useDeleteFromWishlist = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const deleteProductFromWishlist = useCallback(async () => {
+    const deleteProductFromWishlist = useCallback(async (productId) => {
         setLoading(true);
         try {
             await deleteFromWishlist(productId);
@@ -73,15 +73,15 @@ export const useDeleteFromWishlist = (productId) => {
             setLoading(false);
         }
 
-    }, [productId]);
+    }, []);
     return { deleteProductFromWishlist, loading, error };
 }
-export const useGetWishlistItemStatus = (productId) => {
+export const useGetWishlistItemStatus = () => {
     const [status, setStatus] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     useEffect(() => {
-        const getWishlistStatus = async () => {
+        const getWishlistStatus = async (productId) => {
             setLoading(true);
             try {
                 const itemStatus = await getWishlistItemStatus(productId);
@@ -95,6 +95,6 @@ export const useGetWishlistItemStatus = (productId) => {
             }
         };
         getWishlistStatus();
-    }, [productId]);
+    }, []);
     return { status, loading, error };
 }
