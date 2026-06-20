@@ -1,12 +1,13 @@
 import react, { useState, useEffect } from 'react'
-import { useProductsData } from '../servers/produc'
-export const useGetProductsData = async() => {
+import { getProductsData } from '../servers/produc'
+export const useGetProductsData = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const data = await useProductsData();
+                const data = await getProductsData();
+                console.log('Fetched products:', data);
                 setProducts(data);
             }
             catch (error) {
@@ -17,6 +18,7 @@ export const useGetProductsData = async() => {
                 setLoading(false);
             }
         };
+        fetchProducts();
     }, []);
     return { products, loading };
 }

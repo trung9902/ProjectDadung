@@ -1,5 +1,6 @@
 import React from 'react'
 import './NewArrivals.css'
+import { useGetProductsData } from '../../../../hook/useProduct'
 
 const newProducts = [
   {
@@ -36,6 +37,31 @@ const newProducts = [
 ]
 
 const NewArrivals = () => {
+  const { products, loading } = useGetProductsData();
+  const [selectedSort, setSelectedSort] = React.useState('All');
+  if (loading) {
+    return <div className="loading">Loading...</div>;
+  }
+  const productCategories = [...new Set(products.map((product) => product.category))];
+  const filterNewProducts = (selectedSort) => {
+    const sortProducts = [...products].filter(product => {
+      const matchAll = selectedSort === 'All' && product?.badges?.[0]?.variant === 'new'
+      const matchCategory = selectedSort === product.category && product?.badges?.[0]?.variant === 'new'
+      return matchAll || matchCategory
+    })
+      .sort((a, b) => {
+        if (selectedSort === 'new') {
+          return 0;
+        }
+        else if (selectedSort === 'price-low')
+          return a.price - b.price;
+
+        else if (selectedSort === 'price-high')
+          return b.price - a.price;
+      });
+    return sortProducts;
+  }
+
   return (
     <main className="static-page new-arrivals-page">
       <section className="new-arrivals-hero">
@@ -47,20 +73,29 @@ const NewArrivals = () => {
 
       <section className="new-arrivals-toolbar">
         <div className="static-chip-row">
-          <span className="static-chip active">Tat ca san pham</span>
-          <span className="static-chip">Ao nam</span>
+          <span className={`static-chip ${selectedSort === 'All' ? 'active' : ''}`} onClick={() => setSelectedSort('All')}>
+            Tat ca san pham
+          </span>
+          {
+            productCategories.map((category) => (
+              <span className={`static-chip ${selectedSort === category ? 'active' : ''}`} key={category} onClick={() => setSelectedSort(category)}>
+                {category}
+              </span>
+            ))
+          }
+          {/* <span className="static-chip">Ao nam</span>
           <span className="static-chip">Phu kien</span>
-          <span className="static-chip">Giay dep</span>
+          <span className="static-chip">Giay dep</span> */}
         </div>
-        <select className="static-select new-arrivals-sort" defaultValue="newest">
-          <option value="newest">Moi nhat</option>
+        <select className="static-select new-arrivals-sort" defaultValue="newest" onChange={(e) => setSelectedSort(e.target.value)}>
+          <option value="new">Moi nhat</option>
           <option value="price-low">Gia thap den cao</option>
           <option value="price-high">Gia cao den thap</option>
         </select>
       </section>
 
       <section className="new-arrivals-grid">
-        {newProducts.map((product) => (
+        {filterNewProducts(selectedSort).slice(0, 4).map((product) => (
           <article className={`static-card new-product-card ${product.featured ? 'featured' : ''}`} key={product.name}>
             <div className="static-image-frame portrait">
               <img src={product.image} alt={product.name} />
